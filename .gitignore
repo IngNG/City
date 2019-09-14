@@ -1,0 +1,4 @@
+*.bmarks
+*.layout
+*_build_log.html
+bin/
