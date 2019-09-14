@@ -2,3 +2,4 @@
 *.layout
 *_build_log.html
 bin/
+obj/
