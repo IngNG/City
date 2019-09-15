@@ -1,4 +1,4 @@
-#include "Lib/TXLib.h"
+#include "lib/TXLib.h"
 
 int main() {
 	txCreateWindow(800, 600);

@@ -2,24 +2,25 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="1xBet" />
+		<Option title="City" />
 		<Option pch_mode="2" />
-		<Option compiler="gnu_gcc_compiler__strict__fast_single_files_only" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="Headers\;Headers\Lib\;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/1xBet" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/City" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="0" />
-				<Option compiler="gnu_gcc_compiler__strict__fast_single_files_only" />
+				<Option type="1" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/1xBet" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/City" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option type="0" />
-				<Option compiler="gnu_gcc_compiler__strict__fast_single_files_only" />
+				<Option type="1" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -30,7 +31,6 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Lib/TXLib.h" />
 		<Unit filename="main.cpp" />

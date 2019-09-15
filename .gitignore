@@ -1,0 +1,15 @@
+*.log
+
+# Code::Blocks
+*.bmarks
+*.layout
+*_build_log.html
+bin/
+obj/
+
+# Visual Studio
+[Dd]ebug/
+[Rr]elease/
+*.vcxproj.user
+x64/
+.vs/
