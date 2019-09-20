@@ -2,6 +2,7 @@
 
 # Code::Blocks
 *.bmarks
+City.depend
 *.layout
 *_build_log.html
 bin/
