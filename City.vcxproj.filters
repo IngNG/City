@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\WindowObject">
+      <UniqueIdentifier>{3d019a15-3a1d-4344-a0fd-6f33dccf7b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\lib">
+      <UniqueIdentifier>{c53742e6-7e67-4495-9d22-e481a38b8d66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -20,8 +26,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="WindowObject\Button.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowObject\Const.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowObject\Struct.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
     <ClInclude Include="Lib\TXLib.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\lib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
