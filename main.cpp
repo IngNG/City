@@ -1,120 +1,85 @@
 #include "lib/TXLib.h"
-
-#define WIGHT_WINDOW 800
-#define HEIGHT_WINDOW 600
-
-#define WIGHT_ITEM_MENU 100
-#define HEIGHT_ITEM_MENU 50
-#define HEIGHT_SPASE 10
-#define COUNT_ITEM_MENU 3
-const char TEXT_MENU[COUNT_ITEM_MENU][255] = {
-    "Hello World", "Hello", "World"
-};
+#include <string>
+#include "Const.h"
+#include "WindowObject\Button.h"
 
 void darwRoundedRectangle(int x, int y, int x2, int y2, int r) {
-    txSetColour(RGB(0, 0, 0));
-    txSetFillColour(RGB(0, 0, 0));
+	txSetColour(RGB(0, 0, 0));
+	txSetFillColour(RGB(0, 0, 0));
 
-    Win32::RoundRect(txDC(), x, y, x2, y2, r, r);
+	Win32::RoundRect(txDC(), x, y, x2, y2, r, r);
 }
 
-void drawMenu() {
-    txSelectFont("Arial", 20);
-    int x_center_window = WIGHT_WINDOW / 2;
-    int y_center_window = HEIGHT_WINDOW / 2;
+void drawMenu(string *arrText, int countButton, int wight, int height, int r, int spase)
+{
+	txSelectFont("Arial", 20);
+	int x_center_window = WIDTH_WINDOW / 2;
+	int y_center_window = HEIGHT_WINDOW / 2;
 
-    txSetColour(RGB(0, 0, 0));
-    txSetFillColour(RGB(0, 0, 0));
-
-    int x_item = x_center_window - (WIGHT_ITEM_MENU / 2);
-    //int y_item = y_center_window - (HEIGHT_ITEM_MENU * COUNT_ITEM_MENU + HEIGHT_SPASE * (COUNT_ITEM_MENU - 1)) / 2;
-    int y_item = 100;
-
-    int x2_item = x_item + WIGHT_ITEM_MENU;
-    //int y2_item = y_center_window + HEIGHT_ITEM_MENU;
-    int y2_item = y_item + HEIGHT_ITEM_MENU;
-
-    for (int i = 0; i < COUNT_ITEM_MENU; i++) {
-
-    }
+	//TODO
 }
 
-    bool knopka(int x, int y)
-     {
+int main()
+{
+	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
+	
+	Button b1(20, 20, 120, 100, RGB(255, 0, 0), RGB(255, 255, 255));
+	Button b2(20, 130, 120, 220, RGB(255, 0, 0), RGB(255, 255, 255));
+	int stutusButton;
 
-        if (txMouseX() > x and
-              txMouseX() < x + 200 and
-              txMouseY() > y and
-              txMouseY() < y + 100 and
-              txMouseButtons() &1)
-        {
-            return true;
-        }
+	while (true) {
+		txBegin();
 
-        return false;
-     }
+		txSetFillColor(RGB(255, 255, 255));
+		txClear();
 
-     bool focus(int x, int y)
-     {
+		b1.draw();
+		b2.draw();
 
-        if (txMouseX() > x and
-              txMouseX() < x + 200 and
-              txMouseY() > y and
-              txMouseY() < y + 100
-            )
-        {
-            return true;
-        }
+		stutusButton = b1.getStatus();
+		if (stutusButton & MOUSE_DOWM_LEFT_BUTTON) {
+			std::cout << "One button down left" << std::endl;
+		}
+		
+		if (stutusButton & MOUSE_DOWN_RIGHT_BUTTON) {
+			std::cout << "One button down right" << std::endl;
+		}
 
-        return false;
-     }
+		if (stutusButton & MOUSE_UP_LEFT_BUTTON) {
+			txMessageBox("Кнопка #1 нажата");
+		}
 
-int main() {
-	txCreateWindow(WIGHT_WINDOW, HEIGHT_WINDOW);
+		if (stutusButton & MOUSE_UP_RIGHT_BUTTON) {
+			std::cout << "One button up right" << std::endl;
+		}
 
-	while (true)
-    {
-        txSetFillColor(RGB(255, 255, 255));
-        txClear();
-	      drawMenu();
+		if (stutusButton & MOUSE_HOVER) {
+			std::cout << "One button hover" << std::endl;
+		}
 
-        txSetFillColour(TX_RED);
-        txRectangle (0,0,200,100);
-        txDrawText  (0,0,200,100, "SDF");
+		stutusButton = b2.getStatus();
+		if (stutusButton & MOUSE_DOWM_LEFT_BUTTON) {
+			std::cout << "Two button down left" << std::endl;
+		}
 
-        txSetFillColour(TX_BLACK);
-        txSetColour(TX_PINK);
-        txRectangle (400,0,600,100);
-        txDrawText  (400,0,600,100, "fghfg");
+		if (stutusButton & MOUSE_DOWN_RIGHT_BUTTON) {
+			std::cout << "Two button down right" << std::endl;
+		}
 
-        txSetFillColour(TX_BLUE);
-        txRectangle (0,200,200,300);
-        txDrawText  (0,200,200,300, "SOF");
+		if (stutusButton & MOUSE_UP_LEFT_BUTTON) {
+			txMessageBox("Кнопка #2 нажата");
+		}
 
+		if (stutusButton & MOUSE_UP_RIGHT_BUTTON) {
+			std::cout << "Two button up right" << std::endl;
+		}
 
-       if (knopka(0,0))
-        {
-            txMessageBox("sdf","sdf");
-        }
+		if (stutusButton & MOUSE_HOVER) {
+			std::cout << "Two button hover" << std::endl;
+		}
 
-       if (knopka(0,200))
-        {
-            txMessageBox("sof","sof");
-        }
-
-        if (knopka(400,0))
-        {
-            txMessageBox("sdg","sdfs");
-        }
-
-       if (focus(400,200))
-        {
-            txSetColor(TX_BLACK);
-            txTextOut(500, 300,"fghfgh");
-        }
-
-        txSleep(10);
-    }
+		txSleep(10);
+	}
 
 	return 0;
 }
