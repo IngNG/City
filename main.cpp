@@ -22,6 +22,7 @@ void drawMenu(string *arrText, int countButton, int wight, int height, int r, in
 int main()
 {
 	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
+	txDisableAutoPause();
 
 	int stutusButton;
 	Button b1;
@@ -34,7 +35,7 @@ int main()
 	b1.textColor = RGB(255, 0, 0);
 	b1.text = "Button";
 
-	while (true) {
+	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
 
 		txSetFillColor(RGB(255, 255, 255));
