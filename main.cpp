@@ -11,14 +11,16 @@ const char TEXT_MENU[COUNT_ITEM_MENU][255] = {
     "Hello World", "Hello", "World"
 };
 
-void darwRoundedRectangle(int x, int y, int x2, int y2, int r) {
+void darwRoundedRectangle(int x, int y, int x2, int y2, int r)
+{
     txSetColour(RGB(0, 0, 0));
     txSetFillColour(RGB(0, 0, 0));
 
     Win32::RoundRect(txDC(), x, y, x2, y2, r, r);
 }
 
-void drawMenu() {
+void drawMenu()
+{
     txSelectFont("Arial", 20);
     int x_center_window = WIGHT_WINDOW / 2;
     int y_center_window = HEIGHT_WINDOW / 2;
@@ -34,40 +36,41 @@ void drawMenu() {
     //int y2_item = y_center_window + HEIGHT_ITEM_MENU;
     int y2_item = y_item + HEIGHT_ITEM_MENU;
 
-    for (int i = 0; i < COUNT_ITEM_MENU; i++) {
+    for (int i = 0; i < COUNT_ITEM_MENU; i++)
+    {
 
     }
 }
 
-    bool knopka(int x, int y)
-     {
+bool isClickButton(int x, int y)
+ {
 
-        if (txMouseX() > x and
-              txMouseX() < x + 200 and
-              txMouseY() > y and
-              txMouseY() < y + 100 and
-              txMouseButtons() &1)
-        {
-            return true;
-        }
+    if (txMouseX() > x and
+          txMouseX() < x + 200 and
+          txMouseY() > y and
+          txMouseY() < y + 100 and
+          txMouseButtons() &1)
+    {
+        return true;
+    }
 
-        return false;
-     }
+    return false;
+ }
 
-     bool focus(int x, int y)
-     {
+ bool isHoverButton(int x, int y)
+ {
 
-        if (txMouseX() > x and
-              txMouseX() < x + 200 and
-              txMouseY() > y and
-              txMouseY() < y + 100
-            )
-        {
-            return true;
-        }
+    if (txMouseX() > x and
+          txMouseX() < x + 200 and
+          txMouseY() > y and
+          txMouseY() < y + 100
+        )
+    {
+        return true;
+    }
 
-        return false;
-     }
+    return false;
+ }
 
 int main() {
 	txCreateWindow(WIGHT_WINDOW, HEIGHT_WINDOW);
@@ -92,22 +95,22 @@ int main() {
         txDrawText  (0,200,200,300, "SOF");
 
 
-       if (knopka(0,0))
+        if (isClickButton(0,0))
         {
             txMessageBox("sdf","sdf");
         }
 
-       if (knopka(0,200))
+        if (isClickButton(0,200))
         {
             txMessageBox("sof","sof");
         }
 
-        if (knopka(400,0))
+        if (isClickButton(400,0))
         {
             txMessageBox("sdg","sdfs");
         }
 
-       if (focus(400,200))
+        if (isClickButton(400,200))
         {
             txSetColor(TX_BLACK);
             txTextOut(500, 300,"fghfgh");
