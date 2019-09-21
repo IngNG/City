@@ -77,9 +77,10 @@ int main() {
 
 	while (true)
     {
+        txBegin();
         txSetFillColor(RGB(255, 255, 255));
         txClear();
-	      drawMenu();
+        drawMenu();
 
         txSetFillColour(TX_RED);
         txRectangle (0,0,200,100);
