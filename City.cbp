@@ -32,7 +32,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Lib/TXLib.h" />
+		<Unit filename="Const.h" />
+		<Unit filename="WindowObject/Button.h" />
+		<Unit filename="WindowObject/Const.h" />
+		<Unit filename="WindowObject/Object.h" />
+		<Unit filename="lib/TXLib.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
