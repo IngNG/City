@@ -1,86 +1,84 @@
 #pragma once
-#include "Object.h"
+#include "../lib/TXLib.h"
+#include "Const.h"
 #include <string>
+#include "Struct.h"
 
-class Button: public Object {
-private:
-	COLORREF borderColor;
-	COLORREF textColor;
-	COLORREF fillColor;
-	string text;
+bool isMouseOver(areaCoord area) {
+	if (
+		In(txMouseX(), area.x, area.x2) &&
+		In(txMouseY(), area.y, area.y2)
+		) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
-	int thicknessBorder = 3;
+void drawButton(Button b) {
+	txSetFillColor(b.fillColor);
+	txSetColor(b.borderColor);
 
-public:
-	Button():
-	Object(0, 0, 0, 0) {
-		this->borderColor = RGB(0, 0, 0);
-		this->fillColor = RGB(0, 0, 0);
-		this->textColor = RGB(255, 255, 255);
-		this->text = "";
+	txRectangle(b.area.x, b.area.y, b.area.x2, b.area.y2);
+	if (b.text.length() != 0) {
+		txDrawText(b.area.x, b.area.y, b.area.x2, b.area.y2, b.text.c_str());
+	}
+}
+
+void updateStatusArea(areaCoord &area) {
+	int statusMouseButton = txMouseButtons();
+
+	area.status.mouseOver = isMouseOver(area);
+	area.status.mouseClickLeft = statusMouseButton & 1;
+	area.status.mouseClickRight = statusMouseButton & 2;
+}
+
+eventArea getEventArea(areaCoord &area) {
+	int statusMouseButton = txMouseButtons();
+	eventArea newEvents;
+
+	// Наведение на объект
+	if (area.status.mouseOver && !area.flags.mouseHover) {
+		newEvents.mouseHover = true;
+		area.flags.mouseHover = true;
+	}
+	else if (!area.status.mouseOver && area.flags.mouseHover) {
+		area.flags.mouseHover = false;
 	}
 
-	Button(
-		int x,
-		int y,
-		int x2,
-		int y2,
-		COLORREF borderColor,
-		COLORREF fillColor
-	):
-	Object(x, y, x2, y2) {
-		this->borderColor = borderColor;
-		this->fillColor = fillColor;
-		this->textColor = RGB(255, 255, 255);
-		this->text = "";
+	// Убирание мышки с объекта
+	if (!area.status.mouseOver && !area.flags.mouseUnHover) {
+		newEvents.mouseUnHover = true;
+		area.flags.mouseUnHover = true;
+	}
+	else if (area.status.mouseOver && area.flags.mouseUnHover) {
+		area.flags.mouseUnHover = false;
 	}
 
-	Button(
-		int x,
-		int y,
-		int x2,
-		int y2,
-		string text,
-		COLORREF borderColor,
-		COLORREF fillColor,
-		COLORREF textColor
-	):
-	Object(x, y, x2, y2) {
-		this->borderColor = borderColor;
-		this->fillColor = fillColor;
-		this->textColor = textColor;
-		this->text = text;
+	// Нажатие левой кнопки мыши
+	if (area.status.mouseOver && area.status.mouseClickLeft && !area.flags.mouseButtonDownLeft) {
+		area.flags.mouseButtonDownLeft = true;
+		newEvents.mouseButtonDownLeft = true;
 	}
-
-	void draw() {
-		txSetColor(this->borderColor, this->thicknessBorder);
-		txSetFillColor(this->fillColor);
-
-		txRectangle(this->getX(), this->getY(), this->getX2(), this->getY2());
-		if (this->text.length() != 0) {
-			txDrawText(this->getX(), this->getY(), this->getX2(), this->getY2(), this->text.c_str());
+	else if (!area.status.mouseClickLeft && area.flags.mouseButtonDownLeft) {
+		if (area.status.mouseOver) {
+			newEvents.mouseButtonUpLeft = true;
 		}
-	}
-//-------------TEXT----------------
-	string getText() {
-		return this->text;
+		area.flags.mouseButtonDownLeft = false;
 	}
 
-	void setText(string text) {
-		this->text = text;
+	// Нажатие правой кнопки мыши
+	if (area.status.mouseOver && area.status.mouseClickRight && !area.flags.mouseButtonDownRight) {
+		area.flags.mouseButtonDownRight = true;
+		newEvents.mouseButtonDownRight = true;
 	}
-//-----------COLOR----------------
-	void setColor(
-		COLORREF borderColor,
-		COLORREF fillColor,
-		COLORREF textColor
-	) {
-		this->borderColor = borderColor;
-		this->fillColor = fillColor;
-		this->textColor = textColor;
+	else if (!area.status.mouseClickRight && area.flags.mouseButtonDownRight) {
+		if (area.status.mouseOver) {
+			newEvents.mouseButtonUpRight = true;
+		}
+		area.flags.mouseButtonDownRight = false;
 	}
-//--------FILL-COLOR----------------
-	void setFillColor(COLORREF color) {
-		this->fillColor = color;
-	}
-};
+
+	return newEvents;
+}

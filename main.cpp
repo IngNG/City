@@ -1,7 +1,7 @@
 #include "lib/TXLib.h"
 #include <string>
 #include "Const.h"
-#include "WindowObject\Button.h"
+#include "WindowObject/Button.h"
 
 void darwRoundedRectangle(int x, int y, int x2, int y2, int r) {
 	txSetColour(RGB(0, 0, 0));
@@ -22,61 +22,56 @@ void drawMenu(string *arrText, int countButton, int wight, int height, int r, in
 int main()
 {
 	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
-	
-	Button b1(20, 20, 120, 100, RGB(255, 0, 0), RGB(255, 255, 255));
-	Button b2(20, 130, 120, 220, RGB(255, 0, 0), RGB(255, 255, 255));
-	int stutusButton;
+	txDisableAutoPause();
 
-	while (true) {
+	int stutusButton;
+	Button b1;
+	b1.area.x = 20;
+	b1.area.y = 20;
+	b1.area.x2 = 120;
+	b1.area.y2 = 100;
+	b1.fillColor = RGB(255, 0, 0);
+	b1.borderColor = RGB(0, 0, 0);
+	b1.textColor = RGB(255, 0, 0);
+	b1.text = "Button";
+
+	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
 
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-		b1.draw();
-		b2.draw();
+		drawButton(b1);
+		updateStatusArea(b1.area);
+		eventArea events = getEventArea(b1.area);
 
-		stutusButton = b1.getStatus();
-		if (stutusButton & MOUSE_DOWM_LEFT_BUTTON) {
-			std::cout << "One button down left" << std::endl;
-		}
-		
-		if (stutusButton & MOUSE_DOWN_RIGHT_BUTTON) {
-			std::cout << "One button down right" << std::endl;
+		if (events.mouseHover) {
+			std::cout << "Hover" << std::endl;
 		}
 
-		if (stutusButton & MOUSE_UP_LEFT_BUTTON) {
-			txMessageBox("Кнопка #1 нажата");
+		if (events.mouseUnHover) {
+			std::cout << "Un Hover" << std::endl;
 		}
 
-		if (stutusButton & MOUSE_UP_RIGHT_BUTTON) {
-			std::cout << "One button up right" << std::endl;
+		if (events.mouseButtonDownRight) {
+			std::cout << "Down Right" << std::endl;
 		}
 
-		if (stutusButton & MOUSE_HOVER) {
-			std::cout << "One button hover" << std::endl;
+		if (events.mouseButtonUpRight) {
+			std::cout << "Up Right" << std::endl;
 		}
 
-		stutusButton = b2.getStatus();
-		if (stutusButton & MOUSE_DOWM_LEFT_BUTTON) {
-			std::cout << "Two button down left" << std::endl;
+		if (events.mouseButtonDownLeft) {
+			b1.fillColor = RGB(255, 255, 0);
+			std::cout << "Down Left" << std::endl;
 		}
 
-		if (stutusButton & MOUSE_DOWN_RIGHT_BUTTON) {
-			std::cout << "Two button down right" << std::endl;
+		if (events.mouseButtonUpLeft) {
+			b1.fillColor = RGB(255, 0, 0);
+			std::cout << "Up Left" << std::endl;
 		}
 
-		if (stutusButton & MOUSE_UP_LEFT_BUTTON) {
-			txMessageBox("Кнопка #2 нажата");
-		}
 
-		if (stutusButton & MOUSE_UP_RIGHT_BUTTON) {
-			std::cout << "Two button up right" << std::endl;
-		}
-
-		if (stutusButton & MOUSE_HOVER) {
-			std::cout << "Two button hover" << std::endl;
-		}
 
 		txSleep(10);
 	}
