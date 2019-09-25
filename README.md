@@ -12,5 +12,5 @@
 ### Зависимости
  - [TXLib](http://storage.ded32.net.ru/Lib/TX/TXUpdate/Doc/HTML.ru/)
 -----------------------------
-### [Рейтинг](https://docs.google.com/spreadsheets/d/1Wjq24aBWYW1Jv3pDB2whHBC6jtAhyz6xWS3OlcuegVI/edit#gid=296788835)
-### [Список задач](https://docs.google.com/spreadsheets/d/1Wjq24aBWYW1Jv3pDB2whHBC6jtAhyz6xWS3OlcuegVI/edit#gid=1392176167)
+ - ### [Рейтинг](https://docs.google.com/spreadsheets/d/1Wjq24aBWYW1Jv3pDB2whHBC6jtAhyz6xWS3OlcuegVI/edit#gid=296788835)
+ - ### [Список задач](https://docs.google.com/spreadsheets/d/1Wjq24aBWYW1Jv3pDB2whHBC6jtAhyz6xWS3OlcuegVI/edit#gid=1392176167)
