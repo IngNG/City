@@ -3,6 +3,22 @@
 #include "Const.h"
 #include "WindowObject/Button.h"
 
+struct Pic
+{
+int x;
+int y ;
+int width;
+int visota;
+HDC pic;
+};
+
+void drawPic (Pic p)
+{
+    txSetFillColor(TX_GRAY);
+    txRectangle(p.x + 0, p.y + 100, p.x + 700, p.y + 600);
+    txBitBlt(txDC(), p.x +200,p.y + 200, p.width, p.visota, p.pic);
+}
+
 void darwRoundedRectangle(int x, int y, int x2, int y2, int r) {
 	txSetColour(RGB(0, 0, 0));
 	txSetFillColour(RGB(0, 0, 0));
@@ -21,9 +37,13 @@ void drawMenu(string *arrText, int countButton, int wight, int height, int r, in
 
 int main()
 {
+
+
 	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
 	txDisableAutoPause();
 
+HDC fon = txLoadImage ("img\\fon.bmp");
+HDC skver = txLoadImage ("img\\skver.bmp");
 	int stutusButton;
 	Button b1;
 	b1.area.x = 20;
@@ -41,6 +61,8 @@ int main()
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
+Win32::TransparentBlt (txDC(),200,0,600,600,fon,0,0, 123,124, TX_WHITE);
+Win32::TransparentBlt (txDC(),300,200,200,160,skver,0,0, 175,110, TX_WHITE);
 		drawButton(b1);
 		updateStatusArea(b1.area);
 		eventArea events = getEventArea(b1.area);
