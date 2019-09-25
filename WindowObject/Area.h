@@ -23,7 +23,7 @@ struct AreaCoord {
 	int x2;
 	int y2;
 
-	EventArea flags = { false, false, false, false, false, true };
+	EventArea flags;
 	StatusArea status;
 };
 
