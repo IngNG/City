@@ -1,31 +1,15 @@
 #include "lib/TXLib.h"
 #include <string>
 #include "Const.h"
-#include "WindowObject/Button.h"
 
-void darwRoundedRectangle(int x, int y, int x2, int y2, int r) {
-	txSetColour(RGB(0, 0, 0));
-	txSetFillColour(RGB(0, 0, 0));
+#include "WindowObject/ButtonText.h"
 
-	Win32::RoundRect(txDC(), x, y, x2, y2, r, r);
-}
-
-void drawMenu(string *arrText, int countButton, int wight, int height, int r, int spase)
-{
-	txSelectFont("Arial", 20);
-	int x_center_window = WIDTH_WINDOW / 2;
-	int y_center_window = HEIGHT_WINDOW / 2;
-
-	//TODO
-}
-
-int main()
-{
+int main() {
 	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
 	txDisableAutoPause();
 
 	int stutusButton;
-	Button b1;
+	ButtonText b1;
 	b1.area.x = 20;
 	b1.area.y = 20;
 	b1.area.x2 = 120;
@@ -43,7 +27,7 @@ int main()
 
 		drawButton(b1);
 		updateStatusArea(b1.area);
-		eventArea events = getEventArea(b1.area);
+		EventArea events = getEventArea(b1.area);
 
 		if (events.mouseHover) {
 			std::cout << "Hover" << std::endl;

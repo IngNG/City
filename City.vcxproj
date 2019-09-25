@@ -126,10 +126,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Const.h" />
     <ClInclude Include="Lib\TXLib.h" />
-    <ClInclude Include="WindowObject\Button.h" />
-    <ClInclude Include="WindowObject\Const.h" />
-    <ClInclude Include="WindowObject\Struct.h" />
+    <ClInclude Include="WindowObject\Area.h" />
+    <ClInclude Include="WindowObject\ButtonText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
