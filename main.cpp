@@ -3,6 +3,22 @@
 #include "Const.h"
 #include "WindowObject/Button.h"
 
+struct Pic
+{
+    int x;
+    int y ;
+    int width;
+    int visota;
+    HDC pic;
+};
+
+void drawPic (Pic p)
+{
+    txSetFillColor(TX_GRAY);
+    txRectangle(p.x + 0, p.y + 100, p.x + 700, p.y + 600);
+    txBitBlt(txDC(), p.x +200,p.y + 200, p.width, p.visota, p.pic);
+}
+
 struct HouseVariant
 {
    int x;
@@ -49,6 +65,9 @@ int main()
     HDC pik = txLoadImage("img\\Houses\\LowBlueHome.bmp");
     HDC pil = txLoadImage("img\\Houses\\LowGreenHome.bmp");
 
+    HDC fon = txLoadImage ("img\\fon.bmp");
+    HDC skver = txLoadImage ("img\\skver.bmp");
+
 	int stutusButton;
 	Button b1 =  {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
     Button b2 =  {{20, 60, 120, 100}, "дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
@@ -63,6 +82,9 @@ int main()
 
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
+
+        Win32::TransparentBlt (txDC(),200,0,600,600,fon,0,0, 123,124, TX_WHITE);
+        Win32::TransparentBlt (txDC(),300,200,200,160,skver,0,0, 175,110, TX_WHITE);
 
 		drawButton(b1);
 		drawButton(b2);
@@ -108,6 +130,12 @@ int main()
 
 		txSleep(10);
 	}
+
+    txDeleteDC(pic);
+    txDeleteDC(pik);
+    txDeleteDC(pil);
+    txDeleteDC(fon);
+    txDeleteDC(skver);
 
 	return 0;
 }
