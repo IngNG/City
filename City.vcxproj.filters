@@ -38,5 +38,11 @@
     <ClInclude Include="WindowObject\ButtonText.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
+    <ClInclude Include="WindowObject\Const.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowObject\Imges.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

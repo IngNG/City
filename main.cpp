@@ -4,20 +4,62 @@
 
 #include "WindowObject/ButtonText.h"
 
-int main() {
+struct Pic
+{
+    int x;
+    int y ;
+    int width;
+    int visota;
+    HDC pic;
+};
+
+void drawPic (Pic p)
+{
+    txSetFillColor(TX_GRAY);
+    txRectangle(p.x + 0, p.y + 100, p.x + 700, p.y + 600);
+    txBitBlt(txDC(), p.x +200,p.y + 200, p.width, p.visota, p.pic);
+}
+
+struct HouseVariant
+{
+   int x;
+   int y;
+   int height;
+   HDC pic;
+};
+
+void drawButon(HouseVariant c)
+{
+    txRectangle(c.x+0, c.y+100, c.x+700, c.y+600);
+    txBitBlt(txDC(), c.x+200, c.y+200, 100, c.height, c.pic);
+/*
+
+    BUTON c1 = {0,0,200,pic};
+    drawButon(c1);
+*/
+}
+
+
+int main()
+{
 	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
 	txDisableAutoPause();
 
+    HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
+    HDC pik = txLoadImage("img\\Houses\\LowBlueHome.bmp");
+    HDC pil = txLoadImage("img\\Houses\\LowGreenHome.bmp");
+
+    HDC fon = txLoadImage ("img\\fon.bmp");
+    HDC skver = txLoadImage ("img\\skver.bmp");
+
 	int stutusButton;
-	ButtonText b1;
-	b1.area.x = 20;
-	b1.area.y = 20;
-	b1.area.x2 = 120;
-	b1.area.y2 = 100;
-	b1.fillColor = RGB(255, 0, 0);
-	b1.borderColor = RGB(0, 0, 0);
-	b1.textColor = RGB(255, 0, 0);
-	b1.text = "Button";
+	ButtonText b1 =  {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    ButtonText b2 =  {{20, 60, 120, 100}, "дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    ButtonText b5 =  {{20, 110, 120, 150}, "фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    ButtonText b8 =  {{20, 160, 120, 200}, "машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    ButtonText b10 = {{20, 210, 120, 250}, "госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    ButtonText b11 = {{20, 260, 120, 300}, "снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    ButtonText b12 = {{20, 310, 120, 350}, "единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
@@ -25,9 +67,22 @@ int main() {
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
+        Win32::TransparentBlt (txDC(),200,0,600,600,fon,0,0, 123,124, TX_WHITE);
+        Win32::TransparentBlt (txDC(),300,200,200,160,skver,0,0, 175,110, TX_WHITE);
+
 		drawButton(b1);
+		drawButton(b2);
+		drawButton(b5);
+		drawButton(b8);
+		drawButton(b10);
+		drawButton(b11);
+		drawButton(b12);
 		updateStatusArea(b1.area);
 		EventArea events = getEventArea(b1.area);
+
+		txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
+		txBitBlt (txDC(), 700, 120, 100, 100, pik, 0, 0);
+		txBitBlt (txDC(), 700, 230, 100, 100, pil, 0, 0);
 
 		if (events.mouseHover) {
 			std::cout << "Hover" << std::endl;
@@ -59,6 +114,12 @@ int main() {
 
 		txSleep(10);
 	}
+
+    txDeleteDC(pic);
+    txDeleteDC(pik);
+    txDeleteDC(pil);
+    txDeleteDC(fon);
+    txDeleteDC(skver);
 
 	return 0;
 }
