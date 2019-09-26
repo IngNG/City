@@ -39,8 +39,16 @@ bool isMouseOver(AreaCoord area) {
 	}
 }
 
-EventArea getEventArea(AreaCoord& area) {
+void updateStatusArea(AreaCoord& area) {
 	int statusMouseButton = txMouseButtons();
+
+	area.status.mouseOver = isMouseOver(area);
+	area.status.mouseClickLeft = statusMouseButton & 1;
+	area.status.mouseClickRight = statusMouseButton & 2;
+}
+
+EventArea getEventArea(AreaCoord& area) {
+	updateStatusArea(area);
 	EventArea newEvents;
 
 	// Наведение на объект
@@ -86,13 +94,4 @@ EventArea getEventArea(AreaCoord& area) {
 	}
 
 	return newEvents;
-}
-
-
-void updateStatusArea(AreaCoord& area) {
-	int statusMouseButton = txMouseButtons();
-
-	area.status.mouseOver = isMouseOver(area);
-	area.status.mouseClickLeft = statusMouseButton & 1;
-	area.status.mouseClickRight = statusMouseButton & 2;
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include "../lib/TXLib.h"
-#include "Const.h"
 #include <string>
 #include "Area.h"
 

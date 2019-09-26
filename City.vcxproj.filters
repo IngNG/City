@@ -41,7 +41,7 @@
     <ClInclude Include="WindowObject\Const.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
-    <ClInclude Include="WindowObject\Imges.h">
+    <ClInclude Include="WindowObject\Image.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
   </ItemGroup>
