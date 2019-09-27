@@ -33,9 +33,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Const.h" />
-		<Unit filename="WindowObject/Button.h" />
+		<Unit filename="WindowObject/Area.h" />
+		<Unit filename="WindowObject/ButtonText.h" />
 		<Unit filename="WindowObject/Const.h" />
-		<Unit filename="WindowObject/Object.h" />
+		<Unit filename="WindowObject/Imges.h" />
 		<Unit filename="lib/TXLib.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

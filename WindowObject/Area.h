@@ -1,10 +1,33 @@
 #pragma once
-#include "../lib/TXLib.h"
-#include "Const.h"
-#include <string>
-#include "Struct.h"
+struct StatusArea {
+	bool mouseClickLeft = false;
+	bool mouseClickRight = false;
 
-bool isMouseOver(areaCoord area) {
+	bool mouseOver = false;
+};
+
+struct EventArea {
+	bool mouseButtonUpLeft = false;
+	bool mouseButtonUpRight = false;
+
+	bool mouseButtonDownLeft = false;
+	bool mouseButtonDownRight = false;
+
+	bool mouseHover = false;
+	bool mouseUnHover = false;
+};
+
+struct AreaCoord {
+	int x;
+	int y;
+	int x2;
+	int y2;
+
+	EventArea flags;
+	StatusArea status;
+};
+
+bool isMouseOver(AreaCoord area) {
 	if (
 		In(txMouseX(), area.x, area.x2) &&
 		In(txMouseY(), area.y, area.y2)
@@ -16,17 +39,7 @@ bool isMouseOver(areaCoord area) {
 	}
 }
 
-void drawButton(Button b) {
-	txSetFillColor(b.fillColor);
-	txSetColor(b.borderColor);
-
-	txRectangle(b.area.x, b.area.y, b.area.x2, b.area.y2);
-	if (b.text.length() != 0) {
-		txDrawText(b.area.x, b.area.y, b.area.x2, b.area.y2, b.text.c_str());
-	}
-}
-
-void updateStatusArea(areaCoord &area) {
+void updateStatusArea(AreaCoord& area) {
 	int statusMouseButton = txMouseButtons();
 
 	area.status.mouseOver = isMouseOver(area);
@@ -34,9 +47,9 @@ void updateStatusArea(areaCoord &area) {
 	area.status.mouseClickRight = statusMouseButton & 2;
 }
 
-eventArea getEventArea(areaCoord &area) {
-	int statusMouseButton = txMouseButtons();
-	eventArea newEvents;
+EventArea getEventArea(AreaCoord& area) {
+	updateStatusArea(area);
+	EventArea newEvents;
 
 	// Наведение на объект
 	if (area.status.mouseOver && !area.flags.mouseHover) {
