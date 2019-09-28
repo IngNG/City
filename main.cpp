@@ -3,6 +3,7 @@
 #include "Const.h"
 
 #include "WindowObject/ButtonText.h"
+#include "WindowObject/Image.h"
 
 int main()
 {
@@ -12,6 +13,7 @@ int main()
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
     HDC pik = txLoadImage("img\\Houses\\LowBlueHome.bmp");
     HDC pil = txLoadImage("img\\Houses\\LowGreenHome.bmp");
+    HDC pie = txLoadImage("img\\Houses\\TallYellowHome.bmp");
     HDC pit = txLoadImage("img\\Houses\\LowYellowHome.bmp");
     HDC pin = txLoadImage("img\\Houses\\TallBlueHome.bmp");
     HDC pim = txLoadImage("img\\Houses\\TallGreenHome.bmp");
@@ -22,13 +24,25 @@ int main()
 
 
     ButtonText buttons [7];
-	buttons[0] =  {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[1] =  {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[2] =  {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[3] =  {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+	  buttons[0] =  {{20, 10, 120, 50}, "ГЌГ Г·Г ГІГј", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[1] =  {{20, 60, 120, 100}, "Г„Г®Г¬Г ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[2] =  {{20, 110, 120, 150}, "Г”Г®Г­ГІГ Г­", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[3] =  {{20, 160, 120, 200}, "ГЊГ ГёГЁГ­Г ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[4] = {{20, 210, 120, 250}, "ГѓГ®Г±ГЇГЁГІГ Г«Гј", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[5] = {{20, 260, 120, 300}, "Г‘Г­ГҐГЈГ®ГўГЁГЄ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[6] = {{20, 310, 120, 350}, "Г…Г¤ГЁГ­Г®Г°Г®ГЈ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+
+
+ Image img[10];
+
+
+ img[0] = {{720,  30, 800, 110}, 79,58,pic};
+ img[1] = {{720, 140, 800, 220}, 66,58,pik};
+	img[2] = {{720, 250, 800, 330}, 66,58,pil};
+	img[3] = {{720, 350, 800, 450}, 66,99,pie};
+
+
+
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
@@ -94,12 +108,18 @@ int main()
               )
 		txBitBlt (txDC(), 700, 460, 100, 100, pim, 0, 0);
 
+	for(int n_img = 0;n_img < 4;n_img++)
+	{
+        drawImage(img[n_img]);
+ }
+
 		txSleep(10);
 	}
 
     txDeleteDC(pic);
     txDeleteDC(pik);
     txDeleteDC(pil);
+    txDeleteDC(pie);
     txDeleteDC(fon);
     txDeleteDC(skver);
 
