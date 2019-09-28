@@ -24,22 +24,22 @@ int main()
 
 
     ButtonText buttons [7];
-	  buttons[0] =  {{20, 10, 120, 50}, "ГЌГ Г·Г ГІГј", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[1] =  {{20, 60, 120, 100}, "Г„Г®Г¬Г ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[2] =  {{20, 110, 120, 150}, "Г”Г®Г­ГІГ Г­", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[3] =  {{20, 160, 120, 200}, "ГЊГ ГёГЁГ­Г ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[4] = {{20, 210, 120, 250}, "ГѓГ®Г±ГЇГЁГІГ Г«Гј", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[5] = {{20, 260, 120, 300}, "Г‘Г­ГҐГЈГ®ГўГЁГЄ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[6] = {{20, 310, 120, 350}, "Г…Г¤ГЁГ­Г®Г°Г®ГЈ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+	buttons[0] = {{20,  10, 120,  50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[1] = {{20,  60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[2] = {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
 
 
- Image img[10];
+    Image img[10];
 
 
- img[0] = {{720,  30, 800, 110}, 79,58,pic};
- img[1] = {{720, 140, 800, 220}, 66,58,pik};
-	img[2] = {{720, 250, 800, 330}, 66,58,pil};
-	img[3] = {{720, 350, 800, 450}, 66,99,pie};
+    img[0] = {{720,  30, 800, 110}, 79,58,pic};
+    img[1] = {{720, 140, 800, 220}, 66,58,pik};
+    img[2] = {{720, 250, 800, 330}, 66,58,pil};
+    img[3] = {{720, 350, 800, 450}, 66,99,pie};
 
 
 
@@ -53,19 +53,10 @@ int main()
         Win32::TransparentBlt (txDC(),150,0,700,700,fon,0,0, 123,124, TX_WHITE);
         Win32::TransparentBlt (txDC(),300,200,200,160,skver,0,0, 175,110, TX_WHITE);
 
-        for (int  n_button = 0; n_button < 6; n_button++)
+        for (int n_button = 0; n_button < 6; n_button++)
         {
-          drawButton(buttons[n_button]);
+            drawButton(buttons[n_button]);
         }
-
-          if (txMouseX() > 20 and
-              txMouseX() < 120 and
-              txMouseY() > 60 and
-              txMouseY() < 100 and
-              txMouseButtons() &1
-              )
-
-        txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
 
         if (txMouseX() > 20 and
               txMouseX() < 120 and
@@ -73,45 +64,19 @@ int main()
               txMouseY() < 100 and
               txMouseButtons() &1
               )
+        {
+            txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
+            txBitBlt (txDC(), 700, 100, 100, 100, pik, 0, 0);
+            txBitBlt (txDC(), 700, 190, 100, 100, pil, 0, 0);
+            txBitBlt (txDC(), 700, 280, 100, 100, pit, 0, 0);
+            txBitBlt (txDC(), 700, 350, 100, 100, pin, 0, 0);
+            txBitBlt (txDC(), 700, 460, 100, 100, pim, 0, 0);
+        }
 
-		txBitBlt (txDC(), 700, 100, 100, 100, pik, 0, 0);
-
-		if (txMouseX() > 20 and
-              txMouseX() < 120 and
-              txMouseY() > 60 and
-              txMouseY() < 100 and
-              txMouseButtons() &1
-              )
-		txBitBlt (txDC(), 700, 190, 100, 100, pil, 0, 0);
-
-		if (txMouseX() > 20 and
-              txMouseX() < 120 and
-              txMouseY() > 60 and
-              txMouseY() < 100 and
-              txMouseButtons() &1
-              )
-		txBitBlt (txDC(), 700, 280, 100, 100, pit, 0, 0);
-
-		if (txMouseX() > 20 and
-              txMouseX() < 120 and
-              txMouseY() > 60 and
-              txMouseY() < 100 and
-              txMouseButtons() &1
-              )
-		txBitBlt (txDC(), 700, 350, 100, 100, pin, 0, 0);
-
-		if (txMouseX() > 20 and
-              txMouseX() < 120 and
-              txMouseY() > 60 and
-              txMouseY() < 100 and
-              txMouseButtons() &1
-              )
-		txBitBlt (txDC(), 700, 460, 100, 100, pim, 0, 0);
-
-	for(int n_img = 0;n_img < 4;n_img++)
-	{
-        drawImage(img[n_img]);
- }
+        for(int n_img = 0;n_img < 4;n_img++)
+        {
+            drawImage(img[n_img]);
+        }
 
 		txSleep(10);
 	}
