@@ -11,8 +11,8 @@ struct ButtonText {
 	COLORREF borderColor;
 	COLORREF textColor;
 
-	int sizeFont;// = 25;
-	string nameFont;// = "Comic Sans MS";
+	int sizeFont;
+	string nameFont;
 };
 
 void drawButton(ButtonText b) {

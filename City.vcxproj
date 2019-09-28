@@ -126,6 +126,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigRead\ConfigRead.h" />
     <ClInclude Include="Const.h" />
     <ClInclude Include="Lib\TXLib.h" />
     <ClInclude Include="WindowObject\Area.h" />
