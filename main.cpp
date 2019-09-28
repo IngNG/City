@@ -3,15 +3,34 @@
 #include "Const.h"
 
 #include "WindowObject/ButtonText.h"
+#include "WindowObject/Image.h"
 
 int main()
 {
 	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
 	txDisableAutoPause();
 
+
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
     HDC pik = txLoadImage("img\\Houses\\LowBlueHome.bmp");
     HDC pil = txLoadImage("img\\Houses\\LowGreenHome.bmp");
+    HDC pie = txLoadImage("img\\Houses\\TallYellowHome.bmp");
+
+
+
+ Image img[10];
+
+
+ img[0] = {{720,  30, 800, 110}, 79,58,pic};
+ img[1] = {{720, 140, 800, 220}, 66,58,pik};
+	img[2] = {{720, 250, 800, 330}, 66,58,pil};
+	img[3] = {{720, 350, 800, 450}, 66,99,pie};
+
+
+
+
+
+
 
     HDC fon = txLoadImage ("img\\fon.bmp");
     HDC skver = txLoadImage ("img\\skver.bmp");
@@ -33,6 +52,8 @@ int main()
         Win32::TransparentBlt (txDC(),200,0,600,600,fon,0,0, 123,124, TX_WHITE);
         Win32::TransparentBlt (txDC(),300,200,200,160,skver,0,0, 175,110, TX_WHITE);
 
+
+
 		drawButton(b1);
 		drawButton(b2);
 		drawButton(b5);
@@ -41,9 +62,10 @@ int main()
 		drawButton(b11);
 		drawButton(b12);
 
-		txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
-		txBitBlt (txDC(), 700, 120, 100, 100, pik, 0, 0);
-		txBitBlt (txDC(), 700, 230, 100, 100, pil, 0, 0);
+	for(int n_img = 0;n_img < 4;n_img++)
+	{
+        drawImage(img[n_img]);
+ }
 
 		txSleep(10);
 	}
@@ -51,6 +73,7 @@ int main()
     txDeleteDC(pic);
     txDeleteDC(pik);
     txDeleteDC(pil);
+    txDeleteDC(pie);
     txDeleteDC(fon);
     txDeleteDC(skver);
 
