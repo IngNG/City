@@ -1,10 +1,9 @@
 #include "lib/TXLib.h"
 #include <string>
 
-#include "WindowObject/ButtonText.h"
 #include "ConfigRead/ConfigRead.h"
-
-using namespace std;
+#include "WindowObject/ButtonText.h"
+#include "WindowObject/Image.h"
 
 int main()
 {
@@ -17,17 +16,36 @@ int main()
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
     HDC pik = txLoadImage("img\\Houses\\LowBlueHome.bmp");
     HDC pil = txLoadImage("img\\Houses\\LowGreenHome.bmp");
+    HDC pie = txLoadImage("img\\Houses\\TallYellowHome.bmp");
+    HDC pit = txLoadImage("img\\Houses\\LowYellowHome.bmp");
+    HDC pin = txLoadImage("img\\Houses\\TallBlueHome.bmp");
+    HDC pim = txLoadImage("img\\Houses\\TallGreenHome.bmp");
 
     HDC fon = txLoadImage ("img\\fon.bmp");
     HDC skver = txLoadImage ("img\\skver.bmp");
 
-	ButtonText b1 =  {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    ButtonText b2 =  {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    ButtonText b5 =  {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    ButtonText b8 =  {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    ButtonText b10 = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    ButtonText b11 = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    ButtonText b12 = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+
+
+    ButtonText buttons [7];
+	buttons[0] = {{20,  10, 120,  50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[1] = {{20,  60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[2] = {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+
+
+    Image img[10];
+
+
+    img[0] = {{720,  30, 800, 110}, 79,58,pic};
+    img[1] = {{720, 140, 800, 220}, 66,58,pik};
+    img[2] = {{720, 250, 800, 330}, 66,58,pil};
+    img[3] = {{720, 350, 800, 450}, 66,99,pie};
+
+
+
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
@@ -35,20 +53,33 @@ int main()
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-        Win32::TransparentBlt (txDC(),200,0,600,600,fon,0,0, 123,124, TX_WHITE);
+        Win32::TransparentBlt (txDC(),150,0,700,700,fon,0,0, 123,124, TX_WHITE);
         Win32::TransparentBlt (txDC(),300,200,200,160,skver,0,0, 175,110, TX_WHITE);
 
-		drawButton(b1);
-		drawButton(b2);
-		drawButton(b5);
-		drawButton(b8);
-		drawButton(b10);
-		drawButton(b11);
-		drawButton(b12);
+        for (int n_button = 0; n_button < 6; n_button++)
+        {
+            drawButton(buttons[n_button]);
+        }
 
-		txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
-		txBitBlt (txDC(), 700, 120, 100, 100, pik, 0, 0);
-		txBitBlt (txDC(), 700, 230, 100, 100, pil, 0, 0);
+        if (txMouseX() > 20 and
+              txMouseX() < 120 and
+              txMouseY() > 60 and
+              txMouseY() < 100 and
+              txMouseButtons() &1
+              )
+        {
+            txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
+            txBitBlt (txDC(), 700, 100, 100, 100, pik, 0, 0);
+            txBitBlt (txDC(), 700, 190, 100, 100, pil, 0, 0);
+            txBitBlt (txDC(), 700, 280, 100, 100, pit, 0, 0);
+            txBitBlt (txDC(), 700, 350, 100, 100, pin, 0, 0);
+            txBitBlt (txDC(), 700, 460, 100, 100, pim, 0, 0);
+        }
+
+        for(int n_img = 0;n_img < 4;n_img++)
+        {
+            drawImage(img[n_img]);
+        }
 
 		txSleep(10);
 	}
@@ -56,6 +87,7 @@ int main()
     txDeleteDC(pic);
     txDeleteDC(pik);
     txDeleteDC(pil);
+    txDeleteDC(pie);
     txDeleteDC(fon);
     txDeleteDC(skver);
 
