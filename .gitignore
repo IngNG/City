@@ -1,5 +1,6 @@
 *.log
 config.txt
+*.exe
 
 # Code::Blocks
 *.bmarks
