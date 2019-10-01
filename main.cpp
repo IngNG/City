@@ -9,11 +9,11 @@ using namespace std;
 
 int main()
 {
-	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
-	txDisableAutoPause();
-
 	ConfigFile config;
 	config = readConfigFile("config.txt");
+
+	txCreateWindow(config.widht, config.height);
+	txDisableAutoPause();
 
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
     HDC pik = txLoadImage("img\\Houses\\LowBlueHome.bmp");

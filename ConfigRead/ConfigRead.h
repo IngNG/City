@@ -59,10 +59,10 @@ ConfigFile readConfigFile(string nameFile) {
 		stringSplit(line, ": ", splitLine, 2);
 
 		if (splitLine[0] == "wight") {
-			//config.widht = 
+			config.widht = atoi(splitLine[1].c_str());
 		}
 		else if (splitLine[0] == "height") {
-
+			config.height = atoi(splitLine[1].c_str());
 		}
 	}
 
