@@ -1,7 +1,6 @@
 #include "lib/TXLib.h"
 #include <string>
 
-#include "Const.h"
 #include "WindowObject/ButtonText.h"
 #include "ConfigRead/ConfigRead.h"
 

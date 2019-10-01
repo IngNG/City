@@ -1,7 +1,0 @@
-#pragma once
-
-#define WIDTH_WINDOW 800
-#define HEIGHT_WINDOW 600
-
-#define X_CENTER_WINDOW WIDTH_WINDOW / 2
-#define Y_CENTER_WINDOW HEIGHT_WINDOW / 2
