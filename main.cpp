@@ -7,6 +7,9 @@
 
 int main()
 {
+ bool visible = false;
+ bool visible2 = false;
+ bool visible3 = false;
 	ConfigFile config;
 	config = readConfigFile("config.txt");
 
@@ -20,6 +23,8 @@ int main()
     HDC pit = txLoadImage("img\\Houses\\LowYellowHome.bmp");
     HDC pin = txLoadImage("img\\Houses\\TallBlueHome.bmp");
     HDC pim = txLoadImage("img\\Houses\\TallGreenHome.bmp");
+    HDC pir = txLoadImage("img\\fontan.bmp");
+    HDC snowmen = txLoadImage("img\\snowmen.bmp");
 
     HDC fon = txLoadImage ("img\\fon.bmp");
     HDC skver = txLoadImage ("img\\skver.bmp");
@@ -43,7 +48,8 @@ int main()
     img[1] = {{720, 140, 800, 220}, 66,58,pik};
     img[2] = {{720, 250, 800, 330}, 66,58,pil};
     img[3] = {{720, 350, 800, 450}, 66,99,pie};
-
+    img[4] = {{720,  30, 800, 110}, 36,26,txLoadImage ("img\\fontan.bmp")};
+    img[5] = {{720, 140, 800, 220}, 11,13,snowmen};
 
 
 
@@ -68,17 +74,66 @@ int main()
               txMouseButtons() &1
               )
         {
+         visible = true;
+         visible2 = false;
+         visible3 = false;
+         txSleep(200);
+        }
+
+        if (txMouseX() > 20 and
+              txMouseX() < 110 and
+              txMouseY() > 120 and
+              txMouseY() < 150 and
+              txMouseButtons() &1
+              )
+        {
+         visible = false;
+         visible2 = true;
+         visible3 = false;
+         txSleep(200);
+        }
+        if (txMouseX() > 20 and
+              txMouseX() < 260 and
+              txMouseY() > 260 and
+              txMouseY() < 300 and
+              txMouseButtons() &1
+              )
+        {
+         visible = false;
+         visible2 = false;
+         visible3 = true;
+         txSleep(200);
+        }
+
+        /*
             txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
             txBitBlt (txDC(), 700, 100, 100, 100, pik, 0, 0);
             txBitBlt (txDC(), 700, 190, 100, 100, pil, 0, 0);
             txBitBlt (txDC(), 700, 280, 100, 100, pit, 0, 0);
             txBitBlt (txDC(), 700, 350, 100, 100, pin, 0, 0);
             txBitBlt (txDC(), 700, 460, 100, 100, pim, 0, 0);
-        }
+
+          */
 
         for(int n_img = 0;n_img < 4;n_img++)
         {
-            drawImage(img[n_img]);
+            //drawImage(img[n_img]);
+        }
+
+        if(visible)
+        {
+            drawImage(img[0]);
+            drawImage(img[1]);
+            drawImage(img[2]);
+            drawImage(img[3]);
+        }
+        if(visible2)
+        {
+            drawImage(img[4]);
+        }
+        if(visible3)
+        {
+            drawImage(img[5]);
         }
 
 		txSleep(10);
@@ -89,6 +144,7 @@ int main()
     txDeleteDC(pil);
     txDeleteDC(pie);
     txDeleteDC(fon);
+    txDeleteDC(pir);
     txDeleteDC(skver);
 
 	return 0;
