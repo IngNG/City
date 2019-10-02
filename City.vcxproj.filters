@@ -19,6 +19,9 @@
     <Filter Include="Файлы заголовков\lib">
       <UniqueIdentifier>{c53742e6-7e67-4495-9d22-e481a38b8d66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\ConfigRead">
+      <UniqueIdentifier>{771a58b3-2953-4527-adf6-f271fc5f9dbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="WindowObject\Image.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigRead\ConfigRead.h">
+      <Filter>Файлы заголовков\ConfigRead</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

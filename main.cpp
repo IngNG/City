@@ -1,13 +1,16 @@
 #include "lib/TXLib.h"
 #include <string>
-#include "Const.h"
 
+#include "ConfigRead/ConfigRead.h"
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
 
 int main()
 {
-	txCreateWindow(WIDTH_WINDOW, HEIGHT_WINDOW);
+	ConfigFile config;
+	config = readConfigFile("config.txt");
+
+	txCreateWindow(config.widht, config.height);
 	txDisableAutoPause();
 
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
