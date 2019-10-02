@@ -47,7 +47,10 @@
     <ClInclude Include="WindowObject\Image.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigRead\ConfigRead.h">
+    <ClInclude Include="ConfigRead\ConfigApp.h">
+      <Filter>Файлы заголовков\ConfigRead</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigRead\Setting.h">
       <Filter>Файлы заголовков\ConfigRead</Filter>
     </ClInclude>
   </ItemGroup>

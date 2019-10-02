@@ -1,16 +1,16 @@
 #include "lib/TXLib.h"
 #include <string>
 
-#include "ConfigRead/ConfigRead.h"
+#include "ConfigRead/ConfigApp.h"
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
+using namespace std;
 
 int main()
 {
-	ConfigFile config;
-	config = readConfigFile("config.txt");
+	ConfigApp config = readConfigFile("config.txt");
 
-	txCreateWindow(config.widht, config.height);
+	txCreateWindow(stoi(getValueSetting(config, "wight")), stoi(getValueSetting(config, "height")));
 	txDisableAutoPause();
 
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
@@ -24,8 +24,6 @@ int main()
     HDC fon = txLoadImage ("img\\fon.bmp");
     HDC skver = txLoadImage ("img\\skver.bmp");
 
-
-
     ButtonText buttons [7];
 	buttons[0] = {{20,  10, 120,  50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
     buttons[1] = {{20,  60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
@@ -35,17 +33,12 @@ int main()
     buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
     buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
 
-
     Image img[10];
-
 
     img[0] = {{720,  30, 800, 110}, 79,58,pic};
     img[1] = {{720, 140, 800, 220}, 66,58,pik};
     img[2] = {{720, 250, 800, 330}, 66,58,pil};
     img[3] = {{720, 350, 800, 450}, 66,99,pie};
-
-
-
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
