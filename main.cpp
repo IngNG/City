@@ -7,7 +7,11 @@
 
 int main()
 {
-	ConfigFile config;
+ bool visible11 = false;
+ bool visible12 = false;
+ bool visible13 = false;
+
+  ConfigFile config;
 	config = readConfigFile("config.txt");
 
 	txCreateWindow(config.widht, config.height);
@@ -20,6 +24,8 @@ int main()
     HDC pit = txLoadImage("img\\Houses\\LowYellowHome.bmp");
     HDC pin = txLoadImage("img\\Houses\\TallBlueHome.bmp");
     HDC pim = txLoadImage("img\\Houses\\TallGreenHome.bmp");
+    HDC pir = txLoadImage("img\\fontan.bmp");
+    HDC snowmen = txLoadImage("img\\snowmen.bmp");
 
     HDC fon = txLoadImage ("img\\fon.bmp");
     HDC skver = txLoadImage ("img\\skver.bmp");
@@ -27,13 +33,13 @@ int main()
 
 
     ButtonText buttons [7];
-	buttons[0] = {{20,  10, 120,  50}, "Íà÷àòü", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[1] = {{20,  60, 120, 100}, "Äîìà", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[2] = {{20, 110, 120, 150}, "Ôîíòàí", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[3] = {{20, 160, 120, 200}, "Ìàøèíà", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[4] = {{20, 210, 120, 250}, "Ãîñïèòàëü", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[5] = {{20, 260, 120, 300}, "Ñíåãîâèê", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[6] = {{20, 310, 120, 350}, "Åäèíîðîã", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+	buttons[0] = {{20,  10, 120,  50}, "ÃÃ Ã·Ã Ã²Ã¼", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[1] = {{20,  60, 120, 100}, "Ã„Ã®Ã¬Ã ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[2] = {{20, 110, 120, 150}, "Ã”Ã®Ã­Ã²Ã Ã­", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[3] = {{20, 160, 120, 200}, "ÃŒÃ Ã¸Ã¨Ã­Ã ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[4] = {{20, 210, 120, 250}, "ÃƒÃ®Ã±Ã¯Ã¨Ã²Ã Ã«Ã¼", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[5] = {{20, 260, 120, 300}, "Ã‘Ã­Ã¥Ã£Ã®Ã¢Ã¨Ãª", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[6] = {{20, 310, 120, 350}, "Ã…Ã¤Ã¨Ã­Ã®Ã°Ã®Ã£", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
 
 
     Image kar[10];
@@ -44,16 +50,22 @@ int main()
     kar[2] = {{300, 210, 400, 300}, 66,58,pil};
     kar[3] = {{300, 320, 400, 450}, 66,99,pie};
 
-    Image img[10];
-    img[0] = {{720,  30, 800, 110}, 79,58,txLoadImage("img\\Houses\\Hospital.bmp")};
-    img[1] = {{720, 140, 800, 220}, 66,58,pik};
-    img[2] = {{720, 250, 800, 330}, 66,58,pil};
-    img[3] = {{720, 350, 800, 450}, 66,99,pie};
     bool  visible = false;
     bool  visible2 = false;
     bool  visible3 = false;
     bool  visible4 = false;
     EventArea event;
+
+    Image img[10];
+
+
+    img[0] = {{720,  30, 800, 110}, 79,58,pic};
+    img[1] = {{720, 140, 800, 220}, 66,58,pik};
+    img[2] = {{720, 250, 800, 330}, 66,58,pil};
+    img[3] = {{720, 350, 800, 450}, 66,99,pie};
+    img[4] = {{720,  30, 800, 110}, 36,26,txLoadImage ("img\\fontan.bmp")};
+    img[5] = {{720, 140, 800, 220}, 11,13,snowmen};
+
 
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
@@ -70,25 +82,6 @@ int main()
             drawButton(buttons[n_button]);
         }
 
-        if (txMouseX() > 20 and
-              txMouseX() < 120 and
-              txMouseY() > 60 and
-              txMouseY() < 100 and
-              txMouseButtons() &1
-              )
-        {
-            txBitBlt (txDC(), 700, 10, 100, 100, pic, 0, 0);
-            txBitBlt (txDC(), 700, 100, 100, 100, pik, 0, 0);
-            txBitBlt (txDC(), 700, 190, 100, 100, pil, 0, 0);
-            txBitBlt (txDC(), 700, 280, 100, 100, pit, 0, 0);
-            txBitBlt (txDC(), 700, 350, 100, 100, pin, 0, 0);
-            txBitBlt (txDC(), 700, 460, 100, 100, pim, 0, 0);
-        }
-
-        for(int n_img = 0;n_img < 4;n_img++)
-        {
-            drawImage(img[n_img]);
-        }
 
         event = getEventArea(img[0].area);
         if (event.mouseButtonUpLeft)
@@ -113,7 +106,6 @@ int main()
 
         if (visible2)
         {
-
             drawImage(kar[1]);
         }
 
@@ -142,6 +134,68 @@ int main()
         {
             drawImage(kar[3]);
         }
+
+    
+    if (txMouseX() > 20 and
+              txMouseX() < 120 and
+              txMouseY() > 60 and
+              txMouseY() < 100 and
+              txMouseButtons() &1
+              )
+        {
+
+         visible11 = true;
+         visible12 = false;
+         visible13 = false;
+         txSleep(200);
+        }
+
+        if (txMouseX() > 20 and
+              txMouseX() < 110 and
+              txMouseY() > 120 and
+              txMouseY() < 150 and
+              txMouseButtons() &1
+              )
+        {
+         visible11 = false;
+         visible12 = true;
+         visible13 = false;
+         txSleep(200);
+        }
+        if (txMouseX() > 20 and
+              txMouseX() < 260 and
+              txMouseY() > 260 and
+              txMouseY() < 300 and
+              txMouseButtons() &1
+              )
+        {
+         visible11 = false;
+         visible12 = false;
+         visible13 = true;
+         txSleep(200);
+        }
+
+        for(int n_img = 0;n_img < 4;n_img++)
+        {
+            //drawImage(img[n_img]);
+        }
+
+        if(visible11)
+        {
+            drawImage(img[0]);
+            drawImage(img[1]);
+            drawImage(img[2]);
+            drawImage(img[3]);
+        }
+        if(visible12)
+        {
+            drawImage(img[4]);
+        }
+        if(visible13)
+        {
+            drawImage(img[5]);
+        }
+
 		txSleep(10);
 	}
 
@@ -150,6 +204,7 @@ int main()
     txDeleteDC(pil);
     txDeleteDC(pie);
     txDeleteDC(fon);
+    txDeleteDC(pir);
     txDeleteDC(skver);
 
 	return 0;
