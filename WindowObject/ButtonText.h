@@ -25,3 +25,7 @@ void drawButton(ButtonText b) {
 		txDrawText(b.area.x, b.area.y, b.area.x2, b.area.y2, b.text.c_str());
 	}
 }
+
+EventArea getEventImage(ButtonText& button) {
+	return getEventArea(button.area);
+}

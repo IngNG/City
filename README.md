@@ -8,6 +8,7 @@
 |          [img](https://github.com/IngNG/City/tree/master/img)          |                 Файлы картинок в формате bmp                  |
 |          [lib](https://github.com/IngNG/City/tree/master/lib)          |                      Стороние библиотеки                      |
 | [WindowObject](https://github.com/IngNG/City/tree/master/WindowObject) | Структуры и функции для работы с объектами окна (Кнопки и тп) |
+| [ConfigRead](https://github.com/IngNG/City/tree/master/ConfigRead) | Код для чтения файлов |
 
 ### Зависимости
  - [TXLib](http://storage.ded32.net.ru/Lib/TX/TXUpdate/Doc/HTML.ru/)

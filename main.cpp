@@ -1,20 +1,19 @@
 #include "lib/TXLib.h"
 #include <string>
 
-#include "ConfigRead/ConfigRead.h"
+#include "ConfigRead/ConfigApp.h"
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
+using namespace std;
 
 int main()
 {
+	ConfigApp config = readConfigFile("config.txt");
  bool visible11 = false;
  bool visible12 = false;
  bool visible13 = false;
 
-  ConfigFile config;
-	config = readConfigFile("config.txt");
-
-	txCreateWindow(config.widht, config.height);
+	txCreateWindow(stoi(getValueSetting(config, "wight")), stoi(getValueSetting(config, "height")));
 	txDisableAutoPause();
 
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
@@ -29,8 +28,6 @@ int main()
 
     HDC fon = txLoadImage ("img\\fon.bmp");
     HDC skver = txLoadImage ("img\\skver.bmp");
-
-
 
     ButtonText buttons [7];
 	buttons[0] = {{20,  10, 120,  50}, "Íà÷àòü", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
@@ -58,14 +55,12 @@ int main()
 
     Image img[10];
 
-
     img[0] = {{720,  30, 800, 110}, 79,58,pic};
     img[1] = {{720, 140, 800, 220}, 66,58,pik};
     img[2] = {{720, 250, 800, 330}, 66,58,pil};
     img[3] = {{720, 350, 800, 450}, 66,99,pie};
     img[4] = {{720,  30, 800, 110}, 36,26,txLoadImage ("img\\fontan.bmp")};
     img[5] = {{720, 140, 800, 220}, 11,13,snowmen};
-
 
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {

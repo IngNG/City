@@ -1,14 +1,13 @@
 #pragma once
 #include <string>
-#include <iostream>
 #include <fstream>
+#include <vector>
+#include "Setting.h"
 using namespace std;
 
-struct ConfigFile {
+struct ConfigApp {
 	string pathFile;
-
-	int widht;
-	int height;
+	vector<Setting> settings;
 };
 
 int stringSplit(string str, string delim, string *output, int maxCountOutput) {
@@ -42,9 +41,9 @@ void createConfigFile(string nameFile) {
 	file.close();
 }
 
-ConfigFile readConfigFile(string nameFile) {
+ConfigApp readConfigFile(string nameFile) {
 	ifstream file;
-	ConfigFile config;
+	ConfigApp config;
 
 	file.open(nameFile);
 	if (!file) {
@@ -58,14 +57,20 @@ ConfigFile readConfigFile(string nameFile) {
 	while (getline(file, line)) {
 		stringSplit(line, ": ", splitLine, 2);
 
-		if (splitLine[0] == "wight") {
-			config.widht = atoi(splitLine[1].c_str());
-		}
-		else if (splitLine[0] == "height") {
-			config.height = atoi(splitLine[1].c_str());
-		}
+		Setting a{ splitLine[0], splitLine[1] };
+		config.settings.push_back(a);
 	}
 
 	return config;
 }
 
+string getValueSetting(ConfigApp &config, string id) {
+	int countSetting = config.settings.size();
+	for (int i = 0; i < countSetting; i++) {
+		if (config.settings[i].id == id) {
+			return config.settings[i].value;
+		}
+	}
+
+	throw "ID not fount";
+}
