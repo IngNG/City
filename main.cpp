@@ -36,15 +36,24 @@ int main()
     buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
 
 
+    Image kar[10];
+
+
+    kar[0] = {{300, 10, 400, 100}, 79,58,txLoadImage("img\\Houses\\Hospital.bmp")};
+    kar[1] = {{300, 120, 400, 190}, 66,58,pik};
+    kar[2] = {{300, 210, 400, 300}, 66,58,pil};
+    kar[3] = {{300, 320, 400, 450}, 66,99,pie};
+
     Image img[10];
-
-
-    img[0] = {{720,  30, 800, 110}, 79,58,pic};
+    img[0] = {{720,  30, 800, 110}, 79,58,txLoadImage("img\\Houses\\Hospital.bmp")};
     img[1] = {{720, 140, 800, 220}, 66,58,pik};
     img[2] = {{720, 250, 800, 330}, 66,58,pil};
     img[3] = {{720, 350, 800, 450}, 66,99,pie};
-
-
+    bool  visible = false;
+    bool  visible2 = false;
+    bool  visible3 = false;
+    bool  visible4 = false;
+    EventArea event;
 
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
@@ -81,6 +90,58 @@ int main()
             drawImage(img[n_img]);
         }
 
+        event = getEventArea(img[0].area);
+        if (event.mouseButtonUpLeft)
+        {
+            visible = !visible;
+            txSleep(200);
+        }
+
+        if (visible)
+        {
+            drawImage(kar[0]);
+        }
+
+
+        event = getEventArea(img[1].area);
+        if (event.mouseButtonUpLeft)
+        {
+            visible2 = !visible2;
+            txSleep(200);
+        }
+
+
+        if (visible2)
+        {
+
+            drawImage(kar[1]);
+        }
+
+        event = getEventArea(img[2].area);
+        if (event.mouseButtonUpLeft)
+        {
+            visible3 = !visible3;
+            txSleep(200);
+        }
+
+
+        if (visible3)
+        {
+            drawImage(kar[2]);
+        }
+
+         event = getEventArea(img[3].area);
+        if (event.mouseButtonUpLeft)
+        {
+            visible4 = !visible4;
+            txSleep(200);
+        }
+
+
+        if (visible4)
+        {
+            drawImage(kar[3]);
+        }
 		txSleep(10);
 	}
 
