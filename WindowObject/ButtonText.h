@@ -11,10 +11,10 @@ struct ButtonText {
 	COLORREF borderColor;
 	COLORREF textColor;
 
+	bool visible;
+
 	int sizeFont;
 	string nameFont;
-
-	bool visible = true;
 };
 
 void drawButton(ButtonText b) {

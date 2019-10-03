@@ -8,7 +8,7 @@ struct Image {
 	int height;
 	HDC img;
 
-	bool visible = true;
+	bool visible;
 };
 
 void drawImage(Image i) {

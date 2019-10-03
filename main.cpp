@@ -21,20 +21,20 @@ int main()
 
 	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
-	buttons[0] = {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[1] = {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[2] = {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+	buttons[0] = {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[1] = {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[2] = {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
 
 	const int COUNT_CAR = 4;
     Image car[COUNT_CAR];
-    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp")};
-    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp")};
-    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp")};
-    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp")};
+    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true};
+    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true};
+    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true};
+    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true};
 
     bool visible = false;
     bool visible2 = false;
@@ -45,12 +45,12 @@ int main()
 
 	const int COUNT_IMG = 6;
     Image img[COUNT_IMG];
-    img[0] = {{720,  30, 800, 110}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp")};
-    img[1] = {{720, 140, 800, 220}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp")};
-    img[2] = {{720, 250, 800, 330}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp")};
-    img[3] = {{720, 350, 800, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp")};
-    img[4] = {{720,  30, 800, 110}, 36, 26, txLoadImage("img\\fontan.bmp")};
-    img[5] = {{720, 140, 800, 220}, 11, 13, txLoadImage("img\\snowmen.bmp")};
+    img[0] = {{720,  30, 800, 110}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true};
+    img[1] = {{720, 140, 800, 220}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true};
+    img[2] = {{720, 250, 800, 330}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true};
+    img[3] = {{720, 350, 800, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true};
+    img[4] = {{720,  30, 800, 110}, 36, 26, txLoadImage("img\\fontan.bmp"), true};
+    img[5] = {{720, 140, 800, 220}, 11, 13, txLoadImage("img\\snowmen.bmp"), true};
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
