@@ -4,14 +4,13 @@
 
 struct Image {
 	AreaCoord area;
-	int shirina;
-	int vysota;
+	int widht;
+	int height;
 	HDC img;
 };
 
-void drawImage(Image p) {
-	//txRectangle     (p.area.x, p.area.y, p.area.x2, p.area.y2);
-	Win32::TransparentBlt (txDC(),p.area.x, p.area.y, p.area.x2 - p.area.x, p.area.y2 - p.area.y, p.img,0,0, p.shirina,p.vysota, TX_WHITE);
+void drawImage(Image i) {
+	Win32::TransparentBlt(txDC(), i.area.x, i.area.y, i.area.x2 - i.area.x, i.area.y2 - i.area.y, i.img,0,0, i.widht, i.height, TX_WHITE);
 }
 
 EventArea getEventImage(Image &img) {
