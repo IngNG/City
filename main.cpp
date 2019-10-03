@@ -13,7 +13,7 @@ int main()
  bool visible12 = false;
  bool visible13 = false;
 
-	txCreateWindow(stoi(getValueSetting(config, "wight")), stoi(getValueSetting(config, "height")));
+	txCreateWindow(atoi(getValueSetting(config, "wight").c_str()), atoi(getValueSetting(config, "height").c_str()));
 	txDisableAutoPause();
 
     HDC pic = txLoadImage("img\\Houses\\Hospital.bmp");
@@ -30,18 +30,16 @@ int main()
     HDC skver = txLoadImage ("img\\skver.bmp");
 
     ButtonText buttons [7];
-	buttons[0] = {{20,  10, 120,  50}, "ÃÃ Ã·Ã Ã²Ã¼", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[1] = {{20,  60, 120, 100}, "Ã„Ã®Ã¬Ã ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[2] = {{20, 110, 120, 150}, "Ã”Ã®Ã­Ã²Ã Ã­", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[3] = {{20, 160, 120, 200}, "ÃŒÃ Ã¸Ã¨Ã­Ã ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[4] = {{20, 210, 120, 250}, "ÃƒÃ®Ã±Ã¯Ã¨Ã²Ã Ã«Ã¼", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[5] = {{20, 260, 120, 300}, "Ã‘Ã­Ã¥Ã£Ã®Ã¢Ã¨Ãª", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
-    buttons[6] = {{20, 310, 120, 350}, "Ã…Ã¤Ã¨Ã­Ã®Ã°Ã®Ã£", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+	buttons[0] =  {{20, 10, 120, 50}, "Íà÷àòü", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[1] =  {{20, 60, 120, 100}, "Äîìà", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[2] =  {{20, 110, 120, 150}, "Ôîíòàí", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[3] =  {{20, 160, 120, 200}, "Ìàøèíà", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[4] = {{20, 210, 120, 250}, "Ãîñïèòàëü", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[5] = {{20, 260, 120, 300}, "Ñíåãîâèê", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
+    buttons[6] = {{20, 310, 120, 350}, "Åäèíîðîã", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)};
 
 
     Image kar[10];
-
-
     kar[0] = {{300, 10, 400, 100}, 79,58,txLoadImage("img\\Houses\\Hospital.bmp")};
     kar[1] = {{300, 120, 400, 190}, 66,58,pik};
     kar[2] = {{300, 210, 400, 300}, 66,58,pil};
@@ -130,7 +128,7 @@ int main()
             drawImage(kar[3]);
         }
 
-    
+
     if (txMouseX() > 20 and
               txMouseX() < 120 and
               txMouseY() > 60 and
