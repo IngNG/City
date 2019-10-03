@@ -49,7 +49,7 @@ int main()
     img[1] = {{720, 140, 800, 220}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp")};
     img[2] = {{720, 250, 800, 330}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp")};
     img[3] = {{720, 350, 800, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp")};
-    img[4] = {{720,  30, 800, 110}, 36, 26, txLoadImage ("img\\fontan.bmp")};
+    img[4] = {{720,  30, 800, 110}, 36, 26, txLoadImage("img\\fontan.bmp")};
     img[5] = {{720, 140, 800, 220}, 11, 13, txLoadImage("img\\snowmen.bmp")};
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
