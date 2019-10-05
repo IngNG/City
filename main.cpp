@@ -14,7 +14,6 @@ int main()
 	bool visible13 = false;
 	bool visible14 = false;
 
-
 	txCreateWindow(atoi(getValueSetting(config, "wight").c_str()), atoi(getValueSetting(config, "height").c_str()));
 	txDisableAutoPause();
 
@@ -23,20 +22,22 @@ int main()
 
 	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
-	buttons[0] = {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[1] = {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[2] = {{20, 110, 120, 150}, "Декор", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+	buttons[0] = {{20, 10, 120, 50}, "ГЌЕ•Г·Е•Е€Гј", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[1] = {{20, 60, 120, 100}, "Г„Г®Д›Е•", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[2] = {{20, 110, 120, 150}, "Г”Г®Г­Е€Е•Г­", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[2] = {{20, 110, 120, 150}, "Г„ДєД™Г®Д‘", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+
+    buttons[3] = {{20, 160, 120, 200}, "ДљЕ•Е™ДЌГ­Е•", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[4] = {{20, 210, 120, 250}, "Д‚Г®Е„ДЏДЌЕ€Е•Г«Гј", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[5] = {{20, 260, 120, 300}, "ЕѓГ­ДєДѓГ®ГўДЌД™", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[6] = {{20, 310, 120, 350}, "Д№Г¤ДЌГ­Г®Д‘Г®Дѓ", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
 
 	const int COUNT_CAR = 4;
     Image car[COUNT_CAR];
-    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true};
-    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true};
-    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true};
-    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true};
+    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), false};
+    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), false};
+    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), false};
+    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), false};
 
     bool visible = false;
     bool visible2 = false;
@@ -64,8 +65,8 @@ int main()
 
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
-          {
-        Win32::TransparentBlt(txDC(), 150, 0, 700, 700, fon,0,0, 123,124, TX_WHITE);
+
+    Win32::TransparentBlt(txDC(), 150, 0, 700, 700, fon,0,0, 123,124, TX_WHITE);
         Win32::TransparentBlt(txDC(), 300, 200, 200, 160, skver, 0, 0, 175, 110, TX_WHITE);
 
         for (int n_button = 0; n_button < 6; n_button++)
@@ -74,54 +75,44 @@ int main()
         }
 
         event = getEventArea(img[0].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[0].visible)
         {
-            visible = !visible;
+            car[0].visible = !car[0].visible;
             txSleep(200);
         }
 
-        if (visible)
-        {
-            drawImage(car[0]);
-        }
 
         event = getEventArea(img[1].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[1].visible)
         {
-            visible2 = !visible2;
+            car[1].visible = !car[1].visible;
             txSleep(200);
         }
 
-        if (visible2)
-        {
-            drawImage(car[1]);
-        }
 
         event = getEventArea(img[2].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[2].visible)
         {
-            visible3 = !visible3;
+            car[2].visible = !car[2].visible;
             txSleep(200);
         }
 
-        if (visible3)
-        {
-            drawImage(car[2]);
-        }
 
         event = getEventArea(img[3].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[3].visible)
         {
-            visible4 = !visible4;
+            car[3].visible = !car[3].visible;
             txSleep(200);
         }
 
-        if (visible4)
-        {
-            drawImage(car[3]);
-        }
 
-}
+	for (int i = 0; i < COUNT_CAR; i++) {
+		drawImage(car[i]);
+	}
+
+
+
+
 
         event = getEventArea(buttons[1].area);
         if (event.mouseButtonUpLeft)
@@ -148,7 +139,6 @@ int main()
             drawImage(img[n]);
         }
       }
-
 
 
 		txSleep(10);
