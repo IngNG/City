@@ -31,10 +31,10 @@ int main()
 
 	const int COUNT_CAR = 4;
     Image car[COUNT_CAR];
-    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true};
-    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true};
-    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true};
-    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true};
+    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), false};
+    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), false};
+    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), false};
+    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), false};
 
     bool visible = false;
     bool visible2 = false;
@@ -67,52 +67,41 @@ int main()
         }
 
         event = getEventArea(img[0].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[0].visible)
         {
-            visible = !visible;
+            car[0].visible = !car[0].visible;
             txSleep(200);
         }
 
-        if (visible)
-        {
-            drawImage(car[0]);
-        }
 
         event = getEventArea(img[1].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[1].visible)
         {
-            visible2 = !visible2;
+            car[1].visible = !car[1].visible;
             txSleep(200);
         }
 
-        if (visible2)
-        {
-            drawImage(car[1]);
-        }
 
         event = getEventArea(img[2].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[2].visible)
         {
-            visible3 = !visible3;
+            car[2].visible = !car[2].visible;
             txSleep(200);
         }
 
-        if (visible3)
-        {
-            drawImage(car[2]);
-        }
 
         event = getEventArea(img[3].area);
-        if (event.mouseButtonUpLeft)
+        if (event.mouseButtonUpLeft && img[3].visible)
         {
-            visible4 = !visible4;
+            car[3].visible = !car[3].visible;
             txSleep(200);
         }
 
-        if (visible4)
-        {
-            drawImage(car[3]);
-        }
+
+	for (int i = 0; i < COUNT_CAR; i++) {
+		drawImage(car[i]);
+	}
+
 
 		if (txMouseX() > 20 and
 			txMouseX() < 120 and
@@ -158,21 +147,32 @@ int main()
             //drawImage(img[n_img]);
         //}
 
+        for (int i = 0; i < 7; i++)
+        {
+			img[i].visible = false;
+        }
+
         if (visible11)
         {
-            drawImage(img[0]);
-            drawImage(img[1]);
-            drawImage(img[2]);
-            drawImage(img[3]);
+			img[0].visible = true;
+			img[1].visible = true;
+			img[2].visible = true;
+			img[3].visible = true;
         }
 
         if (visible12)
         {
-            drawImage(img[4]);
+			img[4].visible = true;
         }
         if (visible13)
         {
-            drawImage(img[5]);
+			img[5].visible = true;
+        }
+
+
+        for (int i = 0; i < 7; i++)
+        {
+            drawImage(img[i]);
         }
 
 		txSleep(10);
