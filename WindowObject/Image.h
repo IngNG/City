@@ -13,7 +13,7 @@ struct Image {
 
 void drawImage(Image i) {
 	if (i.visible) {
-		Win32::TransparentBlt(txDC(), i.area.x, i.area.y, i.area.x2 - i.area.x, i.area.y2 - i.area.y, i.img, 0, 0, i.widht, i.height, TX_WHITE);
+		Win32::TransparentBlt(txDC(), i.area.x, i.area.y, i.area.widht, i.area.height, i.img, 0, 0, i.widht, i.height, TX_WHITE);
 	}
 }
 

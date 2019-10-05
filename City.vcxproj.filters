@@ -53,5 +53,8 @@
     <ClInclude Include="ConfigRead\Setting.h">
       <Filter>Файлы заголовков\ConfigRead</Filter>
     </ClInclude>
+    <ClInclude Include="WindowObject\DragNDrop.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
