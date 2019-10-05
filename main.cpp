@@ -12,6 +12,8 @@ int main()
 	bool visible11 = false;
 	bool visible12 = false;
 	bool visible13 = false;
+	bool visible14 = false;
+
 
 	txCreateWindow(atoi(getValueSetting(config, "wight").c_str()), atoi(getValueSetting(config, "height").c_str()));
 	txDisableAutoPause();
@@ -23,7 +25,7 @@ int main()
     ButtonText buttons[COUNT_BUTTON];
 	buttons[0] = {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[1] = {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[2] = {{20, 110, 120, 150}, "Фонтан", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[2] = {{20, 110, 120, 150}, "Декор", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
@@ -42,22 +44,27 @@ int main()
     bool visible4 = false;
 
     EventArea event;
+    char* category;
 
-	const int COUNT_IMG = 6;
+	const int COUNT_IMG = 8;
     Image img[COUNT_IMG];
-    img[0] = {{720,  30, 800, 110}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true};
-    img[1] = {{720, 140, 800, 220}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true};
-    img[2] = {{720, 250, 800, 330}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true};
-    img[3] = {{720, 350, 800, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true};
-    img[4] = {{720,  30, 800, 110}, 36, 26, txLoadImage("img\\fontan.bmp"), true};
-    img[5] = {{720, 140, 800, 220}, 11, 13, txLoadImage("img\\snowmen.bmp"), true};
+    img[0] = {{720,  30, 800, 110}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true, "House"};
+    img[1] = {{720, 140, 800, 220}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true, "House"};
+    img[2] = {{720, 250, 800, 330}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true,"House"};
+    img[3] = {{720, 350, 800, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true,"House"};
+
+    img[4] = {{720,  30, 810, 120}, 36, 26, txLoadImage("img\\fontan.bmp"), true,"Dekor"};
+    img[5] = {{770, 140, 800, 170}, 11, 13, txLoadImage("img\\snowmen.bmp"), true,"Dekor"};
+
+    img[6] = {{770, 250, 800, 270}, 17, 9, txLoadImage("img\\car.bmp"), true,"Car"};
+    img[7] = {{770, 350, 800, 370}, 16, 10, txLoadImage("img\\car2.bmp"), true,"Car"};
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
 
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
-
+          {
         Win32::TransparentBlt(txDC(), 150, 0, 700, 700, fon,0,0, 123,124, TX_WHITE);
         Win32::TransparentBlt(txDC(), 300, 200, 200, 160, skver, 0, 0, 175, 110, TX_WHITE);
 
@@ -114,66 +121,35 @@ int main()
             drawImage(car[3]);
         }
 
-		if (txMouseX() > 20 and
-			txMouseX() < 120 and
-			txMouseY() > 60 and
-			txMouseY() < 100 and
-			txMouseButtons() &1
-		)
-		{
-			 visible11 = true;
-			 visible12 = false;
-			 visible13 = false;
-			 txSleep(200);
-		}
+}
 
-        if (txMouseX() > 20 and
-			txMouseX() < 110 and
-			txMouseY() > 120 and
-			txMouseY() < 150 and
-			txMouseButtons() &1
-        )
+        event = getEventArea(buttons[1].area);
+        if (event.mouseButtonUpLeft)
         {
-			visible11 = false;
-			visible12 = true;
-			visible13 = false;
-			txSleep(200);
+            category = "House";
         }
 
-        if (txMouseX() > 20 and
-            txMouseX() < 260 and
-            txMouseY() > 260 and
-            txMouseY() < 300 and
-            txMouseButtons() &1
-        )
+         event = getEventArea(buttons[2].area);
+        if (event.mouseButtonUpLeft)
         {
-			visible11 = false;
-			visible12 = false;
-			visible13 = true;
-			txSleep(200);
+             category = "Dekor";
         }
 
-        //for(int n_img = 0;n_img < 4;n_img++)
-        //{
-            //drawImage(img[n_img]);
-        //}
-
-        if (visible11)
+          event = getEventArea(buttons[3].area);
+        if (event.mouseButtonUpLeft)
         {
-            drawImage(img[0]);
-            drawImage(img[1]);
-            drawImage(img[2]);
-            drawImage(img[3]);
+            category = "Car";
         }
 
-        if (visible12)
+      for(int n = 0;n < COUNT_IMG;n++)
+      {
+      if (img[n].category == category)
         {
-            drawImage(img[4]);
+            drawImage(img[n]);
         }
-        if (visible13)
-        {
-            drawImage(img[5]);
-        }
+      }
+
+
 
 		txSleep(10);
 	}
