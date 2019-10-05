@@ -33,7 +33,7 @@ int stringSplit(string str, string delim, string *output, int maxCountOutput) {
 
 void createConfigFile(string nameFile) {
 	ofstream file;
-	file.open(nameFile);
+	file.open(nameFile.c_str());
 
 	file << "wight: 800" << endl;
 	file << "height: 600" << endl;
@@ -45,10 +45,10 @@ ConfigApp readConfigFile(string nameFile) {
 	ifstream file;
 	ConfigApp config;
 
-	file.open(nameFile);
+	file.open(nameFile.c_str());
 	if (!file) {
 		createConfigFile(nameFile);
-		file.open(nameFile);
+		file.open(nameFile.c_str());
 	}
 
 	string line;

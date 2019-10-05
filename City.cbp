@@ -5,7 +5,6 @@
 		<Option title="City" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Headers\;Headers\Lib\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/City" prefix_auto="1" extension_auto="1" />
@@ -32,17 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Const.h" />
+		<Unit filename="ConfigRead/ConfigApp.h" />
+		<Unit filename="ConfigRead/Setting.h" />
 		<Unit filename="WindowObject/Area.h" />
 		<Unit filename="WindowObject/ButtonText.h" />
 		<Unit filename="WindowObject/Const.h" />
-		<Unit filename="WindowObject/Imges.h" />
+		<Unit filename="WindowObject/Image.h" />
 		<Unit filename="lib/TXLib.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
+			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

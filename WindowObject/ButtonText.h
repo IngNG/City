@@ -11,18 +11,22 @@ struct ButtonText {
 	COLORREF borderColor;
 	COLORREF textColor;
 
+	bool visible;
+
 	int sizeFont;
 	string nameFont;
 };
 
 void drawButton(ButtonText b) {
-	txSetFillColor(b.fillColor);
-	txSetColor(b.borderColor);
-	txSelectFont(b.nameFont.c_str(), b.sizeFont);
+	if (b.visible) {
+		txSetFillColor(b.fillColor);
+		txSetColor(b.borderColor);
+		txSelectFont(b.nameFont.c_str(), b.sizeFont);
 
-	txRectangle(b.area.x, b.area.y, b.area.x2, b.area.y2);
-	if (b.text.length() != 0) {
-		txDrawText(b.area.x, b.area.y, b.area.x2, b.area.y2, b.text.c_str());
+		txRectangle(b.area.x, b.area.y, b.area.x2, b.area.y2);
+		if (b.text.length() != 0) {
+			txDrawText(b.area.x, b.area.y, b.area.x2, b.area.y2, b.text.c_str());
+		}
 	}
 }
 
