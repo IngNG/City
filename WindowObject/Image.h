@@ -9,7 +9,7 @@ struct Image {
 	HDC img;
 
 	bool visible;
-	const char* category;
+	string category;
 };
 
 void drawImage(Image i) {
