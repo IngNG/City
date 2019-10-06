@@ -4,6 +4,7 @@
 #include "ConfigRead/ConfigApp.h"
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
+#include "WindowObject/DragNDrop.h"
 using namespace std;
 
 int main()
@@ -14,45 +15,46 @@ int main()
                    atoi(getValueSetting(config, "height").c_str()));
 	txDisableAutoPause();
 
-	HDC fon	  =	txLoadImage("img\\fon.bmp");
+	HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
 
 	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
-	buttons[0] = {{20, 10, 120, 50}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[1] = {{20, 60, 120, 100}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[2] = {{20, 110, 120, 150}, "Декор", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[3] = {{20, 160, 120, 200}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[4] = {{20, 210, 120, 250}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[5] = {{20, 260, 120, 300}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[6] = {{20, 310, 120, 350}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+	buttons[0] = {{20, 10, 100, 40}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[1] = {{20, 60, 100, 40}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[2] = {{20, 110, 100, 40}, "Декор", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[3] = {{20, 160, 100, 40}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[4] = {{20, 210, 100, 40}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[5] = {{20, 260, 100, 40}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[6] = {{20, 310, 100, 40}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
 
 	const int COUNT_CAR = 4;
     Image car[COUNT_CAR];
-    car[0] = {{300, 10, 400, 100}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), false};
-    car[1] = {{300, 120, 400, 190}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), false};
-    car[2] = {{300, 210, 400, 300}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), false};
-    car[3] = {{300, 320, 400, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), false};
+    car[0] = {{300, 10, 100, 90}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), false};
+    car[1] = {{300, 120, 100, 70}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), false};
+    car[2] = {{300, 210, 100, 90}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), false};
+    car[3] = {{300, 320, 100, 130}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), false};
 
     EventArea event;
-    char* category;
+    string category;
 
 	const int COUNT_IMG = 8;
     Image img[COUNT_IMG];
-    img[0] = {{720,  30, 800, 110}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true, "House"};
-    img[1] = {{720, 140, 800, 220}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true, "House"};
-    img[2] = {{720, 250, 800, 330}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true,"House"};
-    img[3] = {{720, 350, 800, 450}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true,"House"};
+    img[0] = {{720,  30, 80, 80}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true, "House"};
+    img[1] = {{720, 140, 80, 80}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true, "House"};
+    img[2] = {{720, 250, 80, 80}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true, "House"};
+    img[3] = {{720, 350, 80, 100}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true, "House"};
 
-    img[4] = {{720,  30, 810, 120}, 36, 26, txLoadImage("img\\Dekor\\fontan.bmp"), true,"Dekor"};
-    img[5] = {{770, 140, 800, 170}, 11, 13, txLoadImage("img\\Dekor\\snowmen.bmp"), true,"Dekor"};
+    img[4] = {{720,  30, 80, 80}, 36, 26, txLoadImage("img\\Dekor\\fontan.bmp"), true, "Dekor"};
+    img[5] = {{770, 140, 80, 80}, 11, 13, txLoadImage("img\\Dekor\\snowmen.bmp"), true, "Dekor"};
 
-    img[6] = {{770, 250, 800, 270}, 17, 9, txLoadImage("img\\Car\\car.bmp"), true,"Car"};
-    img[7] = {{770, 350, 800, 370}, 16, 10, txLoadImage("img\\Car\\car2.bmp"), true,"Car"};
+    img[6] = {{770, 250, 30, 20}, 17, 9, txLoadImage("img\\Car\\car.bmp"), true, "Car"};
+    img[7] = {{770, 350, 30, 20}, 16, 10, txLoadImage("img\\Car\\car2.bmp"), true, "Car"};
+	
+	DragNDrop dndImage = {NULL, 0, 0};
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
-
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
@@ -64,10 +66,12 @@ int main()
         {
             drawButton(buttons[n_button]);
         }
+
         //Drawing pictures
         for (int i = 0; i < COUNT_CAR; i++) {
             drawImage(car[i]);
         }
+
         //Drawing variants
         for(int n = 0;n < COUNT_IMG;n++)
         {
@@ -127,6 +131,7 @@ int main()
             category = "Car";
         }
 
+		txEnd();
 		txSleep(10);
 	}
 

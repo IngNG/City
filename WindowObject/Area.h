@@ -20,8 +20,8 @@ struct EventArea {
 struct AreaCoord {
 	int x;
 	int y;
-	int x2;
-	int y2;
+	int widht;
+	int height;
 
 	EventArea flags;
 	StatusArea status;
@@ -29,8 +29,8 @@ struct AreaCoord {
 
 bool isMouseOver(AreaCoord area) {
 	if (
-		In(txMouseX(), area.x, area.x2) &&
-		In(txMouseY(), area.y, area.y2)
+		In(txMouseX(), area.x, area.x + area.widht) &&
+		In(txMouseY(), area.y, area.y + area.height)
 		) {
 		return true;
 	}
