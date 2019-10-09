@@ -1,5 +1,6 @@
 #include "lib/TXLib.h"
 #include <string>
+#include <vector>
 
 #include "ConfigRead/ConfigApp.h"
 #include "WindowObject/ButtonText.h"
@@ -28,12 +29,7 @@ int main()
     buttons[5] = {{20, 260, 100, 40}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[6] = {{20, 310, 100, 40}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
 
-	const int COUNT_CAR = 4;
-    Image car[COUNT_CAR];
-    car[0] = {{300, 10, 100, 90}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), false};
-    car[1] = {{300, 120, 100, 70}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), false};
-    car[2] = {{300, 210, 100, 90}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), false};
-    car[3] = {{300, 320, 100, 130}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), false};
+	vector<Image> objCity;
 
     EventArea event;
     string category;
@@ -68,8 +64,8 @@ int main()
         }
 
         //Drawing pictures
-        for (int i = 0; i < COUNT_CAR; i++) {
-            drawImage(car[i]);
+        for (int i = 0; i < objCity.size(); i++) {
+            drawImage(objCity[i]);
         }
 
         //Drawing variants
@@ -81,32 +77,36 @@ int main()
             }
         }
 
-
         //Choosing variants
         event = getEventArea(img[0].area);
         if (event.mouseButtonUpLeft && img[0].category == category)
         {
-            car[0].visible = !car[0].visible;
+			objCity.push_back({
+				{300, 10, 100, 90},
+				img[0].height,
+				img[0].widht,
+				img[0].img,
+				true
+			});
         }
 
         event = getEventArea(img[1].area);
         if (event.mouseButtonUpLeft && img[1].category == category)
         {
-            car[1].visible = !car[1].visible;
+            // TODO
         }
 
         event = getEventArea(img[2].area);
         if (event.mouseButtonUpLeft && img[2].category == category)
         {
-            car[2].visible = !car[2].visible;
+			// TODO
         }
 
         event = getEventArea(img[3].area);
         if (event.mouseButtonUpLeft && img[3].category == category)
         {
-            car[3].visible = !car[3].visible;
+			// TODO
         }
-
 
         //Category choosing
         event = getEventArea(buttons[1].area);
@@ -134,9 +134,9 @@ int main()
 	txDeleteDC(fon);
 	txDeleteDC(skver);
 
-	for (int i = 0; i < COUNT_CAR; i++) {
+	/*for (int i = 0; i < COUNT_CAR; i++) {
 		txDeleteDC(car[i].img);
-	}
+	}*/
 
 	for (int i = 0; i < COUNT_IMG; i++) {
 		txDeleteDC(img[i].img);
