@@ -87,28 +87,24 @@ int main()
         if (event.mouseButtonUpLeft && img[0].category == category)
         {
             car[0].visible = !car[0].visible;
-            txSleep(200);
         }
 
         event = getEventArea(img[1].area);
         if (event.mouseButtonUpLeft && img[1].category == category)
         {
             car[1].visible = !car[1].visible;
-            txSleep(200);
         }
 
         event = getEventArea(img[2].area);
         if (event.mouseButtonUpLeft && img[2].category == category)
         {
             car[2].visible = !car[2].visible;
-            txSleep(200);
         }
 
         event = getEventArea(img[3].area);
         if (event.mouseButtonUpLeft && img[3].category == category)
         {
             car[3].visible = !car[3].visible;
-            txSleep(200);
         }
 
 
