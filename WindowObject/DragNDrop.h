@@ -4,12 +4,13 @@
 
 struct  DragNDrop {
 	Image *img;
-	int xImageClick;
-	int yImageClick;
+	int    xImageClick;
+	int    yImageClick;
 };
 
 DragNDrop setDragNDrop(Image *obj) {
 	DragNDrop dnd;
+
 	dnd.img = obj;
 	dnd.xImageClick = obj->area.x - txMouseX();
 	dnd.yImageClick = obj->area.y - txMouseY();

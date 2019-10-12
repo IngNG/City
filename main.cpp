@@ -21,13 +21,13 @@ int main()
 
 	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
-	buttons[0] = {{20, 10, 100, 40}, "Начать", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[1] = {{20, 60, 100, 40}, "Дома", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[2] = {{20, 110, 100, 40}, "Декор", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[3] = {{20, 160, 100, 40}, "Машина", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+	buttons[0] = {{20, 10,  100, 40}, "Начать",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[1] = {{20, 60,  100, 40}, "Дома",      RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[2] = {{20, 110, 100, 40}, "Декор",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[3] = {{20, 160, 100, 40}, "Машина",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[4] = {{20, 210, 100, 40}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[5] = {{20, 260, 100, 40}, "Снеговик", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[6] = {{20, 310, 100, 40}, "Единорог", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[5] = {{20, 260, 100, 40}, "Снеговик",  RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[6] = {{20, 310, 100, 40}, "Единорог",  RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
 
 	vector<Image> objCity;
 
@@ -36,15 +36,15 @@ int main()
 
 	const int COUNT_IMG = 8;
     Image img[COUNT_IMG];
-    img[0] = {{720,  30, 80, 80}, 79, 58, txLoadImage("img\\Houses\\Hospital.bmp"), true, "House"};
-    img[1] = {{720, 140, 80, 80}, 66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"), true, "House"};
-    img[2] = {{720, 250, 80, 80}, 66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"), true, "House"};
+    img[0] = {{720,  30, 80, 80},  79, 58, txLoadImage("img\\Houses\\Hospital.bmp"),       true, "House"};
+    img[1] = {{720, 140, 80, 80},  66, 58, txLoadImage("img\\Houses\\LowBlueHome.bmp"),    true, "House"};
+    img[2] = {{720, 250, 80, 80},  66, 58, txLoadImage("img\\Houses\\LowGreenHome.bmp"),   true, "House"};
     img[3] = {{720, 350, 80, 100}, 66, 99, txLoadImage("img\\Houses\\TallYellowHome.bmp"), true, "House"};
 
-    img[4] = {{720,  30, 80, 80}, 36, 26, txLoadImage("img\\Dekor\\fontan.bmp"), true, "Dekor"};
+    img[4] = {{720,  30, 80, 80}, 36, 26, txLoadImage("img\\Dekor\\fontan.bmp"),  true, "Dekor"};
     img[5] = {{770, 140, 80, 80}, 11, 13, txLoadImage("img\\Dekor\\snowmen.bmp"), true, "Dekor"};
 
-    img[6] = {{770, 250, 30, 20}, 17, 9, txLoadImage("img\\Car\\car.bmp"), true, "Car"};
+    img[6] = {{770, 250, 30, 20}, 17, 9,  txLoadImage("img\\Car\\car.bmp"),  true, "Car"};
     img[7] = {{770, 350, 30, 20}, 16, 10, txLoadImage("img\\Car\\car2.bmp"), true, "Car"};
 	
 	DragNDrop dndObject = {NULL, 0, 0};
@@ -91,7 +91,7 @@ int main()
 					img[i].img,
 					true,
 					""
-					});
+				});
 				dndObject = setDragNDrop(&objCity.back());
 			}
 		}
@@ -121,10 +121,6 @@ int main()
 
 	txDeleteDC(fon);
 	txDeleteDC(skver);
-
-	/*for (int i = 0; i < COUNT_CAR; i++) {
-		txDeleteDC(car[i].img);
-	}*/
 
 	for (int i = 0; i < COUNT_IMG; i++) {
 		txDeleteDC(img[i].img);
