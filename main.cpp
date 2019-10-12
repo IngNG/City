@@ -47,7 +47,7 @@ int main()
     img[6] = {{770, 250, 30, 20}, 17, 9, txLoadImage("img\\Car\\car.bmp"), true, "Car"};
     img[7] = {{770, 350, 30, 20}, 16, 10, txLoadImage("img\\Car\\car2.bmp"), true, "Car"};
 	
-	DragNDrop dndImage = {NULL, 0, 0};
+	DragNDrop dndObject = {NULL, 0, 0};
 
 	while (!GetAsyncKeyState(VK_ESCAPE)) {
 		txBegin();
@@ -56,6 +56,8 @@ int main()
 
         Win32::TransparentBlt(txDC(), 150,   0, 700, 700, fon,   0, 0, 123,124, TX_WHITE);
         Win32::TransparentBlt(txDC(), 300, 200, 200, 160, skver, 0, 0, 175, 110, TX_WHITE);
+
+		moveDragNDropImg(dndObject);
 
         //Buttons
         for (int n_button = 0; n_button < 6; n_button++)
@@ -78,35 +80,21 @@ int main()
         }
 
         //Choosing variants
-        event = getEventArea(img[0].area);
-        if (event.mouseButtonUpLeft && img[0].category == category)
-        {
-			objCity.push_back({
-				{300, 10, 100, 90},
-				img[0].height,
-				img[0].widht,
-				img[0].img,
-				true
-			});
-        }
-
-        event = getEventArea(img[1].area);
-        if (event.mouseButtonUpLeft && img[1].category == category)
-        {
-            // TODO
-        }
-
-        event = getEventArea(img[2].area);
-        if (event.mouseButtonUpLeft && img[2].category == category)
-        {
-			// TODO
-        }
-
-        event = getEventArea(img[3].area);
-        if (event.mouseButtonUpLeft && img[3].category == category)
-        {
-			// TODO
-        }
+		for (int i = 0; i < COUNT_IMG; i++) {
+			event = getEventArea(img[i].area);
+			if (event.mouseButtonDownLeft && img[i].category == category)
+			{
+				objCity.push_back({
+					img[i].area,
+					img[i].widht,
+					img[i].height,
+					img[i].img,
+					true,
+					""
+					});
+				dndObject = setDragNDrop(&objCity.back());
+			}
+		}
 
         //Category choosing
         event = getEventArea(buttons[1].area);
