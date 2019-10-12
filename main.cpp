@@ -12,8 +12,10 @@ int main()
 {
 	ConfigApp config = readConfigFile("config.txt");
 
-	txCreateWindow(atoi(getValueSetting(config, "wight").c_str()),
-                   atoi(getValueSetting(config, "height").c_str()));
+	txCreateWindow(
+		atoi(getValueSetting(config, "wight").c_str()),
+        atoi(getValueSetting(config, "height").c_str())
+	);
 	txDisableAutoPause();
 
 	HDC fon   = txLoadImage("img\\fon.bmp");
@@ -27,7 +29,7 @@ int main()
     buttons[3] = {{20, 160, 100, 40}, "Машина",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[4] = {{20, 210, 100, 40}, "Госпиталь", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
     buttons[5] = {{20, 260, 100, 40}, "Снеговик",  RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
-    buttons[6] = {{20, 310, 100, 40}, "Единорог",  RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
+    buttons[6] = {{20, 310, 100, 40}, "Выход",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true};
 
 	vector<Image> objCity;
 
@@ -49,7 +51,7 @@ int main()
 	
 	DragNDrop dndObject = {NULL, 0, 0};
 
-	while (!GetAsyncKeyState(VK_ESCAPE)) {
+	while (true) {
 		txBegin();
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
@@ -60,7 +62,7 @@ int main()
 		moveDragNDropImg(dndObject);
 
         //Buttons
-        for (int n_button = 0; n_button < 6; n_button++)
+        for (int n_button = 0; n_button < COUNT_BUTTON; n_button++)
         {
             drawButton(buttons[n_button]);
         }
@@ -114,6 +116,15 @@ int main()
         {
             category = "Car";
         }
+
+		event = getEventArea(buttons[6].area);
+		if (event.mouseButtonUpLeft || GetAsyncKeyState(VK_ESCAPE))
+		{
+			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
+			if (click_button == 1) {
+				break;
+			}
+		}
 
 		txEnd();
 		txSleep(10);
