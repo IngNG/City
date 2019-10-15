@@ -12,7 +12,7 @@ struct ButtonText {
 	COLORREF  textColor;
 
 	bool      visible;
-
+    const char* catalog;
 	int       sizeFont;
 	string    nameFont;
 };
