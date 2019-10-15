@@ -1,29 +1,29 @@
 #pragma once
 struct StatusArea {
-	bool mouseClickLeft = false;
+	bool mouseClickLeft  = false;
 	bool mouseClickRight = false;
 
-	bool mouseOver = false;
+	bool mouseOver       = false;
 };
 
 struct EventArea {
-	bool mouseButtonUpLeft = false;
-	bool mouseButtonUpRight = false;
+	bool mouseButtonUpLeft    = false;
+	bool mouseButtonUpRight   = false;
 
-	bool mouseButtonDownLeft = false;
+	bool mouseButtonDownLeft  = false;
 	bool mouseButtonDownRight = false;
 
-	bool mouseHover = false;
-	bool mouseUnHover = false;
+	bool mouseHover           = false;
+	bool mouseUnHover         = false;
 };
 
 struct AreaCoord {
-	int x;
-	int y;
-	int widht;
-	int height;
+	int        x;
+	int        y;
+	int        widht;
+	int        height;
 
-	EventArea flags;
+	EventArea  flags;
 	StatusArea status;
 };
 
@@ -31,7 +31,7 @@ bool isMouseOver(AreaCoord area) {
 	if (
 		In(txMouseX(), area.x, area.x + area.widht) &&
 		In(txMouseY(), area.y, area.y + area.height)
-		) {
+	) {
 		return true;
 	}
 	else {
@@ -42,8 +42,8 @@ bool isMouseOver(AreaCoord area) {
 void updateStatusArea(AreaCoord& area) {
 	int statusMouseButton = txMouseButtons();
 
-	area.status.mouseOver = isMouseOver(area);
-	area.status.mouseClickLeft = statusMouseButton & 1;
+	area.status.mouseOver       = isMouseOver(area);
+	area.status.mouseClickLeft  = statusMouseButton & 1;
 	area.status.mouseClickRight = statusMouseButton & 2;
 }
 
@@ -53,7 +53,7 @@ EventArea getEventArea(AreaCoord& area) {
 
 	// Наведение на объект
 	if (area.status.mouseOver && !area.flags.mouseHover) {
-		newEvents.mouseHover = true;
+		newEvents.mouseHover  = true;
 		area.flags.mouseHover = true;
 	}
 	else if (!area.status.mouseOver && area.flags.mouseHover) {
@@ -62,7 +62,7 @@ EventArea getEventArea(AreaCoord& area) {
 
 	// Убирание мышки с объекта
 	if (!area.status.mouseOver && !area.flags.mouseUnHover) {
-		newEvents.mouseUnHover = true;
+		newEvents.mouseUnHover  = true;
 		area.flags.mouseUnHover = true;
 	}
 	else if (area.status.mouseOver && area.flags.mouseUnHover) {
@@ -72,7 +72,7 @@ EventArea getEventArea(AreaCoord& area) {
 	// Нажатие левой кнопки мыши
 	if (area.status.mouseOver && area.status.mouseClickLeft && !area.flags.mouseButtonDownLeft) {
 		area.flags.mouseButtonDownLeft = true;
-		newEvents.mouseButtonDownLeft = true;
+		newEvents.mouseButtonDownLeft  = true;
 	}
 	else if (!area.status.mouseClickLeft && area.flags.mouseButtonDownLeft) {
 		if (area.status.mouseOver) {
@@ -84,7 +84,7 @@ EventArea getEventArea(AreaCoord& area) {
 	// Нажатие правой кнопки мыши
 	if (area.status.mouseOver && area.status.mouseClickRight && !area.flags.mouseButtonDownRight) {
 		area.flags.mouseButtonDownRight = true;
-		newEvents.mouseButtonDownRight = true;
+		newEvents.mouseButtonDownRight  = true;
 	}
 	else if (!area.status.mouseClickRight && area.flags.mouseButtonDownRight) {
 		if (area.status.mouseOver) {

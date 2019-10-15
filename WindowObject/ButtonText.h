@@ -6,15 +6,15 @@
 struct ButtonText {
 	AreaCoord area;
 
-	string text;
-	COLORREF fillColor;
-	COLORREF borderColor;
-	COLORREF textColor;
+	string    text;
+	COLORREF  fillColor;
+	COLORREF  borderColor;
+	COLORREF  textColor;
 
-	bool visible;
+	bool      visible;
 
-	int sizeFont;
-	string nameFont;
+	int       sizeFont;
+	string    nameFont;
 };
 
 void drawButton(ButtonText b) {
@@ -23,9 +23,16 @@ void drawButton(ButtonText b) {
 		txSetColor(b.borderColor);
 		txSelectFont(b.nameFont.c_str(), b.sizeFont);
 
-		txRectangle(b.area.x, b.area.y, b.area.x + b.area.widht, b.area.y + b.area.height);
+		txRectangle(
+			b.area.x, b.area.y,
+			b.area.x + b.area.widht, b.area.y + b.area.height
+		);
 		if (b.text.length() != 0) {
-			txDrawText(b.area.x, b.area.y, b.area.x + b.area.widht, b.area.y + b.area.height, b.text.c_str());
+			txDrawText(
+				b.area.x, b.area.y,
+				b.area.x + b.area.widht, b.area.y + b.area.height,
+				b.text.c_str()
+			);
 		}
 	}
 }
