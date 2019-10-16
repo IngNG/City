@@ -98,14 +98,15 @@ int main()
 		}
 
         //Category choosing
-        for(int j = 1; j <=5; j++)
+        for(int i = 0; i < COUNT_BUTTON; i++)
         {
-            event = getEventArea(buttons[j].area);
+            event = getEventArea(buttons[i].area);
             if (event.mouseButtonUpLeft)
             {
-                category =buttons[j].catalog;
+                category =buttons[i].catalog;
             }
         }
+
 		event = getEventArea(buttons[5].area);
 		if (event.mouseButtonUpLeft || GetAsyncKeyState(VK_ESCAPE))
 		{
