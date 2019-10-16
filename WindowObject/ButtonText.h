@@ -15,6 +15,14 @@ struct ButtonText {
     string    category;
 	int       sizeFont;
 	string    nameFont;
+
+	bool click() {
+		return area.events.mouseButtonUpLeft;
+	}
+
+	bool downClick() {
+		return area.events.mouseButtonDownLeft;
+	}
 };
 
 void drawButton(ButtonText b) {

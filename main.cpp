@@ -85,7 +85,7 @@ int main()
 
         //Choosing variants
 		for (int i = 0; i < COUNT_IMG; i++) {
-			if (img[i].area.events.mouseButtonDownLeft && img[i].category == category)
+			if (img[i].downClick() && img[i].category == category)
 			{
 				objCity.push_back({
 					img[i].area,
@@ -102,13 +102,13 @@ int main()
         //Category choosing
         for(int i = 0; i < COUNT_BUTTON - 1; i++)
         {
-            if (buttons[i].area.events.mouseButtonUpLeft)
+            if (buttons[i].click())
             {
                 category = buttons[i].category;
             }
         }
 
-		if (buttons[5].area.events.mouseButtonUpLeft || GetAsyncKeyState(VK_ESCAPE))
+		if (buttons[5].click() || GetAsyncKeyState(VK_ESCAPE))
 		{
 			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
 			if (click_button == 1) {

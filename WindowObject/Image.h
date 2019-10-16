@@ -10,6 +10,14 @@ struct Image {
 
 	bool   visible;
 	string category;
+
+	bool click() {
+		return area.events.mouseButtonUpLeft;
+	}
+
+	bool downClick() {
+		return area.events.mouseButtonDownLeft;
+	}
 };
 
 void drawImage(Image i) {
