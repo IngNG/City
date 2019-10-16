@@ -23,75 +23,53 @@ struct AreaCoord {
 	int        widht;
 	int        height;
 
-	EventArea  flags;
+	EventArea  events;
 	StatusArea status;
 };
 
 bool isMouseOver(AreaCoord area) {
-	if (
-		In(txMouseX(), area.x, area.x + area.widht) &&
-		In(txMouseY(), area.y, area.y + area.height)
-	) {
-		return true;
+	return In(txMouseX(), area.x, area.x + area.widht) && In(txMouseY(), area.y, area.y + area.height);
+}
+
+StatusArea getStatusArea(AreaCoord area) {
+	int statusMouseButton = txMouseButtons();
+	StatusArea status;
+
+	status.mouseOver = isMouseOver(area);
+	if (status.mouseOver) {
+		status.mouseClickLeft = statusMouseButton & 1;
+		status.mouseClickRight = statusMouseButton & 2;
 	}
-	else {
-		return false;
-	}
+
+	return status;
 }
 
 void updateStatusArea(AreaCoord& area) {
-	int statusMouseButton = txMouseButtons();
+	StatusArea newStatus = getStatusArea(area);
+	StatusArea oldStatus = area.status;
+	EventArea events;
 
-	area.status.mouseOver       = isMouseOver(area);
-	area.status.mouseClickLeft  = statusMouseButton & 1;
-	area.status.mouseClickRight = statusMouseButton & 2;
-}
-
-EventArea getEventArea(AreaCoord& area) {
-	updateStatusArea(area);
-	EventArea newEvents;
-
-	// Наведение на объект
-	if (area.status.mouseOver && !area.flags.mouseHover) {
-		newEvents.mouseHover  = true;
-		area.flags.mouseHover = true;
+	if (!oldStatus.mouseOver && newStatus.mouseOver) {
+		events.mouseHover = true;
 	}
-	else if (!area.status.mouseOver && area.flags.mouseHover) {
-		area.flags.mouseHover = false;
+	else if (oldStatus.mouseOver && !newStatus.mouseOver) {
+		events.mouseUnHover = true;
 	}
 
-	// Убирание мышки с объекта
-	if (!area.status.mouseOver && !area.flags.mouseUnHover) {
-		newEvents.mouseUnHover  = true;
-		area.flags.mouseUnHover = true;
+	if (!oldStatus.mouseClickLeft && newStatus.mouseClickLeft) {
+		events.mouseButtonDownLeft = true;
 	}
-	else if (area.status.mouseOver && area.flags.mouseUnHover) {
-		area.flags.mouseUnHover = false;
+	else if (oldStatus.mouseClickLeft && !newStatus.mouseClickLeft) {
+		events.mouseButtonUpLeft = true;
 	}
 
-	// Нажатие левой кнопки мыши
-	if (area.status.mouseOver && area.status.mouseClickLeft && !area.flags.mouseButtonDownLeft) {
-		area.flags.mouseButtonDownLeft = true;
-		newEvents.mouseButtonDownLeft  = true;
+	if (!oldStatus.mouseClickRight && newStatus.mouseClickRight) {
+		events.mouseButtonDownRight = true;
 	}
-	else if (!area.status.mouseClickLeft && area.flags.mouseButtonDownLeft) {
-		if (area.status.mouseOver) {
-			newEvents.mouseButtonUpLeft = true;
-		}
-		area.flags.mouseButtonDownLeft = false;
+	else if (oldStatus.mouseClickRight && !newStatus.mouseClickRight) {
+		events.mouseButtonUpRight = true;
 	}
 
-	// Нажатие правой кнопки мыши
-	if (area.status.mouseOver && area.status.mouseClickRight && !area.flags.mouseButtonDownRight) {
-		area.flags.mouseButtonDownRight = true;
-		newEvents.mouseButtonDownRight  = true;
-	}
-	else if (!area.status.mouseClickRight && area.flags.mouseButtonDownRight) {
-		if (area.status.mouseOver) {
-			newEvents.mouseButtonUpRight = true;
-		}
-		area.flags.mouseButtonDownRight = false;
-	}
-
-	return newEvents;
+	area.events = events;
+	area.status = newStatus;
 }

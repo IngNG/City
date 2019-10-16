@@ -19,11 +19,12 @@ DragNDrop setDragNDrop(Image *obj) {
 }
 
 void moveDragNDropImg(DragNDrop &dnd) {
-	if (!(txMouseButtons() & 1)) {
-		dnd.img = NULL;
-	}
-
 	if (dnd.img != NULL) {
+		if (!txMouseButtons() & 1) {
+			dnd.img = NULL;
+			return;
+		}
+
 		dnd.img->area.x = txMouseX() + dnd.xImageClick;
 		dnd.img->area.y = txMouseY() + dnd.yImageClick;
 	}

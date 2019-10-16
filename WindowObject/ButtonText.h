@@ -12,7 +12,7 @@ struct ButtonText {
 	COLORREF  textColor;
 
 	bool      visible;
-    const char* catalog;
+    string    category;
 	int       sizeFont;
 	string    nameFont;
 };
@@ -37,6 +37,6 @@ void drawButton(ButtonText b) {
 	}
 }
 
-EventArea getEventImage(ButtonText& button) {
-	return getEventArea(button.area);
+void updateStatusButton(ButtonText& button) {
+	updateStatusArea(button.area);
 }

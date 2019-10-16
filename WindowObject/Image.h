@@ -26,6 +26,6 @@ void drawImage(Image i) {
 	}
 }
 
-EventArea getEventImage(Image &img) {
-	return getEventArea(img.area);
+void updateStatusImage(Image &img) {
+	updateStatusArea(img.area);
 }
