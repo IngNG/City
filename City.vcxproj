@@ -128,13 +128,11 @@
   <ItemGroup>
     <ClInclude Include="ConfigRead\ConfigApp.h" />
     <ClInclude Include="ConfigRead\Setting.h" />
-    <ClInclude Include="Const.h" />
     <ClInclude Include="Lib\TXLib.h" />
     <ClInclude Include="WindowObject\Area.h" />
     <ClInclude Include="WindowObject\DragNDrop.h" />
     <ClInclude Include="WindowObject\Image.h" />
     <ClInclude Include="WindowObject\ButtonText.h" />
-    <ClInclude Include="WindowObject\Const.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
