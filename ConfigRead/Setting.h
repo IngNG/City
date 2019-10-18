@@ -7,7 +7,7 @@
 using namespace std;
 
 /*!
-\brief Представляет настройку
+\brief Настройка
 */
 struct Setting {
 	string id; ///< Текстовый индификатор
