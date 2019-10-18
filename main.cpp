@@ -1,3 +1,10 @@
+/*!
+\file
+\brief Главный файл программы
+
+Данный файл содержит функцию `main` и содержит
+	основную логику программы
+*/
 #include "lib/TXLib.h"
 #include <string>
 #include <vector>
@@ -8,6 +15,11 @@
 #include "WindowObject/DragNDrop.h"
 using namespace std;
 
+/*!
+Точка входа в приложение
+
+\return Возращает 0 при завершении программы
+*/
 int main()
 {
 	ConfigApp config = readConfigFile("config.txt");

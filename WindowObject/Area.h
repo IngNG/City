@@ -1,36 +1,62 @@
+/*!
+\file
+\brief Область координат
+Файл содержит структуру `Area`,
+вспомогательные структуры и функции для работы с ней
+*/
 #pragma once
+
+/*!
+\brief Текущее состояние области
+*/
 struct StatusArea {
-	bool mouseClickLeft  = false;
-	bool mouseClickRight = false;
+	bool mouseClickLeft  = false; ///< Нажата ЛКМ
+	bool mouseClickRight = false; ///< Нажата ПКМ
 
-	bool mouseOver       = false;
+	bool mouseOver       = false; ///< Мыжка находится в областе
 };
 
+/*!
+\brief События произошедшие в области
+*/
 struct EventArea {
-	bool mouseButtonUpLeft    = false;
-	bool mouseButtonUpRight   = false;
+	bool mouseButtonUpLeft    = false; ///< Нажата ЛКМ
+	bool mouseButtonUpRight   = false; ///< Нажата ПКМ
 
-	bool mouseButtonDownLeft  = false;
-	bool mouseButtonDownRight = false;
+	bool mouseButtonDownLeft  = false; ///< Отпущена ЛКМ
+	bool mouseButtonDownRight = false; ///< Отпущена ПКМ
 
-	bool mouseHover           = false;
-	bool mouseUnHover         = false;
+	bool mouseHover           = false; ///< Мыжка попала в область
+	bool mouseUnHover         = false; ///< Мыжка вышла за пределы области
 };
 
+/*!
+\brief Область координат
+*/
 struct AreaCoord {
-	int        x;
-	int        y;
-	int        widht;
-	int        height;
+	int        x; ///< Координата X
+	int        y; ///< Координата Y
+	int        widht; ///< Ширина
+	int        height; ///< Высота
 
-	EventArea  events;
-	StatusArea status;
+	EventArea  events; ///< События произошедшие в области
+	StatusArea status; ///< Состояние области
 };
 
+/*!
+Проверяет нахождение мышки в области
+\param area Проверяемая область
+\return true - если да, иначе false
+*/
 bool isMouseOver(AreaCoord area) {
 	return In(txMouseX(), area.x, area.x + area.widht) && In(txMouseY(), area.y, area.y + area.height);
 }
 
+/*!
+Проверяет текущее состояние области
+\param area Проверяемая область
+\return Текущее состояние области 
+*/
 StatusArea getStatusArea(AreaCoord area) {
 	int statusMouseButton = txMouseButtons();
 	StatusArea status;
@@ -44,6 +70,10 @@ StatusArea getStatusArea(AreaCoord area) {
 	return status;
 }
 
+/*!
+Обновляет параметры `events` и `status` структуры `AreaCoord`
+\param area Обновляемая область
+*/
 void updateStatusArea(AreaCoord& area) {
 	StatusArea newStatus = getStatusArea(area);
 	StatusArea oldStatus = area.status;

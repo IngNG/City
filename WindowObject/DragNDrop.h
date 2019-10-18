@@ -1,13 +1,25 @@
+/*!
+\file
+\brief Реализует DragNDrop
+*/
 #pragma once
 #include "Image.h"
 #include "../lib/TXLib.h"
 
+/*!
+\brief Передвигаемое изображение
+*/
 struct  DragNDrop {
-	Image *img;
-	int    xImageClick;
-	int    yImageClick;
+	Image *img; ///< Указатель на картинку
+	int    xImageClick; ///< Относительная координата X нажатия на картинку
+	int    yImageClick; ///< Относительная координата Y нажатия на картинку
 };
 
+/*!
+Привязывает новый объект к структуре
+\param obj Изображение для перемещения
+\return Новый объекст `DragNDrop`
+*/
 DragNDrop setDragNDrop(Image *obj) {
 	DragNDrop dnd;
 
@@ -18,6 +30,11 @@ DragNDrop setDragNDrop(Image *obj) {
 	return dnd;
 }
 
+/*!
+Перемещает объект вслед за мышкой, если ЛКМ отпущена,
+то отвязывает изображение от структуры
+\param dnd Перемещаемый объект
+*/
 void moveDragNDropImg(DragNDrop &dnd) {
 	if (dnd.img != NULL) {
 		if (!txMouseButtons() & 1) {
