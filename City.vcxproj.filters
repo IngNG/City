@@ -35,13 +35,7 @@
     <ClInclude Include="WindowObject\Area.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
-    <ClInclude Include="Const.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="WindowObject\ButtonText.h">
-      <Filter>Файлы заголовков\WindowObject</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowObject\Const.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
     <ClInclude Include="WindowObject\Image.h">

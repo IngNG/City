@@ -1,97 +1,105 @@
+/*!
+\file
+\brief Область координат
+Файл содержит структуру `Area`,
+вспомогательные структуры и функции для работы с ней
+*/
 #pragma once
+
+/*!
+\brief Текущее состояние области
+*/
 struct StatusArea {
-	bool mouseClickLeft  = false;
-	bool mouseClickRight = false;
+	bool mouseClickLeft  = false; ///< Нажата ЛКМ
+	bool mouseClickRight = false; ///< Нажата ПКМ
 
-	bool mouseOver       = false;
+	bool mouseOver       = false; ///< Мыжка находится в областе
 };
 
+/*!
+\brief События произошедшие в области
+*/
 struct EventArea {
-	bool mouseButtonUpLeft    = false;
-	bool mouseButtonUpRight   = false;
+	bool mouseButtonUpLeft    = false; ///< Нажата ЛКМ
+	bool mouseButtonUpRight   = false; ///< Нажата ПКМ
 
-	bool mouseButtonDownLeft  = false;
-	bool mouseButtonDownRight = false;
+	bool mouseButtonDownLeft  = false; ///< Отпущена ЛКМ
+	bool mouseButtonDownRight = false; ///< Отпущена ПКМ
 
-	bool mouseHover           = false;
-	bool mouseUnHover         = false;
+	bool mouseHover           = false; ///< Мыжка попала в область
+	bool mouseUnHover         = false; ///< Мыжка вышла за пределы области
 };
 
+/*!
+\brief Область координат
+*/
 struct AreaCoord {
-	int        x;
-	int        y;
-	int        widht;
-	int        height;
+	int        x; ///< Координата X
+	int        y; ///< Координата Y
+	int        widht; ///< Ширина
+	int        height; ///< Высота
 
-	EventArea  flags;
-	StatusArea status;
+	EventArea  events; ///< События произошедшие в области
+	StatusArea status; ///< Состояние области
 };
 
+/*!
+Проверяет нахождение мышки в области
+\param area Проверяемая область
+\return true - если да, иначе false
+*/
 bool isMouseOver(AreaCoord area) {
-	if (
-		In(txMouseX(), area.x, area.x + area.widht) &&
-		In(txMouseY(), area.y, area.y + area.height)
-	) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return In(txMouseX(), area.x, area.x + area.widht) && In(txMouseY(), area.y, area.y + area.height);
 }
 
-void updateStatusArea(AreaCoord& area) {
+/*!
+Проверяет текущее состояние области
+\param area Проверяемая область
+\return Текущее состояние области 
+*/
+StatusArea getStatusArea(AreaCoord area) {
 	int statusMouseButton = txMouseButtons();
+	StatusArea status;
 
-	area.status.mouseOver       = isMouseOver(area);
-	area.status.mouseClickLeft  = statusMouseButton & 1;
-	area.status.mouseClickRight = statusMouseButton & 2;
+	status.mouseOver = isMouseOver(area);
+	if (status.mouseOver) {
+		status.mouseClickLeft = statusMouseButton & 1;
+		status.mouseClickRight = statusMouseButton & 2;
+	}
+
+	return status;
 }
 
-EventArea getEventArea(AreaCoord& area) {
-	updateStatusArea(area);
-	EventArea newEvents;
+/*!
+Обновляет параметры `events` и `status` структуры `AreaCoord`
+\param area Обновляемая область
+*/
+void updateStatusArea(AreaCoord& area) {
+	StatusArea newStatus = getStatusArea(area);
+	StatusArea oldStatus = area.status;
+	EventArea events;
 
-	// Наведение на объект
-	if (area.status.mouseOver && !area.flags.mouseHover) {
-		newEvents.mouseHover  = true;
-		area.flags.mouseHover = true;
+	if (!oldStatus.mouseOver && newStatus.mouseOver) {
+		events.mouseHover = true;
 	}
-	else if (!area.status.mouseOver && area.flags.mouseHover) {
-		area.flags.mouseHover = false;
-	}
-
-	// Убирание мышки с объекта
-	if (!area.status.mouseOver && !area.flags.mouseUnHover) {
-		newEvents.mouseUnHover  = true;
-		area.flags.mouseUnHover = true;
-	}
-	else if (area.status.mouseOver && area.flags.mouseUnHover) {
-		area.flags.mouseUnHover = false;
+	else if (oldStatus.mouseOver && !newStatus.mouseOver) {
+		events.mouseUnHover = true;
 	}
 
-	// Нажатие левой кнопки мыши
-	if (area.status.mouseOver && area.status.mouseClickLeft && !area.flags.mouseButtonDownLeft) {
-		area.flags.mouseButtonDownLeft = true;
-		newEvents.mouseButtonDownLeft  = true;
+	if (!oldStatus.mouseClickLeft && newStatus.mouseClickLeft) {
+		events.mouseButtonDownLeft = true;
 	}
-	else if (!area.status.mouseClickLeft && area.flags.mouseButtonDownLeft) {
-		if (area.status.mouseOver) {
-			newEvents.mouseButtonUpLeft = true;
-		}
-		area.flags.mouseButtonDownLeft = false;
+	else if (oldStatus.mouseClickLeft && !newStatus.mouseClickLeft) {
+		events.mouseButtonUpLeft = true;
 	}
 
-	// Нажатие правой кнопки мыши
-	if (area.status.mouseOver && area.status.mouseClickRight && !area.flags.mouseButtonDownRight) {
-		area.flags.mouseButtonDownRight = true;
-		newEvents.mouseButtonDownRight  = true;
+	if (!oldStatus.mouseClickRight && newStatus.mouseClickRight) {
+		events.mouseButtonDownRight = true;
 	}
-	else if (!area.status.mouseClickRight && area.flags.mouseButtonDownRight) {
-		if (area.status.mouseOver) {
-			newEvents.mouseButtonUpRight = true;
-		}
-		area.flags.mouseButtonDownRight = false;
+	else if (oldStatus.mouseClickRight && !newStatus.mouseClickRight) {
+		events.mouseButtonUpRight = true;
 	}
 
-	return newEvents;
+	area.events = events;
+	area.status = newStatus;
 }

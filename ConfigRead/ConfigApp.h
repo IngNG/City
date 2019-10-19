@@ -1,15 +1,37 @@
+/*!
+\file
+\brief Чтение файла настроек
+*/
 #pragma once
 #include <string>
 #include <fstream>
 #include <vector>
 #include "Setting.h"
+/*!
+\file
+\brief Чтение файла настроек
+*/
 using namespace std;
 
+/*!
+\brief Файл настроек
+
+Данная структура нужена для хранение обработанных натроек, из
+	файла настроек
+*/
 struct ConfigApp {
-	string pathFile;
-	vector<Setting> settings;
+	string pathFile; ///< Путь до файла
+	vector<Setting> settings; ///< Значения
 };
 
+/*!
+Делит строку по разделителю
+\param[out] str Строка для разделения
+\param[out] delim Делитель
+\param[in] output Массив для результата деления
+\param[in] maxCountOutput Размер массива `output`
+\return Кол-во разделенных элементов
+*/
 int stringSplit(string str, string delim, string *output, int maxCountOutput) {
 	int pos = 0;
 	int i = 0;
@@ -31,6 +53,10 @@ int stringSplit(string str, string delim, string *output, int maxCountOutput) {
 	return i;
 }
 
+/*!
+Создает новый файл с настройками по умолчанию
+\param nameFile Путь до файла
+*/
 void createConfigFile(string nameFile) {
 	ofstream file;
 	file.open(nameFile.c_str());
@@ -41,6 +67,11 @@ void createConfigFile(string nameFile) {
 	file.close();
 }
 
+/*!
+Читает файл, если файла нет, то создает его при помощи `createConfigFile`
+\param nameFile Путь до файла
+\return Отпарсенные настройки
+*/
 ConfigApp readConfigFile(string nameFile) {
 	ifstream file;
 	ConfigApp config;
@@ -64,6 +95,11 @@ ConfigApp readConfigFile(string nameFile) {
 	return config;
 }
 
+/*!
+Ищет значение настройки по текстовому идификатору
+\param config Отпарсенные настройки
+\param id Текстовый индификатор
+*/
 string getValueSetting(ConfigApp &config, string id) {
 	int countSetting = config.settings.size();
 	for (int i = 0; i < countSetting; i++) {

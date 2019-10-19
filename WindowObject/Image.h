@@ -1,15 +1,38 @@
+/*!
+\file
+\brief Кнопка
+
+Содержит функции и структуры для рисования картинок
+*/
 #pragma once
 #include "../lib/TXLib.h"
 #include "Area.h"
 
+/*!
+\brief Картинка 
+*/
 struct Image {
-	AreaCoord area;
-	int    widht;
-	int    height;
-	HDC    img;
+	AreaCoord area; ///< Область, где рисуется картинка
+	int    widht; ///< Ширина картинки
+	int    height; ///< Высота картинки
+	HDC    img; ///< Дескриптор рисования с картинкой. Получить можно функцией `txLoadImage` из библиотеки TXLib
 
-	bool   visible;
-	string category;
+	bool   visible; ///< Рисуется ли картинка
+	string category; ///< Категория картинки
+
+	/*!
+	Проверяет нажата ли картинка.
+
+	Сокращение для `img.area.events.mouseButtonUpLeft`.
+	\return true - если нажата, иначе false
+	*/
+	bool click() {
+		return area.events.mouseButtonUpLeft;
+	}
+
+	bool downClick() {
+		return area.events.mouseButtonDownLeft;
+	}
 };
 
 void drawImage(Image i) {
@@ -26,6 +49,6 @@ void drawImage(Image i) {
 	}
 }
 
-EventArea getEventImage(Image &img) {
-	return getEventArea(img.area);
+void updateStatusImage(Image &img) {
+	updateStatusArea(img.area);
 }

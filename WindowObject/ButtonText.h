@@ -1,22 +1,49 @@
+/*!
+\file
+\brief Кнопка
+
+Содержит функции и структуры для рисования кнопок
+*/
 #pragma once
 #include "../lib/TXLib.h"
 #include <string>
 #include "Area.h"
 
+/*!
+\brief Кнопка с текстом 
+*/
 struct ButtonText {
-	AreaCoord area;
+	AreaCoord area; ///< Область, где рисуется кнопка
 
-	string    text;
-	COLORREF  fillColor;
-	COLORREF  borderColor;
-	COLORREF  textColor;
+	string    text; ///< Текст
+	COLORREF  fillColor; ///< Цвет заливки
+	COLORREF  borderColor; ///< Цвет границы
+	COLORREF  textColor; ///< Цвет текста
 
-	bool      visible;
-    const char* catalog;
-	int       sizeFont;
-	string    nameFont;
+	bool      visible; ///< Рисуется ли кнопка
+    string    category; ///< Категория которая быдет активирована при нажатии
+	int       sizeFont; ///< Размер шрифта
+	string    nameFont; ///< Шрифт
+
+	/*!
+	Проверяет нажата ли кнопка.
+
+	Сокращение для `button.area.events.mouseButtonUpLeft`.
+	\return true - если нажата, иначе false
+	*/
+	bool click() {
+		return area.events.mouseButtonUpLeft;
+	}
+
+	bool downClick() {
+		return area.events.mouseButtonDownLeft;
+	}
 };
 
+/*!
+Если `visible` равно true, то рисует кнопку, иначе ничего не делает
+\param b Кнопка которую нужно нарисовать
+*/
 void drawButton(ButtonText b) {
 	if (b.visible) {
 		txSetFillColor(b.fillColor);
@@ -37,6 +64,12 @@ void drawButton(ButtonText b) {
 	}
 }
 
-EventArea getEventImage(ButtonText& button) {
-	return getEventArea(button.area);
+/*!
+Обновляет состояние кнопки
+
+Сокращение для `updateStatusArea(button.area)`
+\param button Обновляемая кнопка
+*/
+void updateStatusButton(ButtonText& button) {
+	updateStatusArea(button.area);
 }
