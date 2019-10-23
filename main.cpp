@@ -45,6 +45,7 @@ int main()
 
     EventArea event;
     string category;
+	int    speed = 3; ///< скорость  передвижения картинки
 
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
@@ -72,9 +73,59 @@ int main()
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-        Win32::TransparentBlt(txDC(), 150,   0, 700, 700, fon,   0, 0, 123,124, TX_WHITE);
+        Win32::TransparentBlt(txDC(), 150,   0, 800, 600, fon,   0, 0, 123,124, TX_WHITE);
 
 		moveDragNDropImg(dndObject);
+		for (int i = 0; i < objCity.size(); i++)
+		{
+			if (objCity[i].area.y < 0)
+			{
+				objCity[i].area.y = 0;
+			}
+		}
+		for (int i = 0; i < objCity.size(); i++)
+		{
+			if (objCity[i].area.x < 150)
+			{
+				objCity[i].area.x = 150;
+			}
+		}
+
+		for (int i = 0; i < objCity.size(); i++)
+		{
+			if (objCity[i].area.y + objCity[i].area.height > 600)
+			{
+				objCity[i].area.y = 600 - objCity[i].area.height;
+			}
+		}
+
+		for (int i = 0; i < objCity.size(); i++)
+		{
+			if (objCity[i].area.x + objCity[i].area.height > 800)
+			{
+				objCity[i].area.x = 800 - objCity[i].area.height;
+			}
+		}
+		//Размещение картинок
+		/*else if (objCity[nomer_kart].area.y < 0 or objCity[nomer_kart].area.y > 600 or objCity[nomer_kart].area.x < 0 or objCity[nomer_kart].area.x > 800)
+        {
+        Stop = false;
+            for (int x = objCity[nomer_kart].area.x; x < objCity[nomer_kart].area.x + 40; x = x + 5)
+            {
+                for (int y = objCity[nomer_kart].area.y - 15; y < objCity[nomer_kart].area.y + 20; y = y + 5)
+                {
+                    if (txGetPixel(x, y) == TX_GRAY
+                        or txGetPixel(x, y) == RGB(160,160,164))
+                    {
+                       objCity[nomer_kart].area.x = oldCityx;
+                       objCity[nomer_kart].area.y = oldCityy;
+                       objCity[nomer_kart].area.speed = 5;
+                       Stop = true;
+                    }
+                }
+            }
+
+        } */
 
         //Buttons
         for (int i = 0; i < COUNT_BUTTON; i++)
@@ -126,22 +177,33 @@ int main()
 
 		if (nomer_kart >= 0 && GetAsyncKeyState (VK_LEFT))
 		{
-			objCity[nomer_kart].area.x -= 3;
+			objCity[nomer_kart].area.x -= speed;
 		}
 
 		if (nomer_kart >= 0 && GetAsyncKeyState (VK_RIGHT))
 		{
-			objCity[nomer_kart].area.x += 3;
+			objCity[nomer_kart].area.x += speed;
 		}
 
 		if (nomer_kart >= 0 && GetAsyncKeyState (VK_UP))
 		{
-			objCity[nomer_kart].area.y -= 3;
+			objCity[nomer_kart].area.y -= speed;
 		}
+
+
+		if (nomer_kart >= 0 && GetAsyncKeyState (VK_OEM_PLUS) &&   speed < 40)
+		{
+			speed = speed * 1.5;
+		}
+		else if (GetAsyncKeyState(VK_OEM_MINUS) && speed > 3)
+		{
+			speed = (speed * 67) / 100;
+		}
+
 
 		if (nomer_kart >= 0 && GetAsyncKeyState (VK_DOWN))
 		{
-			objCity[nomer_kart].area.y += 3;
+			objCity[nomer_kart].area.y += speed;
 		}
 
 		if (nomer_kart >=0 && GetAsyncKeyState (VK_DELETE))
