@@ -13,6 +13,7 @@
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
 #include "WindowObject/DragNDrop.h"
+#include "Image/SizeImage.h"
 using namespace std;
 
 /*!
@@ -106,27 +107,8 @@ int main()
 				objCity[i].area.x = 800 - objCity[i].area.height;
 			}
 		}
-		//Размещение картинок
-		/*else if (objCity[nomer_kart].area.y < 0 or objCity[nomer_kart].area.y > 600 or objCity[nomer_kart].area.x < 0 or objCity[nomer_kart].area.x > 800)
-        {
-        Stop = false;
-            for (int x = objCity[nomer_kart].area.x; x < objCity[nomer_kart].area.x + 40; x = x + 5)
-            {
-                for (int y = objCity[nomer_kart].area.y - 15; y < objCity[nomer_kart].area.y + 20; y = y + 5)
-                {
-                    if (txGetPixel(x, y) == TX_GRAY
-                        or txGetPixel(x, y) == RGB(160,160,164))
-                    {
-                       objCity[nomer_kart].area.x = oldCityx;
-                       objCity[nomer_kart].area.y = oldCityy;
-                       objCity[nomer_kart].area.speed = 5;
-                       Stop = true;
-                    }
-                }
-            }
-
-        } */
-
+		POINT a;
+	
         //Buttons
         for (int i = 0; i < COUNT_BUTTON; i++)
         {
