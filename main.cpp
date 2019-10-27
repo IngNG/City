@@ -127,15 +127,7 @@ int main()
 		for (int i = 0; i < COUNT_IMG; i++) {
 			if (img[i].downClick() && img[i].category == category)
 			{
-				objCity.push_back({
-					img[i].area,
-					img[i].adress,
-					img[i].category,
-					img[i].img,
-					img[i].widht,
-					img[i].height,
-					true,
-				});
+				objCity.push_back(copyImage(img[i]));
 				dndObject = setDragNDrop(&objCity.back());
 			}
 		}

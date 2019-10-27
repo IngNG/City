@@ -91,3 +91,15 @@ Image loadImage(AreaCoord area, string pathimg, string category="") {
 	img.visible  = true;
 	return img;
 }
+
+Image copyImage(Image original, string category="", bool visable=true) {
+	Image copy;
+	copy.area = original.area;
+	copy.adress = original.adress;
+	copy.category = category;
+	copy.widht = original.widht;
+	copy.height = original.height;
+	copy.img = original.img;
+	copy.visible = true;
+	return copy;
+}
