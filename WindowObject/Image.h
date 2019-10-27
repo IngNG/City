@@ -7,6 +7,10 @@
 #pragma once
 #include "../lib/TXLib.h"
 #include "Area.h"
+#include <fstream>
+
+// Это что-бы VS не ругался
+#pragma warning(disable:4996)
 
 /*!
 \brief Картинка
@@ -56,16 +60,22 @@ void updateStatusImage(Image &img) {
 
 int getWidhtImg(string adress) {
 	unsigned char info[54];
+
 	FILE* f = fopen(adress.c_str(), "rb");
 	fread(info, sizeof(unsigned char), 54, f);
-	int width = *( int*) & info[18];
+	fclose(f);
+
+	int width = *(int*)&info[18];
 	return width;
 }
 
 int getHeightImg(string adress) {
 	unsigned char info[54];
+
 	FILE* f = fopen(adress.c_str(), "rb");
 	fread(info, sizeof(unsigned char), 54, f);
-	int height = *( int*) & info[22];
+	fclose(f);
+
+	int height = *(int*)&info[22];
 	return height;
 }
