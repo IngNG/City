@@ -49,28 +49,20 @@ int main()
 
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
-    img[0] = {{720,  30, 80, 80}, "img\\Houses\\Hospital.bmp", "House"};
-    img[1] = {{720, 140, 80, 80}, "img\\Houses\\LowBlueHome.bmp", "House"};
-    img[2] = {{720, 250, 80, 80}, "img\\Houses\\LowGreenHome.bmp", "House"};
-    img[3] = {{720, 350, 80, 100},"img\\Houses\\TallYellowHome.bmp", "House"};
+	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp", "House");
+    img[1] = loadImage({720, 140, 80, 80}, "img\\Houses\\LowBlueHome.bmp", "House");
+    img[2] = loadImage({720, 250, 80, 80}, "img\\Houses\\LowGreenHome.bmp", "House");
+    img[3] = loadImage({720, 350, 80, 100},"img\\Houses\\TallYellowHome.bmp", "House");
 
-    img[4]  = {{720,  30, 40, 40},"img\\Dekor\\fontan.bmp", "Dekor"};
-    img[5]  = {{740, 140, 30, 30},"img\\Dekor\\snowmen.bmp", "Dekor"};
-    img[6]  = {{710, 250, 80, 50},"img\\Dekor\\prud.bmp", "Dekor"};
-    img[9]  = {{710, 360, 30, 50},"img\\Dekor\\tree.bmp", "Dekor"};
-    img[10] = {{710,470, 105, 25},"img\\Dekor\\doroga1.bmp", "Dekor"};
-    img[11] = {{710,570, 210, 50},"img\\Dekor\\doroga2.bmp", "Dekor"};
+    img[4]  = loadImage({720,  30, 40, 40},"img\\Dekor\\fontan.bmp", "Dekor");
+    img[5]  = loadImage({740, 140, 30, 30},"img\\Dekor\\snowmen.bmp", "Dekor");
+    img[6]  = loadImage({710, 250, 80, 50}, "img\\Dekor\\prud.bmp", "Dekor");
+    img[9]  = loadImage({710, 360, 30, 50}, "img\\Dekor\\tree.bmp", "Dekor");
+    img[10] = loadImage({710,470, 105, 25}, "img\\Dekor\\doroga1.bmp", "Dekor");
+    img[11] = loadImage({710,570, 210, 50}, "img\\Dekor\\doroga2.bmp", "Dekor");
 
-    img[7] = {{770, 68, 30, 20},  "img\\Car\\car.bmp", "Car"};
-    img[8] = {{770, 136, 30, 60}, "img\\Car\\car2.bmp","Car" };
-
-    for (int i = 0; i < COUNT_IMG; i++)
-    {
-        img[i].img = txLoadImage(img[i].adress.c_str());
-        img[i].widht = getWidhtImg(img[i].adress.c_str());
-        img[i].height = getHeightImg(img[i].adress.c_str());
-        img[i].visible = true ;
-    }
+    img[7] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp", "Car");
+    img[8] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp", "Car");
 
 	DragNDrop dndObject = {NULL, 0, 0};
 

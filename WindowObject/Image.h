@@ -58,7 +58,7 @@ void updateStatusImage(Image &img) {
 	updateStatusArea(img.area);
 }
 
-int getWidhtImg(string adress) {
+int getWidhtImage(string adress) {
 	unsigned char info[54];
 
 	FILE* f = fopen(adress.c_str(), "rb");
@@ -69,7 +69,7 @@ int getWidhtImg(string adress) {
 	return width;
 }
 
-int getHeightImg(string adress) {
+int getHeightImage(string adress) {
 	unsigned char info[54];
 
 	FILE* f = fopen(adress.c_str(), "rb");
@@ -78,4 +78,16 @@ int getHeightImg(string adress) {
 
 	int height = *(int*)&info[22];
 	return height;
+}
+
+Image loadImage(AreaCoord area, string pathimg, string category="") {
+	Image img;
+	img.area     = area;
+	img.adress   = pathimg;
+	img.category = category;
+	img.widht    = getWidhtImage(pathimg);
+	img.height   = getHeightImage(pathimg);
+	img.img      = txLoadImage(img.adress.c_str());
+	img.visible  = true;
+	return img;
 }
