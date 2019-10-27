@@ -20,12 +20,8 @@ int shirinaImg(string adress)
 {
     unsigned char info[54];
     FILE* f = fopen(adress.c_str(), "rb");
-    fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
-
-    // extract image height and width from header
+    fread(info, sizeof(unsigned char), 54, f);
     int width = *(int*)&info[18];
-    int height = *(int*)&info[22];
-
     return width;
 }
 
@@ -33,15 +29,10 @@ int visotaImg(string adress)
 {
     unsigned char info[54];
     FILE* f = fopen(adress.c_str(), "rb");
-    fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
-
-    // extract image height and width from header
-    int width = *(int*)&info[18];
+    fread(info, sizeof(unsigned char), 54, f);
     int height = *(int*)&info[22];
-
     return height;
 }
-
 
 
 /*!
@@ -80,18 +71,18 @@ int main()
     Image img[COUNT_IMG];
     img[0] = {{720,  30, 80, 80}, "img\\Houses\\Hospital.bmp", "House"};
     img[1] = {{720, 140, 80, 80}, "img\\Houses\\LowBlueHome.bmp", "House"};
-    img[2] = {{720, 250, 80, 80},  "img\\Houses\\LowGreenHome.bmp", "House"};
-    img[3] = {{720, 350, 80, 100},  "img\\Houses\\TallYellowHome.bmp", "House"};
+    img[2] = {{720, 250, 80, 80}, "img\\Houses\\LowGreenHome.bmp", "House"};
+    img[3] = {{720, 350, 80, 100},"img\\Houses\\TallYellowHome.bmp", "House"};
 
-    img[4]  = {{720,  30, 40, 40},  "img\\Dekor\\fontan.bmp", "Dekor"};
-    img[5]  = {{740, 140, 30, 30},  "img\\Dekor\\snowmen.bmp", "Dekor"};
-    img[6]  = {{710, 250, 80, 50},  "img\\Dekor\\prud.bmp", "Dekor"};
-    img[9]  = {{710, 360, 30, 50},  "img\\Dekor\\tree.bmp", "Dekor"};
-    img[10] = {{710,470, 105, 25},  "img\\Dekor\\doroga1.bmp", "Dekor"};
-    img[11] = {{710,570, 210, 50}, "img\\Dekor\\doroga2.bmp", "Dekor"};
+    img[4]  = {{720,  30, 40, 40},"img\\Dekor\\fontan.bmp", "Dekor"};
+    img[5]  = {{740, 140, 30, 30},"img\\Dekor\\snowmen.bmp", "Dekor"};
+    img[6]  = {{710, 250, 80, 50},"img\\Dekor\\prud.bmp", "Dekor"};
+    img[9]  = {{710, 360, 30, 50},"img\\Dekor\\tree.bmp", "Dekor"};
+    img[10] = {{710,470, 105, 25},"img\\Dekor\\doroga1.bmp", "Dekor"};
+    img[11] = {{710,570, 210, 50},"img\\Dekor\\doroga2.bmp", "Dekor"};
 
     img[7] = {{770, 68, 30, 20},  "img\\Car\\car.bmp", "Car"};
-    img[8] = {{770, 136, 30, 60},  "img\\Car\\car2.bmp","Car" };
+    img[8] = {{770, 136, 30, 60}, "img\\Car\\car2.bmp","Car" };
 
     for (int i = 0; i < COUNT_IMG; i++)
     {
@@ -113,56 +104,28 @@ int main()
         Win32::TransparentBlt(txDC(), 150,   0, 800, 600, fon,   0, 0, 123,124, TX_WHITE);
 
 		moveDragNDropImg(dndObject);
-		for (int i = 0; i < objCity.size(); i++)
-		{
-			if (objCity[i].area.y < 0)
-			{
-				objCity[i].area.y = 0;
-			}
-		}
+
+		//Limits
 		for (int i = 0; i < objCity.size(); i++)
 		{
 			if (objCity[i].area.x < 150)
 			{
 				objCity[i].area.x = 150;
 			}
-		}
+			else if (objCity[i].area.x + objCity[i].area.height > 800)
+			{
+				objCity[i].area.x = 800 - objCity[i].area.height;
+			}
 
-		for (int i = 0; i < objCity.size(); i++)
-		{
-			if (objCity[i].area.y + objCity[i].area.height > 600)
+			if (objCity[i].area.y < 0)
+			{
+				objCity[i].area.y = 0;
+			}
+			else if (objCity[i].area.y + objCity[i].area.height > 600)
 			{
 				objCity[i].area.y = 600 - objCity[i].area.height;
 			}
 		}
-
-		for (int i = 0; i < objCity.size(); i++)
-		{
-			if (objCity[i].area.x + objCity[i].area.height > 800)
-			{
-				objCity[i].area.x = 800 - objCity[i].area.height;
-			}
-		}
-		//Размещение картинок
-		/*else if (objCity[nomer_kart].area.y < 0 or objCity[nomer_kart].area.y > 600 or objCity[nomer_kart].area.x < 0 or objCity[nomer_kart].area.x > 800)
-        {
-        Stop = false;
-            for (int x = objCity[nomer_kart].area.x; x < objCity[nomer_kart].area.x + 40; x = x + 5)
-            {
-                for (int y = objCity[nomer_kart].area.y - 15; y < objCity[nomer_kart].area.y + 20; y = y + 5)
-                {
-                    if (txGetPixel(x, y) == TX_GRAY
-                        or txGetPixel(x, y) == RGB(160,160,164))
-                    {
-                       objCity[nomer_kart].area.x = oldCityx;
-                       objCity[nomer_kart].area.y = oldCityy;
-                       objCity[nomer_kart].area.speed = 5;
-                       Stop = true;
-                    }
-                }
-            }
-
-        } */
 
         //Buttons
         for (int i = 0; i < COUNT_BUTTON; i++)
