@@ -15,26 +15,6 @@
 #include "WindowObject/DragNDrop.h"
 using namespace std;
 
-
-int shirinaImg(string adress)
-{
-    unsigned char info[54];
-    FILE* f = fopen(adress.c_str(), "rb");
-    fread(info, sizeof(unsigned char), 54, f);
-    int width = *(int*)&info[18];
-    return width;
-}
-
-int visotaImg(string adress)
-{
-    unsigned char info[54];
-    FILE* f = fopen(adress.c_str(), "rb");
-    fread(info, sizeof(unsigned char), 54, f);
-    int height = *(int*)&info[22];
-    return height;
-}
-
-
 /*!
 Точка входа в приложение
 
@@ -87,8 +67,8 @@ int main()
     for (int i = 0; i < COUNT_IMG; i++)
     {
         img[i].img = txLoadImage(img[i].adress.c_str());
-        img[i].widht = shirinaImg(img[i].adress.c_str());
-        img[i].height = visotaImg(img[i].adress.c_str());
+        img[i].widht = getWidhtImg(img[i].adress.c_str());
+        img[i].height = getHeightImg(img[i].adress.c_str());
         img[i].visible = true ;
     }
 
