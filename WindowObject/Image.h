@@ -9,16 +9,17 @@
 #include "Area.h"
 
 /*!
-\brief Картинка 
+\brief Картинка
 */
 struct Image {
 	AreaCoord area; ///< Область, где рисуется картинка
-	int    widht; ///< Ширина картинки
-	int    height; ///< Высота картинки
+	string adress;
+	string category; ///< Категория картинки
 	HDC    img; ///< Дескриптор рисования с картинкой. Получить можно функцией `txLoadImage` из библиотеки TXLib
 
+	int    widht; ///< Ширина картинки
+	int    height; ///< Высота картинки
 	bool   visible; ///< Рисуется ли картинка
-	string category; ///< Категория картинки
 
 	/*!
 	Проверяет нажата ли картинка.
