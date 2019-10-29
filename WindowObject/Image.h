@@ -7,6 +7,10 @@
 #pragma once
 #include "../lib/TXLib.h"
 #include "Area.h"
+#include <fstream>
+
+// Это что-бы VS не ругался
+#pragma warning(disable:4996)
 
 /*!
 \brief Картинка
@@ -52,4 +56,50 @@ void drawImage(Image i) {
 
 void updateStatusImage(Image &img) {
 	updateStatusArea(img.area);
+}
+
+int getWidhtImage(string adress) {
+	unsigned char info[54];
+
+	FILE* f = fopen(adress.c_str(), "rb");
+	fread(info, sizeof(unsigned char), 54, f);
+	fclose(f);
+
+	int width = *(int*)&info[18];
+	return width;
+}
+
+int getHeightImage(string adress) {
+	unsigned char info[54];
+
+	FILE* f = fopen(adress.c_str(), "rb");
+	fread(info, sizeof(unsigned char), 54, f);
+	fclose(f);
+
+	int height = *(int*)&info[22];
+	return height;
+}
+
+Image loadImage(AreaCoord area, string pathimg, string category="") {
+	Image img;
+	img.area     = area;
+	img.adress   = pathimg;
+	img.category = category;
+	img.widht    = getWidhtImage(pathimg);
+	img.height   = getHeightImage(pathimg);
+	img.img      = txLoadImage(img.adress.c_str());
+	img.visible  = true;
+	return img;
+}
+
+Image copyImage(Image original, string category="", bool visable=true) {
+	Image copy;
+	copy.area = original.area;
+	copy.adress = original.adress;
+	copy.category = category;
+	copy.widht = original.widht;
+	copy.height = original.height;
+	copy.img = original.img;
+	copy.visible = true;
+	return copy;
 }
