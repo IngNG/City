@@ -1,3 +1,7 @@
+/*!
+\file
+\brief Функции создание сейва игры
+*/
 #pragma once
 
 #include "../WindowObject/Image.h"
@@ -29,6 +33,11 @@ string encodeAreaCoord(AreaCoord &obj) {
 	return x + "|" + y + "|" + w + "|" + h;
 }
 
+/*!
+Переобразет `Image` в `string`
+\param obj Объект для переобразования
+\return Строка формата "--OBJ--\nparamname1=value1\nparamname2=value2"
+*/
 string encodeImage(Image &obj) {
 	string result = "--OBJ--\n";
 
@@ -40,6 +49,11 @@ string encodeImage(Image &obj) {
 	return result;
 }
 
+/*!
+Переобразет `vector<Image>` в `string`
+\param objs Объекты для переобразования
+\return Форматированная строка
+*/
 string encodeArrImages(vector<Image> &objs) {
 	string result = "";
 	for (int i = 0; i < objs.size(); i++) {
