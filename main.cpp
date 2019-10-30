@@ -13,6 +13,7 @@
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
 #include "WindowObject/DragNDrop.h"
+#include "SaveFileRead/WriteFile.h"
 using namespace std;
 
 /*!
@@ -193,6 +194,7 @@ int main()
 			if (click_button == 1) {
 				break;
 			}
+			cout << encodeArrImages(objCity) << endl;
 		}
 
 		txEnd();

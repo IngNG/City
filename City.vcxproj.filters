@@ -22,6 +22,9 @@
     <Filter Include="Файлы заголовков\ConfigRead">
       <UniqueIdentifier>{771a58b3-2953-4527-adf6-f271fc5f9dbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\SaveFileRead">
+      <UniqueIdentifier>{1eeef6fc-8b68-4e6e-966d-c228187d183f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -49,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="WindowObject\DragNDrop.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="FunString.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFileRead\WriteFile.h">
+      <Filter>Файлы заголовков\SaveFileRead</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
