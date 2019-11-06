@@ -14,6 +14,7 @@
 #include "WindowObject/Image.h"
 #include "WindowObject/DragNDrop.h"
 #include "SaveFile/WriteFile.h"
+#include "SaveFile/ReadFile.h"
 using namespace std;
 
 /*!
@@ -30,6 +31,8 @@ int main()
         atoi(getValueSetting(config, "height").c_str())
 	);
 	txDisableAutoPause();
+
+	parseArrImages("--OBJ--\npath=img\\Houses\\Hospital.bmp\nwidht=79\nheight=58\ncoord=411|78|80|80\n--OBJ--\npath=img\\Houses\\LowBlueHome.bmp\nwidht=66\nheight=58\ncoord=445|158|80|80\n--OBJ--\npath=img\\Houses\\LowGreenHome.bmp\nwidht=66\nheight=58\ncoord=239|48|80|80\n--OBJ--\npath=img\\Houses\\LowBlueHome.bmp\nwidht=66\nheight=58\ncoord=276|166|80|80\n");
 
 	HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
@@ -192,9 +195,9 @@ int main()
 		{
 			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
 			if (click_button == 1) {
+				SaveGameInFile("save", objCity);
 				break;
 			}
-			cout << encodeArrImages(objCity) << endl;
 		}
 
 		txEnd();

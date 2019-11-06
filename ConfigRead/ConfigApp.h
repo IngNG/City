@@ -7,7 +7,7 @@
 #include <fstream>
 #include <vector>
 #include "../utils/FunString.h"
-#include "Setting.h"
+#include "../utils/ValueName.h"
 /*!
 \file
 \brief Чтение файла настроек
@@ -22,7 +22,7 @@ using namespace std;
 */
 struct ConfigApp {
 	string pathFile; ///< Путь до файла
-	vector<Setting> settings; ///< Значения
+	vector<ValueName> settings; ///< Значения
 };
 
 /*!
@@ -59,7 +59,7 @@ ConfigApp readConfigFile(string nameFile) {
 	while (getline(file, line)) {
 		vector<string> splitLines = stringSplit(line, ": ", 2);
 
-		Setting a{ splitLines[0], splitLines[1] };
+		ValueName a{ splitLines[0], splitLines[1] };
 		config.settings.push_back(a);
 	}
 

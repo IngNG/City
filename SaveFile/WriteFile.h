@@ -7,6 +7,7 @@
 #include "../WindowObject/Image.h"
 #include "../WindowObject/Area.h"
 #include <string>
+#include <fstream>
 using namespace std;
 
 /*!
@@ -61,4 +62,13 @@ string encodeArrImages(vector<Image> &objs) {
 	}
 
 	return result;
+}
+
+void SaveGameInFile(string nameFile, vector<Image> &objs) {
+	ofstream file;
+	file.open(nameFile);
+
+	string text = encodeArrImages(objs);
+	file << text;
+	file.close();
 }
