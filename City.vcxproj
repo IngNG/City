@@ -128,9 +128,9 @@
   <ItemGroup>
     <ClInclude Include="ConfigRead\ConfigApp.h" />
     <ClInclude Include="ConfigRead\Setting.h" />
-    <ClInclude Include="FunString.h" />
     <ClInclude Include="Lib\TXLib.h" />
-    <ClInclude Include="SaveFileRead\WriteFile.h" />
+    <ClInclude Include="SaveFile\WriteFile.h" />
+    <ClInclude Include="utils\FunString.h" />
     <ClInclude Include="WindowObject\Area.h" />
     <ClInclude Include="WindowObject\DragNDrop.h" />
     <ClInclude Include="WindowObject\Image.h" />

@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "../FunString.h"
+#include "../utils/FunString.h"
 #include "Setting.h"
 /*!
 \file

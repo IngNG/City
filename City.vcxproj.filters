@@ -22,8 +22,11 @@
     <Filter Include="Файлы заголовков\ConfigRead">
       <UniqueIdentifier>{771a58b3-2953-4527-adf6-f271fc5f9dbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\SaveFileRead">
-      <UniqueIdentifier>{1eeef6fc-8b68-4e6e-966d-c228187d183f}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\SaveFile">
+      <UniqueIdentifier>{dc92487d-849f-42d0-9008-a7e03e4897a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\utils">
+      <UniqueIdentifier>{a9e63764-3215-4db4-b82f-4b931ef68dc7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,11 +56,11 @@
     <ClInclude Include="WindowObject\DragNDrop.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
-    <ClInclude Include="FunString.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="SaveFile\WriteFile.h">
+      <Filter>Файлы заголовков\SaveFile</Filter>
     </ClInclude>
-    <ClInclude Include="SaveFileRead\WriteFile.h">
-      <Filter>Файлы заголовков\SaveFileRead</Filter>
+    <ClInclude Include="utils\FunString.h">
+      <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
