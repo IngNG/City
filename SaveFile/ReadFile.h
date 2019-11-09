@@ -1,6 +1,7 @@
 #pragma once
 #include "../utils/ValueName.h"
 #include "../utils/FunString.h"
+#include "../utils/ReadFile.h"
 #include "../WindowObject/Image.h"
 #include <iostream>
 #include <vector>
@@ -58,7 +59,7 @@ Image parseObject(string str) {
 	return img;
 }
 
-vector<Image> parseArrImages(string str/*, Image *menu, int sizeMenu*/) {
+vector<Image> parseArrImages(string str, Image *menu, int sizeMenu) {
 	vector<string> arrObjStr = stringSplit(str, "--OBJ--\n");
 	vector<Image> arrObj;
 
@@ -67,9 +68,20 @@ vector<Image> parseArrImages(string str/*, Image *menu, int sizeMenu*/) {
 			continue;
 		}
 
-		cout << arrObjStr[i] << endl;
-		cout << "------------------" << endl;
+		Image loadedObj = parseObject(arrObjStr[i]);
+		for (int i = 0; i < sizeMenu; i++) {
+			if (loadedObj.adress == menu[i].adress) {
+				loadedObj.img = menu[i].img;
+				loadedObj.category = menu[i].category;
+			}
+		}
+		arrObj.push_back(loadedObj);
 	}
 
 	return arrObj;
+}
+
+vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
+	cout << readAllFile(path) << endl;
+	return parseArrImages(readAllFile(path), menu, sizeMenu);
 }

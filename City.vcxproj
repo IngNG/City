@@ -131,6 +131,7 @@
     <ClInclude Include="SaveFile\ReadFile.h" />
     <ClInclude Include="SaveFile\WriteFile.h" />
     <ClInclude Include="utils\FunString.h" />
+    <ClInclude Include="utils\ReadFile.h" />
     <ClInclude Include="utils\ValueName.h" />
     <ClInclude Include="WindowObject\Area.h" />
     <ClInclude Include="WindowObject\DragNDrop.h" />

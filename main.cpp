@@ -32,8 +32,6 @@ int main()
 	);
 	txDisableAutoPause();
 
-	parseArrImages("--OBJ--\npath=img\\Houses\\Hospital.bmp\nwidht=79\nheight=58\ncoord=411|78|80|80\n--OBJ--\npath=img\\Houses\\LowBlueHome.bmp\nwidht=66\nheight=58\ncoord=445|158|80|80\n--OBJ--\npath=img\\Houses\\LowGreenHome.bmp\nwidht=66\nheight=58\ncoord=239|48|80|80\n--OBJ--\npath=img\\Houses\\LowBlueHome.bmp\nwidht=66\nheight=58\ncoord=276|166|80|80\n");
-
 	HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
 
@@ -47,7 +45,6 @@ int main()
 
 	vector<Image> objCity;
 
-    EventArea event;
     string category;
 	int    speed = 3; ///< скорость  передвижения картинки
 
@@ -71,6 +68,8 @@ int main()
 	DragNDrop dndObject = {NULL, 0, 0};
 
     int nomer_kart = -1;
+
+	objCity = readSaveFile("save", img, COUNT_IMG);
 
 	while (true) {
 		txBegin();
