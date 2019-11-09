@@ -82,6 +82,5 @@ vector<Image> parseArrImages(string str, Image *menu, int sizeMenu) {
 }
 
 vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
-	cout << readAllFile(path) << endl;
 	return parseArrImages(readAllFile(path), menu, sizeMenu);
 }

@@ -15,6 +15,7 @@
 #include "WindowObject/DragNDrop.h"
 #include "SaveFile/WriteFile.h"
 #include "SaveFile/ReadFile.h"
+#include "utils/SelectFile.h"
 using namespace std;
 
 /*!
@@ -69,7 +70,7 @@ int main()
 
     int nomer_kart = -1;
 
-	objCity = readSaveFile("save", img, COUNT_IMG);
+	//objCity = readSaveFile("save", img, COUNT_IMG);
 
 	while (true) {
 		txBegin();

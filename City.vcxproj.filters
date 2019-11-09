@@ -68,5 +68,8 @@
     <ClInclude Include="utils\ReadFile.h">
       <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
+    <ClInclude Include="utils\SelectFile.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
