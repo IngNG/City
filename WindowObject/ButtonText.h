@@ -10,7 +10,7 @@
 #include "Area.h"
 
 /*!
-\brief Кнопка с текстом 
+\brief Кнопка с текстом
 */
 struct ButtonText {
 	AreaCoord area; ///< Область, где рисуется кнопка
@@ -71,5 +71,5 @@ void drawButton(ButtonText b) {
 \param button Обновляемая кнопка
 */
 void updateStatusButton(ButtonText& button) {
-	updateStatusArea(button.area);
+	updateStatusArea(button.area, 0);
 }

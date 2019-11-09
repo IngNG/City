@@ -48,20 +48,24 @@ struct AreaCoord {
 \param area Проверяемая область
 \return true - если да, иначе false
 */
-bool isMouseOver(AreaCoord area) {
-	return In(txMouseX(), area.x, area.x + area.widht) && In(txMouseY(), area.y, area.y + area.height);
+bool isMouseOver(AreaCoord area, int CAM_X = 0) {
+	return
+	In(txMouseX(),
+	area.x + CAM_X,
+	area.x + CAM_X + area.widht) &&
+	In(txMouseY(), area.y, area.y + area.height);
 }
 
 /*!
 Проверяет текущее состояние области
 \param area Проверяемая область
-\return Текущее состояние области 
+\return Текущее состояние области
 */
-StatusArea getStatusArea(AreaCoord area) {
+StatusArea getStatusArea(AreaCoord area, int CAM_X = 0) {
 	int statusMouseButton = txMouseButtons();
 	StatusArea status;
 
-	status.mouseOver = isMouseOver(area);
+	status.mouseOver = isMouseOver(area, CAM_X);
 	if (status.mouseOver) {
 		status.mouseClickLeft = statusMouseButton & 1;
 		status.mouseClickRight = statusMouseButton & 2;
@@ -74,8 +78,8 @@ StatusArea getStatusArea(AreaCoord area) {
 Обновляет параметры `events` и `status` структуры `AreaCoord`
 \param area Обновляемая область
 */
-void updateStatusArea(AreaCoord& area) {
-	StatusArea newStatus = getStatusArea(area);
+void updateStatusArea(AreaCoord& area, int CAM_X) {
+	StatusArea newStatus = getStatusArea(area, CAM_X);
 	StatusArea oldStatus = area.status;
 	EventArea events;
 

@@ -32,13 +32,13 @@ int main()
 
 	HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
-	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp", "");
-	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp", "");
+	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
+	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
 	const int COUNT_BUTTON = 5;
     ButtonText buttons[COUNT_BUTTON];
 	buttons[0] = {{20, 10,  100, 40}, "Начать",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
-    buttons[1] = {{20, 60,  100, 40}, "Дома",      RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "House"};
+    buttons[1] = {{20, 60,  100, 40}, "Дома",      RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Houses"};
     buttons[2] = {{20, 110, 100, 40}, "Декор",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Dekor"};
     buttons[3] = {{20, 160, 100, 40}, "Машина",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Car"};
     buttons[4] = {{20, 210, 100, 40}, "Выход",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
@@ -51,20 +51,20 @@ int main()
  int CAM_X = 0;
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
-	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp", "House");
-    img[1] = loadImage({720, 140, 80, 80}, "img\\Houses\\LowBlueHome.bmp", "House");
-    img[2] = loadImage({720, 250, 80, 80}, "img\\Houses\\LowGreenHome.bmp", "House");
-    img[3] = loadImage({720, 350, 80, 100},"img\\Houses\\TallYellowHome.bmp", "House");
+	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp");
+    img[1] = loadImage({720, 140, 80, 80}, "img\\Houses\\LowBlueHome.bmp");
+    img[2] = loadImage({720, 250, 80, 80}, "img\\Houses\\LowGreenHome.bmp");
+    img[3] = loadImage({720, 350, 80, 100},"img\\Houses\\TallYellowHome.bmp");
 
-    img[4]  = loadImage({720,  30, 40, 40},"img\\Dekor\\fontan.bmp", "Dekor");
-    img[5]  = loadImage({740, 140, 30, 30},"img\\Dekor\\snowmen.bmp", "Dekor");
-    img[6]  = loadImage({710, 250, 80, 50}, "img\\Dekor\\prud.bmp", "Dekor");
-    img[9]  = loadImage({710, 360, 30, 50}, "img\\Dekor\\tree.bmp", "Dekor");
-    img[10] = loadImage({710,470, 105, 25}, "img\\Dekor\\doroga1.bmp", "Dekor");
-    img[11] = loadImage({710,570, 210, 50}, "img\\Dekor\\doroga2.bmp", "Dekor");
+    img[4]  = loadImage({720,  30, 40, 40},"img\\Dekor\\fontan.bmp");
+    img[5]  = loadImage({740, 140, 30, 30},"img\\Dekor\\snowmen.bmp");
+    img[6]  = loadImage({710, 250, 80, 50}, "img\\Dekor\\prud.bmp");
+    img[9]  = loadImage({710, 360, 30, 50}, "img\\Dekor\\tree.bmp");
+    img[10] = loadImage({710,470, 105, 25}, "img\\Dekor\\doroga1.bmp");
+    img[11] = loadImage({710,570, 210, 50}, "img\\Dekor\\doroga2.bmp");
 
-    img[7] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp", "Car");
-    img[8] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp", "Car");
+    img[7] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp");
+    img[8] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp");
 
 //img[12] = loadImage({20,400, 100, 40}, "img\\Strelki.bmp", "");
 	DragNDrop dndObject = {NULL, 0, 0};
@@ -77,10 +77,11 @@ int main()
 		txClear();
 
   Win32::TransparentBlt(txDC(), CAM_X + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+  Win32::TransparentBlt(txDC(), CAM_X - 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
 
-            drawImage(strelkiRight);
+            drawImage(strelkiRight, 0);
 			updateStatusImage(strelkiRight);
-			 drawImage(strelkiLeft);
+			 drawImage(strelkiLeft, 0);
 			updateStatusImage(strelkiLeft);
 		moveDragNDropImg(dndObject);
 
@@ -116,8 +117,8 @@ int main()
         //Drawing pictures
         for (int i = 0; i < objCity.size(); i++)
 		{
-            drawImage(objCity[i]);
-			updateStatusImage(objCity[i]);
+            drawImage(objCity[i], CAM_X);
+			updateStatusImage(objCity[i], CAM_X);
         }
 
         //Drawing variants
@@ -126,18 +127,18 @@ int main()
 			updateStatusImage(img[i]);
             if (img[i].category == category)
             {
-                drawImage(img[i]);
+                drawImage(img[i],0);
             }
         }
 
   //CAM move
-   if (strelkiRight.downClick() && CAM_X < 0 )
-        {
-            CAM_X += 10;
-        }
-       else if (strelkiLeft.downClick())
+   if (strelkiRight.click() && CAM_X < 2500 )
         {
             CAM_X -= 10;
+        }
+       else if (strelkiLeft.click())
+        {
+            CAM_X += 10;
         }
 
         //Choosing variants

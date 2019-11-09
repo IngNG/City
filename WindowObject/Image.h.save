@@ -32,12 +32,7 @@ struct Image {
 	\return true - если нажата, иначе false
 	*/
 	bool click() {
-		return
-   (txMouseButtons() == 1 &&
-    txMouseX() > area.x &&
-    txMouseY() > area.y &&
-    txMouseX() < area.x + area.widht &&
-    txMouseY() < area.y + area.height);
+		return area.events.mouseButtonUpLeft;
 	}
 
 	bool downClick() {
@@ -45,11 +40,11 @@ struct Image {
 	}
 };
 
-void drawImage(Image i, int CAM_X) {
+void drawImage(Image i) {
 	if (i.visible) {
 		Win32::TransparentBlt(
 			txDC(),
-			i.area.x + CAM_X, i.area.y,
+			i.area.x, i.area.y,
 			i.area.widht, i.area.height,
 			i.img,
 			0, 0,
@@ -59,8 +54,8 @@ void drawImage(Image i, int CAM_X) {
 	}
 }
 
-void updateStatusImage(Image &img, int CAM_X = 0) {
-	updateStatusArea(img.area, CAM_X);
+void updateStatusImage(Image &img) {
+	updateStatusArea(img.area);
 }
 
 int getWidhtImage(string adress) {
@@ -89,12 +84,13 @@ Image loadImage(AreaCoord area, string pathimg) {
 	Image img;
 	img.area     = area;
 	img.adress   = pathimg;
-
- string st = img.adress;
- int pos1 = st.find ("\\");
- int pos2 = st.find ("\\", pos1 + 1);
- img.category = st.substr(pos1 + 1, pos2 - pos1 - 1);
-
+	
+   string st = "img\\Houses\\Hospital.bmp";
+   int pos1 = st.find ("\\");
+   int pos2 = st.find ("\\", pos1 + 1);
+   img.category st.substr(pos1 + 1, pos2 - pos1 - 1);
+	  img.category = category;
+	
 	img.widht    = getWidhtImage(pathimg);
 	img.height   = getHeightImage(pathimg);
 	img.img      = txLoadImage(img.adress.c_str());
