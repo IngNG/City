@@ -36,13 +36,15 @@ int main()
 	HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
 
-	const int COUNT_BUTTON = 5;
+	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
 	buttons[0] = {{20, 10,  100, 40}, "Начать",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
     buttons[1] = {{20, 60,  100, 40}, "Дома",      RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "House"};
     buttons[2] = {{20, 110, 100, 40}, "Декор",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Dekor"};
     buttons[3] = {{20, 160, 100, 40}, "Машина",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Car"};
     buttons[4] = {{20, 210, 100, 40}, "Выход",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
+	buttons[5] = {{20, 260, 100, 40}, "Сохранить", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
+	buttons[6] = {{20, 310, 100, 40}, "Открыть",   RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
 
 	vector<Image> objCity;
 
@@ -67,10 +69,8 @@ int main()
     img[8] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp", "Car");
 
 	DragNDrop dndObject = {NULL, 0, 0};
-
     int nomer_kart = -1;
-
-	//objCity = readSaveFile("save", img, COUNT_IMG);
+	string openNameFile = "";
 
 	while (true) {
 		txBegin();
@@ -195,8 +195,23 @@ int main()
 		{
 			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
 			if (click_button == 1) {
-				SaveGameInFile("save", objCity);
 				break;
+			}
+		}
+
+		// Сохранение
+		if (buttons[5].click()) {
+			if (openNameFile == "") {
+				openNameFile = selectFile(txWindow());
+			}
+			SaveGameInFile(openNameFile, objCity);
+		}
+		// Открытие
+		if (buttons[6].click()) {
+			string newNameFile = selectFile(txWindow());
+			if (newNameFile != "") {
+				openNameFile = newNameFile;
+				objCity = readSaveFile(openNameFile, img, COUNT_IMG);
 			}
 		}
 

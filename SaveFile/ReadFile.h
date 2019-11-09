@@ -69,6 +69,7 @@ vector<Image> parseArrImages(string str, Image *menu, int sizeMenu) {
 		}
 
 		Image loadedObj = parseObject(arrObjStr[i]);
+		// Инитиализуем изображение
 		for (int i = 0; i < sizeMenu; i++) {
 			if (loadedObj.adress == menu[i].adress) {
 				loadedObj.img = menu[i].img;

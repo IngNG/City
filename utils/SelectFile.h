@@ -16,8 +16,8 @@ string selectFile(HWND hWnd) {
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFileTitle = NULL;
 	ofn.lpstrInitialDir = NULL;
-	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-
+	ofn.Flags = OFN_CREATEPROMPT;
+		
 	GetOpenFileNameA(&ofn);
 	return nameFile;
 }
