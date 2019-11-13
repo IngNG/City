@@ -17,7 +17,7 @@ string selectFile(HWND hWnd) {
 	ofn.lpstrFileTitle = NULL;
 	ofn.lpstrInitialDir = NULL;
 	ofn.Flags = OFN_CREATEPROMPT;
-		
-	GetOpenFileNameA(&ofn);
-	return nameFile;
+
+	//GetOpenFileNameA(&ofn);
+	return "1.txt";
 }
