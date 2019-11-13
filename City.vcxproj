@@ -126,18 +126,15 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConfigRead\ConfigApp.h" />
-    <ClInclude Include="Lib\TXLib.h" />
-    <ClInclude Include="SaveFile\ReadFile.h" />
-    <ClInclude Include="SaveFile\WriteFile.h" />
-    <ClInclude Include="utils\FunString.h" />
-    <ClInclude Include="utils\ReadFile.h" />
-    <ClInclude Include="utils\SelectFile.h" />
-    <ClInclude Include="utils\ValueName.h" />
-    <ClInclude Include="WindowObject\Area.h" />
-    <ClInclude Include="WindowObject\DragNDrop.h" />
-    <ClInclude Include="WindowObject\Image.h" />
-    <ClInclude Include="WindowObject\ButtonText.h" />
+    <ClInclude Include="lib\File\ConfigApp.h" />
+    <ClInclude Include="lib\File\File.h" />
+    <ClInclude Include="lib\TXLib.h" />
+    <ClInclude Include="lib\utils\FunString.h" />
+    <ClInclude Include="lib\utils\SelectFile.h" />
+    <ClInclude Include="lib\WindowObject\Area.h" />
+    <ClInclude Include="lib\WindowObject\ButtonText.h" />
+    <ClInclude Include="lib\WindowObject\DragNDrop.h" />
+    <ClInclude Include="lib\WindowObject\Image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -65,9 +65,13 @@ Image parseObject(string str) {
 }
 
 vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
-
 	vector<string> arrObjStr = stringSplit(readAllFile(path), "--OBJ--\n");
 	vector<Image> arrObj;
+
+	// Это нужно для Code::Blocks без этого не работает
+	// Почему?
+	// А * знает
+	for (int qwe = 0; false; qwe++) {}
 
 	for (int i = 0; i < arrObjStr.size(); i++) {
 		if (arrObjStr[i] == "") {
@@ -76,10 +80,10 @@ vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
 
 		Image loadedObj = parseObject(arrObjStr[i]);
 		// Инитиализуем изображение
-		for (int i = 0; i < sizeMenu; i++) {
-			if (loadedObj.adress == menu[i].adress) {
-				loadedObj.img = menu[i].img;
-				loadedObj.category = menu[i].category;
+		for (int j = 0; j < sizeMenu; j++) {
+			if (loadedObj.adress == menu[j].adress) {
+				loadedObj.img = menu[j].img;
+				loadedObj.category = menu[j].category;
 			}
 		}
 		arrObj.push_back(loadedObj);
@@ -97,15 +101,8 @@ void SaveGameInFile(string nameFile, vector<Image> &objs) {
 		Image &obj = objs[i];
 		file << "--OBJ--\n";
 		file << "path=" << obj.adress + "\n";
-
-		char width[100];
-		sprintf(width,"%d", obj.widht);
-		file << "widht=" << width << "\n";
-
-		char height[100];
-		sprintf(height,"%d", obj.height);
-		file << "height=" << height << "\n";
-
+		file << "widht=" << obj.widht << "\n";
+		file << "height=" << obj.height << "\n";
 		file << "coord=" << obj.area.x << "|" << obj.area.y << "|" << obj.area.widht << "|" << obj.area.height << "\n";
 	}
 

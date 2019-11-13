@@ -130,16 +130,16 @@ int main()
 			updateStatusImage(img[i]);
             if (img[i].category == category)
             {
-                drawImage(img[i],0);
+                drawImage(img[i], 0);
             }
         }
 
 		//CAM move
-		if (strelkiRight.click() && CAM_X < 2500 )
+		if (strelkiRight.clicked() && CAM_X < 2500 )
 		{
             CAM_X -= 10;
         }
-		else if (strelkiLeft.click())
+		else if (strelkiLeft.clicked())
         {
             CAM_X += 10;
         }

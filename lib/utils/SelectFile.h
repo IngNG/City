@@ -4,7 +4,7 @@
 using namespace std;
 
 string selectFile(HWND hWnd) {
-	/*const int SIZE = 100;
+	const int SIZE = 100;
 	char nameFile[SIZE];
 	OPENFILENAMEA ofn;
 	ZeroMemory(&ofn, sizeof(ofn));
@@ -16,8 +16,8 @@ string selectFile(HWND hWnd) {
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFileTitle = NULL;
 	ofn.lpstrInitialDir = NULL;
-	ofn.Flags = OFN_CREATEPROMPT; */
+	ofn.Flags = OFN_CREATEPROMPT;
 
-	//GetOpenFileNameA(&ofn);
-	return "1.txt";
+	GetOpenFileNameA(&ofn);
+	return nameFile;
 }

@@ -13,20 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\WindowObject">
-      <UniqueIdentifier>{3d019a15-3a1d-4344-a0fd-6f33dccf7b42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\lib">
-      <UniqueIdentifier>{c53742e6-7e67-4495-9d22-e481a38b8d66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\ConfigRead">
-      <UniqueIdentifier>{771a58b3-2953-4527-adf6-f271fc5f9dbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\SaveFile">
-      <UniqueIdentifier>{dc92487d-849f-42d0-9008-a7e03e4897a3}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\File">
+      <UniqueIdentifier>{b5802a5a-b008-475a-8adc-2ba7317b90fa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\utils">
-      <UniqueIdentifier>{a9e63764-3215-4db4-b82f-4b931ef68dc7}</UniqueIdentifier>
+      <UniqueIdentifier>{b8b9dbaa-345b-40f5-997b-f656bae9a76a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\WindowObject">
+      <UniqueIdentifier>{16912ff6-9d3e-48ce-94c5-af22a7cfedfd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,41 +29,32 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lib\TXLib.h">
-      <Filter>Файлы заголовков\lib</Filter>
+    <ClInclude Include="lib\TXLib.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="WindowObject\Area.h">
-      <Filter>Файлы заголовков\WindowObject</Filter>
+    <ClInclude Include="lib\File\ConfigApp.h">
+      <Filter>Файлы заголовков\File</Filter>
     </ClInclude>
-    <ClInclude Include="WindowObject\ButtonText.h">
-      <Filter>Файлы заголовков\WindowObject</Filter>
+    <ClInclude Include="lib\File\File.h">
+      <Filter>Файлы заголовков\File</Filter>
     </ClInclude>
-    <ClInclude Include="WindowObject\Image.h">
-      <Filter>Файлы заголовков\WindowObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigRead\ConfigApp.h">
-      <Filter>Файлы заголовков\ConfigRead</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowObject\DragNDrop.h">
-      <Filter>Файлы заголовков\WindowObject</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveFile\WriteFile.h">
-      <Filter>Файлы заголовков\SaveFile</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\FunString.h">
+    <ClInclude Include="lib\utils\FunString.h">
       <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
-    <ClInclude Include="utils\ValueName.h">
+    <ClInclude Include="lib\utils\SelectFile.h">
       <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
-    <ClInclude Include="SaveFile\ReadFile.h">
-      <Filter>Файлы заголовков\SaveFile</Filter>
+    <ClInclude Include="lib\WindowObject\Area.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
-    <ClInclude Include="utils\ReadFile.h">
-      <Filter>Файлы заголовков\utils</Filter>
+    <ClInclude Include="lib\WindowObject\ButtonText.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
-    <ClInclude Include="utils\SelectFile.h">
-      <Filter>Файлы заголовков\utils</Filter>
+    <ClInclude Include="lib\WindowObject\DragNDrop.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\WindowObject\Image.h">
+      <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

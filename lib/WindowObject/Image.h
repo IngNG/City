@@ -32,12 +32,11 @@ struct Image {
 	\return true - если нажата, иначе false
 	*/
 	bool click() {
-		return
-			(txMouseButtons() == 1 &&
-			txMouseX() > area.x &&
-			txMouseY() > area.y &&
-			txMouseX() < area.x + area.widht &&
-			txMouseY() < area.y + area.height);
+		return area.mouseButtonUpLeft;
+	}
+
+	bool clicked() {
+		return area.mouseClickLeft && area.mouseOver;
 	}
 
 	bool downClick() {
