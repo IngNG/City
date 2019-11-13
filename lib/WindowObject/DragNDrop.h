@@ -4,7 +4,7 @@
 */
 #pragma once
 #include "Image.h"
-#include "../lib/TXLib.h"
+#include "../TXLib.h"
 
 /*!
 \brief Передвигаемое изображение

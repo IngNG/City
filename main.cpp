@@ -9,13 +9,12 @@
 #include <string>
 #include <vector>
 
-#include "ConfigRead/ConfigApp.h"
-#include "WindowObject/ButtonText.h"
-#include "WindowObject/Image.h"
-#include "WindowObject/DragNDrop.h"
-#include "SaveFile/WriteFile.h"
-#include "SaveFile/ReadFile.h"
-#include "utils/SelectFile.h"
+#include "lib/File/ConfigApp.h"
+#include "lib/WindowObject/ButtonText.h"
+#include "lib/WindowObject/Image.h"
+#include "lib/WindowObject/DragNDrop.h"
+#include "lib/File/File.h"
+#include "lib/utils/SelectFile.h"
 using namespace std;
 
 /*!
