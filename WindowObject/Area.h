@@ -7,16 +7,6 @@
 #pragma once
 
 /*!
-\brief Текущее состояние области
-*/
-struct StatusArea {
-	bool mouseClickLeft  = false; ///< Нажата ЛКМ
-	bool mouseClickRight = false; ///< Нажата ПКМ
-
-	bool mouseOver       = false; ///< Мыжка находится в областе
-};
-
-/*!
 \brief События произошедшие в области
 */
 struct EventArea {
@@ -40,7 +30,10 @@ struct AreaCoord {
 	int        height; ///< Высота
 
 	EventArea  events; ///< События произошедшие в области
-	StatusArea status; ///< Состояние области
+
+	bool mouseClickLeft  ; ///< Нажата ЛКМ
+	bool mouseClickRight ; ///< Нажата ПКМ
+	bool mouseOver       ; ///< Мыжка находится в областе
 };
 
 /*!
@@ -50,28 +43,8 @@ struct AreaCoord {
 */
 bool isMouseOver(AreaCoord area, int CAM_X = 0) {
 	return
-	In(txMouseX(),
-	area.x + CAM_X,
-	area.x + CAM_X + area.widht) &&
-	In(txMouseY(), area.y, area.y + area.height);
-}
-
-/*!
-Проверяет текущее состояние области
-\param area Проверяемая область
-\return Текущее состояние области
-*/
-StatusArea getStatusArea(AreaCoord area, int CAM_X = 0) {
-	int statusMouseButton = txMouseButtons();
-	StatusArea status;
-
-	status.mouseOver = isMouseOver(area, CAM_X);
-	if (status.mouseOver) {
-		status.mouseClickLeft = statusMouseButton & 1;
-		status.mouseClickRight = statusMouseButton & 2;
-	}
-
-	return status;
+	In(txMouseX(),	area.x + CAM_X,	area.x + CAM_X + area.widht) &&
+	In(txMouseY(), 	area.y, 		area.y + area.height);
 }
 
 /*!
@@ -79,31 +52,41 @@ StatusArea getStatusArea(AreaCoord area, int CAM_X = 0) {
 \param area Обновляемая область
 */
 void updateStatusArea(AreaCoord& area, int CAM_X) {
-	StatusArea newStatus = getStatusArea(area, CAM_X);
-	StatusArea oldStatus = area.status;
+
+	//Текущее состояние области
+	bool mouseOver = isMouseOver(area, CAM_X);
+	bool mouseClickLeft = mouseOver && (txMouseButtons() & 1);
+	bool mouseClickRight = mouseOver && (txMouseButtons() & 2);
+
 	EventArea events;
 
-	if (!oldStatus.mouseOver && newStatus.mouseOver) {
+	bool oldMouseOver       = area.mouseOver; 		//Мыжка находится в областе
+	if (!oldMouseOver && mouseOver) {
 		events.mouseHover = true;
 	}
-	else if (oldStatus.mouseOver && !newStatus.mouseOver) {
+	else if (oldMouseOver && !mouseOver) {
 		events.mouseUnHover = true;
 	}
 
-	if (!oldStatus.mouseClickLeft && newStatus.mouseClickLeft) {
+	bool oldMouseClickLeft  = area.mouseClickLeft; 	//Нажата ЛКМ
+	if (!oldMouseClickLeft && mouseClickLeft) {
 		events.mouseButtonDownLeft = true;
 	}
-	else if (oldStatus.mouseClickLeft && !newStatus.mouseClickLeft) {
+	else if (oldMouseClickLeft && !mouseClickLeft) {
 		events.mouseButtonUpLeft = true;
 	}
 
-	if (!oldStatus.mouseClickRight && newStatus.mouseClickRight) {
+	bool oldMouseClickRight = area.mouseClickRight; //Нажата ПКМ
+	if (!oldMouseClickRight && mouseClickRight) {
 		events.mouseButtonDownRight = true;
 	}
-	else if (oldStatus.mouseClickRight && !newStatus.mouseClickRight) {
+	else if (oldMouseClickRight && !mouseClickRight) {
 		events.mouseButtonUpRight = true;
 	}
 
 	area.events = events;
-	area.status = newStatus;
+
+	area.mouseClickLeft = mouseClickLeft; 		//Нажата ЛКМ
+	area.mouseClickRight = mouseClickRight; 	//Нажата ПКМ
+	area.mouseOver = mouseOver; 				//Мыжка находится в областе
 }
