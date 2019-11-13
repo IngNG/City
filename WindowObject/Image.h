@@ -90,10 +90,10 @@ Image loadImage(AreaCoord area, string pathimg) {
 	img.area     = area;
 	img.adress   = pathimg;
 
- string st = img.adress;
- int pos1 = st.find ("\\");
- int pos2 = st.find ("\\", pos1 + 1);
- img.category = st.substr(pos1 + 1, pos2 - pos1 - 1);
+	string st = img.adress;
+	int pos1 = st.find ("\\");
+	int pos2 = st.find ("\\", pos1 + 1);
+	img.category = st.substr(pos1 + 1, pos2 - pos1 - 1);
 
 	img.widht    = getWidhtImage(pathimg);
 	img.height   = getHeightImage(pathimg);

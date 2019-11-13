@@ -1,7 +1,5 @@
 #pragma once
-#include "../utils/ValueName.h"
 #include "../utils/FunString.h"
-#include "../utils/ReadFile.h"
 #include "../WindowObject/Image.h"
 #include <iostream>
 #include <fstream>

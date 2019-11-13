@@ -1,30 +1,15 @@
 --OBJ--
-path=img\Houses\Hospital.bmp
-widht=
-height=
-coord=437|68|80|80
+path=img\Dekor\fontan.bmp
+widht=36
+height=26
+coord=440|100|40|40
 --OBJ--
-path=img\Houses\LowBlueHome.bmp
-widht=
-height=
-coord=287|239|80|80
+path=img\Dekor\prud.bmp
+widht=71
+height=34
+coord=539|246|80|50
 --OBJ--
-path=img\Houses\LowGreenHome.bmp
-widht=
-height=
-coord=274|62|80|80
---OBJ--
-path=img\Houses\TallYellowHome.bmp
-widht=
-height=
-coord=437|252|80|100
---OBJ--
-path=img\Houses\LowBlueHome.bmp
-widht=ht (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>: "Q:\Users\student.ATIAM\Downloads\Вебинары\City\lib/TXLib.h" compiled Nov 13 2019 12:30:17, Debug mode, module: TXLib
-height= Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>: "Q:\Users\student.ATIAM\Downloads\Вебинары\City\lib/TXLib.h" compiled Nov 13 2019 12:30:17, Debug mode, module: TXLib
-coord=350|145|80|80
---OBJ--
-path=img\Houses\LowGreenHome.bmp
-widht=ht (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>: "Q:\Users\student.ATIAM\Downloads\Вебинары\City\lib/TXLib.h" compiled Nov 13 2019 12:30:17, Debug mode, module: TXLib
-height= Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>: "Q:\Users\student.ATIAM\Downloads\Вебинары\City\lib/TXLib.h" compiled Nov 13 2019 12:30:17, Debug mode, module: TXLib
-coord=352|260|80|80
+path=img\Dekor\tree.bmp
+widht=10
+height=23
+coord=357|314|30|50

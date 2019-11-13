@@ -41,9 +41,7 @@
 		<Unit filename="lib/TXLib.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="utils/FunString.h" />
-		<Unit filename="utils/ReadFile.h" />
 		<Unit filename="utils/SelectFile.h" />
-		<Unit filename="utils/ValueName.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

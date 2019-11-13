@@ -7,12 +7,16 @@
 #include <fstream>
 #include <vector>
 #include "../utils/FunString.h"
-#include "../utils/ValueName.h"
 /*!
 \file
 \brief Чтение файла настроек
 */
 using namespace std;
+
+struct ValueName {
+	string id; ///< Текстовый индификатор
+	string value; ///< Значение
+};
 
 /*!
 \brief Файл настроек
