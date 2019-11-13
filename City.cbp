@@ -32,13 +32,18 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="ConfigRead/ConfigApp.h" />
-		<Unit filename="ConfigRead/Setting.h" />
+		<Unit filename="SaveFile/ReadFile.h" />
+		<Unit filename="SaveFile/WriteFile.h" />
 		<Unit filename="WindowObject/Area.h" />
 		<Unit filename="WindowObject/ButtonText.h" />
-		<Unit filename="WindowObject/Const.h" />
+		<Unit filename="WindowObject/DragNDrop.h" />
 		<Unit filename="WindowObject/Image.h" />
 		<Unit filename="lib/TXLib.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="utils/FunString.h" />
+		<Unit filename="utils/ReadFile.h" />
+		<Unit filename="utils/SelectFile.h" />
+		<Unit filename="utils/ValueName.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
