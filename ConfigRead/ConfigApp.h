@@ -6,7 +6,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "Setting.h"
+#include "../utils/FunString.h"
+#include "../utils/ValueName.h"
 /*!
 \file
 \brief Чтение файла настроек
@@ -21,37 +22,8 @@ using namespace std;
 */
 struct ConfigApp {
 	string pathFile; ///< Путь до файла
-	vector<Setting> settings; ///< Значения
+	vector<ValueName> settings; ///< Значения
 };
-
-/*!
-Делит строку по разделителю
-\param[out] str Строка для разделения
-\param[out] delim Делитель
-\param[in] output Массив для результата деления
-\param[in] maxCountOutput Размер массива `output`
-\return Кол-во разделенных элементов
-*/
-int stringSplit(string str, string delim, string *output, int maxCountOutput) {
-	int pos = 0;
-	int i = 0;
-
-	string tmp;
-
-	while ((pos = str.find(delim)) != std::string::npos && i != maxCountOutput - 1) {
-		tmp = str.substr(0, pos);
-		output[i] = tmp;
-		str.erase(0, pos + delim.length());
-		i++;
-	}
-
-	if (i != maxCountOutput) {
-		output[i] = str;
-		i++;
-	}
-
-	return i;
-}
 
 /*!
 Создает новый файл с настройками по умолчанию
@@ -83,12 +55,11 @@ ConfigApp readConfigFile(string nameFile) {
 	}
 
 	string line;
-	string splitLine[2];
 
 	while (getline(file, line)) {
-		stringSplit(line, ": ", splitLine, 2);
+		vector<string> splitLines = stringSplit(line, ": ", 2);
 
-		Setting a{ splitLine[0], splitLine[1] };
+		ValueName a{ splitLines[0], splitLines[1] };
 		config.settings.push_back(a);
 	}
 

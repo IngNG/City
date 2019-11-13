@@ -22,6 +22,12 @@
     <Filter Include="Файлы заголовков\ConfigRead">
       <UniqueIdentifier>{771a58b3-2953-4527-adf6-f271fc5f9dbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\SaveFile">
+      <UniqueIdentifier>{dc92487d-849f-42d0-9008-a7e03e4897a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\utils">
+      <UniqueIdentifier>{a9e63764-3215-4db4-b82f-4b931ef68dc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,11 +50,26 @@
     <ClInclude Include="ConfigRead\ConfigApp.h">
       <Filter>Файлы заголовков\ConfigRead</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigRead\Setting.h">
-      <Filter>Файлы заголовков\ConfigRead</Filter>
-    </ClInclude>
     <ClInclude Include="WindowObject\DragNDrop.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFile\WriteFile.h">
+      <Filter>Файлы заголовков\SaveFile</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\FunString.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\ValueName.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFile\ReadFile.h">
+      <Filter>Файлы заголовков\SaveFile</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\ReadFile.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\SelectFile.h">
+      <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

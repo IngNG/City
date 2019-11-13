@@ -13,6 +13,9 @@
 #include "WindowObject/ButtonText.h"
 #include "WindowObject/Image.h"
 #include "WindowObject/DragNDrop.h"
+#include "SaveFile/WriteFile.h"
+#include "SaveFile/ReadFile.h"
+#include "utils/SelectFile.h"
 using namespace std;
 
 /*!
@@ -35,17 +38,18 @@ int main()
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
 	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
-	const int COUNT_BUTTON = 5;
+	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
 	buttons[0] = {{20, 10,  100, 40}, "Начать",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
     buttons[1] = {{20, 60,  100, 40}, "Дома",      RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Houses"};
     buttons[2] = {{20, 110, 100, 40}, "Декор",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Dekor"};
     buttons[3] = {{20, 160, 100, 40}, "Машина",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Car"};
     buttons[4] = {{20, 210, 100, 40}, "Выход",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
+	buttons[5] = {{20, 260, 100, 40}, "Сохранить", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
+	buttons[6] = {{20, 310, 100, 40}, "Открыть",   RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
 
 	vector<Image> objCity;
 
-    EventArea event;
     string category;
 	int    speed = 3; ///< скорость  передвижения картинки
  int CAM_X = 0;
@@ -68,8 +72,8 @@ int main()
 
 //img[12] = loadImage({20,400, 100, 40}, "img\\Strelki.bmp", "");
 	DragNDrop dndObject = {NULL, 0, 0};
-
     int nomer_kart = -1;
+	string openNameFile = "";
 
 	while (true) {
 		txBegin();
@@ -210,6 +214,22 @@ int main()
 			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
 			if (click_button == 1) {
 				break;
+			}
+		}
+
+		// Сохранение
+		if (buttons[5].click()) {
+			if (openNameFile == "") {
+				openNameFile = selectFile(txWindow());
+			}
+			SaveGameInFile(openNameFile, objCity);
+		}
+		// Открытие
+		if (buttons[6].click()) {
+			string newNameFile = selectFile(txWindow());
+			if (newNameFile != "") {
+				openNameFile = newNameFile;
+				objCity = readSaveFile(openNameFile, img, COUNT_IMG);
 			}
 		}
 
