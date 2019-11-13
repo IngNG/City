@@ -32,11 +32,11 @@ struct ButtonText {
 	\return true - если нажата, иначе false
 	*/
 	bool click() {
-		return area.events.mouseButtonUpLeft;
+		return area.mouseButtonUpLeft;
 	}
 
 	bool downClick() {
-		return area.events.mouseButtonDownLeft;
+		return area.mouseButtonDownLeft;
 	}
 };
 

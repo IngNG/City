@@ -2,14 +2,9 @@
 path=img\Houses\Hospital.bmp
 widht=79
 height=58
-coord=288|84|80|80
+coord=574|63|80|80
 --OBJ--
 path=img\Houses\LowBlueHome.bmp
 widht=66
 height=58
-coord=575|201|80|80
---OBJ--
-path=img\Houses\LowGreenHome.bmp
-widht=66
-height=58
-coord=410|190|80|80
+coord=327|169|80|80

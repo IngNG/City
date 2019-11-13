@@ -7,20 +7,6 @@
 #pragma once
 
 /*!
-\brief События произошедшие в области
-*/
-struct EventArea {
-	bool mouseButtonUpLeft    = false; ///< Нажата ЛКМ
-	bool mouseButtonUpRight   = false; ///< Нажата ПКМ
-
-	bool mouseButtonDownLeft  = false; ///< Отпущена ЛКМ
-	bool mouseButtonDownRight = false; ///< Отпущена ПКМ
-
-	bool mouseHover           = false; ///< Мыжка попала в область
-	bool mouseUnHover         = false; ///< Мыжка вышла за пределы области
-};
-
-/*!
 \brief Область координат
 */
 struct AreaCoord {
@@ -29,11 +15,16 @@ struct AreaCoord {
 	int        widht; ///< Ширина
 	int        height; ///< Высота
 
-	EventArea  events; ///< События произошедшие в области
-
 	bool mouseClickLeft  ; ///< Нажата ЛКМ
 	bool mouseClickRight ; ///< Нажата ПКМ
 	bool mouseOver       ; ///< Мыжка находится в областе
+
+	bool mouseButtonUpLeft    ; ///< Нажата ЛКМ
+	bool mouseButtonUpRight   ; ///< Нажата ПКМ
+	bool mouseButtonDownLeft  ; ///< Отпущена ЛКМ
+	bool mouseButtonDownRight ; ///< Отпущена ПКМ
+	bool mouseHover           ; ///< Мыжка попала в область
+	bool mouseUnHover         ; ///< Мыжка вышла за пределы области
 };
 
 /*!
@@ -58,35 +49,40 @@ void updateStatusArea(AreaCoord& area, int CAM_X) {
 	bool mouseClickLeft = mouseOver && (txMouseButtons() & 1);
 	bool mouseClickRight = mouseOver && (txMouseButtons() & 2);
 
-	EventArea events;
+	//События
+	area.mouseButtonUpLeft    = false; ///< Нажата ЛКМ
+	area.mouseButtonUpRight   = false; ///< Нажата ПКМ
+	area.mouseButtonDownLeft  = false; ///< Отпущена ЛКМ
+	area.mouseButtonDownRight = false; ///< Отпущена ПКМ
+	area.mouseHover           = false; ///< Мыжка попала в область
+	area.mouseUnHover         = false; ///< Мыжка вышла за пределы области
 
-	bool oldMouseOver       = area.mouseOver; 		//Мыжка находится в областе
+	//Мыжка находится в областе
+	bool oldMouseOver       = area.mouseOver;
 	if (!oldMouseOver && mouseOver) {
-		events.mouseHover = true;
-	}
-	else if (oldMouseOver && !mouseOver) {
-		events.mouseUnHover = true;
+		area.mouseHover = true;
+	} else if (oldMouseOver && !mouseOver) {
+		area.mouseUnHover = true;
 	}
 
-	bool oldMouseClickLeft  = area.mouseClickLeft; 	//Нажата ЛКМ
+ 	//Нажата ЛКМ
+	bool oldMouseClickLeft  = area.mouseClickLeft;
 	if (!oldMouseClickLeft && mouseClickLeft) {
-		events.mouseButtonDownLeft = true;
-	}
-	else if (oldMouseClickLeft && !mouseClickLeft) {
-		events.mouseButtonUpLeft = true;
+		area.mouseButtonDownLeft = true;
+	} else if (oldMouseClickLeft && !mouseClickLeft) {
+		area.mouseButtonUpLeft = true;
 	}
 
-	bool oldMouseClickRight = area.mouseClickRight; //Нажата ПКМ
+	//Нажата ПКМ
+	bool oldMouseClickRight = area.mouseClickRight;
 	if (!oldMouseClickRight && mouseClickRight) {
-		events.mouseButtonDownRight = true;
-	}
-	else if (oldMouseClickRight && !mouseClickRight) {
-		events.mouseButtonUpRight = true;
+		area.mouseButtonDownRight = true;
+	} else if (oldMouseClickRight && !mouseClickRight) {
+		area.mouseButtonUpRight = true;
 	}
 
-	area.events = events;
-
-	area.mouseClickLeft = mouseClickLeft; 		//Нажата ЛКМ
-	area.mouseClickRight = mouseClickRight; 	//Нажата ПКМ
-	area.mouseOver = mouseOver; 				//Мыжка находится в областе
+	//Новое состояние области
+	area.mouseClickLeft = mouseClickLeft;
+	area.mouseClickRight = mouseClickRight;
+	area.mouseOver = mouseOver;
 }

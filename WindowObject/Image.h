@@ -33,15 +33,15 @@ struct Image {
 	*/
 	bool click() {
 		return
-   (txMouseButtons() == 1 &&
-    txMouseX() > area.x &&
-    txMouseY() > area.y &&
-    txMouseX() < area.x + area.widht &&
-    txMouseY() < area.y + area.height);
+			(txMouseButtons() == 1 &&
+			txMouseX() > area.x &&
+			txMouseY() > area.y &&
+			txMouseX() < area.x + area.widht &&
+			txMouseY() < area.y + area.height);
 	}
 
 	bool downClick() {
-		return area.events.mouseButtonDownLeft;
+		return area.mouseButtonDownLeft;
 	}
 };
 

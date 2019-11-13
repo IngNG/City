@@ -52,7 +52,7 @@ int main()
 
     string category;
 	int    speed = 3; ///< скорость  передвижения картинки
- int CAM_X = 0;
+	int CAM_X = 0;
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
 	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp");
@@ -70,7 +70,7 @@ int main()
     img[7] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp");
     img[8] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp");
 
-//img[12] = loadImage({20,400, 100, 40}, "img\\Strelki.bmp", "");
+	//img[12] = loadImage({20,400, 100, 40}, "img\\Strelki.bmp", "");
 	DragNDrop dndObject = {NULL, 0, 0};
     int nomer_kart = -1;
 	string openNameFile = "";
@@ -80,13 +80,13 @@ int main()
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-  Win32::TransparentBlt(txDC(), CAM_X + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
-  Win32::TransparentBlt(txDC(), CAM_X - 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+		Win32::TransparentBlt(txDC(), CAM_X + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+		Win32::TransparentBlt(txDC(), CAM_X - 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
 
-            drawImage(strelkiRight, 0);
-			updateStatusImage(strelkiRight);
-			 drawImage(strelkiLeft, 0);
-			updateStatusImage(strelkiLeft);
+		drawImage(strelkiRight, 0);
+		updateStatusImage(strelkiRight);
+		drawImage(strelkiLeft, 0);
+		updateStatusImage(strelkiLeft);
 		moveDragNDropImg(dndObject);
 
 		//Limits
@@ -135,12 +135,12 @@ int main()
             }
         }
 
-  //CAM move
-   if (strelkiRight.click() && CAM_X < 2500 )
-        {
+		//CAM move
+		if (strelkiRight.click() && CAM_X < 2500 )
+		{
             CAM_X -= 10;
         }
-       else if (strelkiLeft.click())
+		else if (strelkiLeft.click())
         {
             CAM_X += 10;
         }
@@ -236,8 +236,8 @@ int main()
 		txEnd();
 		txSleep(10);
 	}
- txDeleteDC(strelkiRight.img);
- txDeleteDC(strelkiLeft.img);
+	txDeleteDC(strelkiRight.img);
+	txDeleteDC(strelkiLeft.img);
 	txDeleteDC(fon);
 	txDeleteDC(skver);
 
