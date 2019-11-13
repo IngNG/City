@@ -4,18 +4,22 @@
 #include "../utils/ReadFile.h"
 #include "../WindowObject/Image.h"
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 using namespace std;
 
-ValueName parseParams(string str) {
-	vector<string> strSplited = stringSplit(str, "=", 2);
+string readAllFile(string path) {
+	ifstream file;
+	file.open(path);
 
-	ValueName parms;
-	parms.id = strSplited[0];
-	parms.value = strSplited[1];
-	
-	return parms;
+	string line;
+	string result = "";
+	while (getline(file, line)) {
+		result += line + "\n";
+	}
+	file.close();
+	return result;
 }
 
 vector<int> ParseAreaCoord(string str) {
@@ -37,18 +41,21 @@ Image parseObject(string str) {
 			continue;
 		}
 
-		ValueName params = parseParams(lines[i]);
-		if (params.id == "path") {
-			img.adress = params.value;
+		vector<string> strSplited = stringSplit(lines[i], "=", 2);
+		string id = strSplited[0];
+		string value = strSplited[1];
+
+		if (id == "path") {
+			img.adress = value;
 		}
-		else if (params.id == "widht") {
-			img.widht = atoi(params.value.c_str());
+		else if (id == "widht") {
+			img.widht = atoi(value.c_str());
 		}
-		else if (params.id == "height") {
-			img.height = atoi(params.value.c_str());
+		else if (id == "height") {
+			img.height = atoi(value.c_str());
 		}
-		else if (params.id == "coord") {
-			vector<int> coord = ParseAreaCoord(params.value);
+		else if (id == "coord") {
+			vector<int> coord = ParseAreaCoord(value);
 			img.area.x = coord[0];
 			img.area.y = coord[1];
 			img.area.widht = coord[2];
@@ -59,8 +66,9 @@ Image parseObject(string str) {
 	return img;
 }
 
-vector<Image> parseArrImages(string str, Image *menu, int sizeMenu) {
-	vector<string> arrObjStr = stringSplit(str, "--OBJ--\n");
+vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
+
+	vector<string> arrObjStr = stringSplit(readAllFile(path), "--OBJ--\n");
 	vector<Image> arrObj;
 
 	for (int i = 0; i < arrObjStr.size(); i++) {
@@ -80,8 +88,4 @@ vector<Image> parseArrImages(string str, Image *menu, int sizeMenu) {
 	}
 
 	return arrObj;
-}
-
-vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
-	return parseArrImages(readAllFile(path), menu, sizeMenu);
 }
