@@ -82,6 +82,8 @@ int main()
     int nomer_kart = -1;
 	string openNameFile = "";
 
+	SetWindowTextA(txWindow(), "Конструктор города");
+
 	while (true) {
 		txBegin();
 		txSetFillColor(RGB(255, 255, 255));
@@ -200,7 +202,7 @@ int main()
 			objCity[nomer_kart].area.y += speed;
 		}
 
-		if (nomer_kart >=0 && GetAsyncKeyState (VK_DELETE))
+		if (nomer_kart >=0 && GetAsyncKeyState(VK_DELETE))
 		{
 			objCity[nomer_kart] = objCity[objCity.size() - 1] ;
 			objCity.pop_back();
@@ -239,6 +241,10 @@ int main()
 				openNameFile = newNameFile;
 				objCity = readSaveFile(openNameFile, img, COUNT_IMG);
 				txMessageBox("Чтение завершено", "Завершено", MB_OK);
+
+				// Изменение заголовка
+				string titleWindow = "Конструктор города (" + openNameFile + ")";
+				SetWindowTextA(txWindow(), titleWindow.c_str());
 			}
 		}
 
