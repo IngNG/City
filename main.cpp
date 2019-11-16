@@ -52,9 +52,9 @@ int main()
 	buttons[1].category = "Dekor";
 	buttons[2].text = "Машина";
 	buttons[2].category = "Car";
-	buttons[3].text = "Выход";
-	buttons[4].text = "Сохранить";
-	buttons[5].text = "Открыть";
+	buttons[3].text = "Сохранить";
+	buttons[4].text = "Открыть";
+	buttons[5].text = "Выход";
 
 	vector<Image> objCity;
 
@@ -71,14 +71,13 @@ int main()
     img[4]  = loadImage({720,  30, 40, 40},"img\\Dekor\\fontan.bmp");
     img[5]  = loadImage({740, 140, 30, 30},"img\\Dekor\\snowmen.bmp");
     img[6]  = loadImage({710, 250, 80, 50}, "img\\Dekor\\prud.bmp");
-    img[9]  = loadImage({710, 360, 30, 50}, "img\\Dekor\\tree.bmp");
-    img[10] = loadImage({710,470, 105, 25}, "img\\Dekor\\doroga1.bmp");
-    img[11] = loadImage({710,570, 210, 50}, "img\\Dekor\\doroga2.bmp");
+    img[7]  = loadImage({710, 360, 30, 50}, "img\\Dekor\\tree.bmp");
+    img[8] = loadImage({710,470, 105, 25}, "img\\Dekor\\doroga1.bmp");
+    img[9] = loadImage({710,570, 210, 50}, "img\\Dekor\\doroga2.bmp");
 
-    img[7] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp");
-    img[8] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp");
+    img[10] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp");
+    img[11] = loadImage({770, 136, 30, 60}, "img\\Car\\car2.bmp");
 
-	//img[12] = loadImage({20,400, 100, 40}, "img\\Strelki.bmp", "");
 	DragNDrop dndObject = {NULL, 0, 0};
     int nomer_kart = -1;
 	string openNameFile = "";
@@ -217,7 +216,7 @@ int main()
             }
         }
 
-		if (buttons[3].click() || GetAsyncKeyState(VK_ESCAPE))
+		if (buttons[5].click() || GetAsyncKeyState(VK_ESCAPE))
 		{
 			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
 			if (click_button == 1) {
@@ -226,18 +225,20 @@ int main()
 		}
 
 		// Сохранение
-		if (buttons[4].click()) {
+		if (buttons[3].click()) {
 			if (openNameFile == "") {
 				openNameFile = selectFile(txWindow());
 			}
 			SaveGameInFile(openNameFile, objCity);
+			txMessageBox("Сохранение завершено", "Завершено", MB_OK);
 		}
 		// Открытие
-		if (buttons[5].click()) {
+		if (buttons[4].click()) {
 			string newNameFile = selectFile(txWindow());
 			if (newNameFile != "") {
 				openNameFile = newNameFile;
 				objCity = readSaveFile(openNameFile, img, COUNT_IMG);
+				txMessageBox("Чтение завершено", "Завершено", MB_OK);
 			}
 		}
 
