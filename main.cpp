@@ -37,7 +37,7 @@ int main()
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
 	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
-	const int COUNT_BUTTON = 7;
+	const int COUNT_BUTTON = 6;
     ButtonText buttons[COUNT_BUTTON];
 	initButtonMenu(
 		buttons, COUNT_BUTTON,
@@ -46,15 +46,15 @@ int main()
 		RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)
 	);
 
-	buttons[1].text = "Дома";
-	buttons[1].category = "Houses";
-	buttons[2].text = "Декор";
-	buttons[2].category = "Dekor";
-	buttons[3].text = "Машина";
-	buttons[3].category = "Car";
-	buttons[4].text = "Выход";
-	buttons[5].text = "Сохранить";
-	buttons[6].text = "Открыть";
+	buttons[0].text = "Дома";
+	buttons[0].category = "Houses";
+	buttons[1].text = "Декор";
+	buttons[1].category = "Dekor";
+	buttons[2].text = "Машина";
+	buttons[2].category = "Car";
+	buttons[3].text = "Выход";
+	buttons[4].text = "Сохранить";
+	buttons[5].text = "Открыть";
 
 	vector<Image> objCity;
 
@@ -217,7 +217,7 @@ int main()
             }
         }
 
-		if (buttons[4].click() || GetAsyncKeyState(VK_ESCAPE))
+		if (buttons[3].click() || GetAsyncKeyState(VK_ESCAPE))
 		{
 			int click_button = txMessageBox("Выйти?", "Подтверждение", MB_OKCANCEL);
 			if (click_button == 1) {
@@ -226,14 +226,14 @@ int main()
 		}
 
 		// Сохранение
-		if (buttons[5].click()) {
+		if (buttons[4].click()) {
 			if (openNameFile == "") {
 				openNameFile = selectFile(txWindow());
 			}
 			SaveGameInFile(openNameFile, objCity);
 		}
 		// Открытие
-		if (buttons[6].click()) {
+		if (buttons[5].click()) {
 			string newNameFile = selectFile(txWindow());
 			if (newNameFile != "") {
 				openNameFile = newNameFile;
