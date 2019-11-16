@@ -73,3 +73,45 @@ void drawButton(ButtonText b) {
 void updateStatusButton(ButtonText& button) {
 	updateStatusArea(button.area, 0);
 }
+
+/*!
+Автоматически просчитовает координаты кнопок в меню
+\param[out] button Указатель на массив с объектами для инициализации
+\param countButton Кол-во кнопок
+\param x X-координата меню
+\param y Y-координата начала меню
+\param widhtButton Ширина кнопок
+\param heightButton Высота кнопок
+\param indent Отступ между кнопками
+\param fill Цвет заливки
+\param border Цвет границы
+\param text Цвет текста
+*/
+void initButtonMenu(
+	ButtonText* button, int countButton,
+	int x, int y,
+	int widhtButton, int heightButton, int indent,
+	COLORREF fill, COLORREF border, COLORREF text
+) {
+	for (int i = 0; i < countButton; i++) {
+		button[i].area.x = x;
+		button[i].area.y = y + (indent * i) + (heightButton * i);
+		button[i].area.widht = widhtButton;
+		button[i].area.height = heightButton;
+		button[i].fillColor = fill;
+		button[i].borderColor = border;
+		button[i].textColor = text;
+		button[i].category = "";
+
+		button[i].area.mouseButtonUpLeft = false;
+		button[i].area.mouseButtonUpRight = false;
+		button[i].area.mouseButtonDownLeft = false;
+		button[i].area.mouseButtonDownRight = false;
+		button[i].area.mouseHover = false;
+		button[i].area.mouseUnHover = false;
+
+		button[i].area.mouseOver = false;
+		button[i].area.mouseClickRight = false;
+		button[i].area.mouseClickLeft = false;
+	}
+}

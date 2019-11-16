@@ -39,18 +39,27 @@ int main()
 
 	const int COUNT_BUTTON = 7;
     ButtonText buttons[COUNT_BUTTON];
-	buttons[0] = {{20, 10,  100, 40}, "Начать",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
-    buttons[1] = {{20, 60,  100, 40}, "Дома",      RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Houses"};
-    buttons[2] = {{20, 110, 100, 40}, "Декор",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Dekor"};
-    buttons[3] = {{20, 160, 100, 40}, "Машина",    RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, "Car"};
-    buttons[4] = {{20, 210, 100, 40}, "Выход",     RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
-	buttons[5] = {{20, 260, 100, 40}, "Сохранить", RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
-	buttons[6] = {{20, 310, 100, 40}, "Открыть",   RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0), true, ""};
+	initButtonMenu(
+		buttons, COUNT_BUTTON,
+		20, 10,
+		100, 40, 10,
+		RGB(255, 0, 0), RGB(0, 0, 0), RGB(255, 0, 0)
+	);
+
+	buttons[1].text = "Дома";
+	buttons[1].category = "Houses";
+	buttons[2].text = "Декор";
+	buttons[2].category = "Dekor";
+	buttons[3].text = "Машина";
+	buttons[3].category = "Car";
+	buttons[4].text = "Выход";
+	buttons[5].text = "Сохранить";
+	buttons[6].text = "Открыть";
 
 	vector<Image> objCity;
 
     string category;
-	int    speed = 3; ///< скорость  передвижения картинки
+	int speed = 3; ///< скорость  передвижения картинки
 	int CAM_X = 0;
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
