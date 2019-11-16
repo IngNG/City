@@ -44,7 +44,8 @@ struct Image {
 	}
 };
 
-void drawImage(Image i, int CAM_X) {
+void drawImage(Image &i, int CAM_X) {
+	updateStatusArea(i.area, CAM_X);
 	if (i.visible) {
 		Win32::TransparentBlt(
 			txDC(),
@@ -56,10 +57,6 @@ void drawImage(Image i, int CAM_X) {
 			TX_WHITE
 		);
 	}
-}
-
-void updateStatusImage(Image &img, int CAM_X = 0) {
-	updateStatusArea(img.area, CAM_X);
 }
 
 int getWidhtImage(string adress) {

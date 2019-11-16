@@ -44,7 +44,8 @@ struct ButtonText {
 Если `visible` равно true, то рисует кнопку, иначе ничего не делает
 \param b Кнопка которую нужно нарисовать
 */
-void drawButton(ButtonText b) {
+void drawButton(ButtonText &b) {
+	updateStatusArea(b.area, 0);
 	if (b.visible) {
 		txSetFillColor(b.fillColor);
 		txSetColor(b.borderColor);
@@ -62,16 +63,6 @@ void drawButton(ButtonText b) {
 			);
 		}
 	}
-}
-
-/*!
-Обновляет состояние кнопки
-
-Сокращение для `updateStatusArea(button.area)`
-\param button Обновляемая кнопка
-*/
-void updateStatusButton(ButtonText& button) {
-	updateStatusArea(button.area, 0);
 }
 
 /*!
