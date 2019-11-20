@@ -3,12 +3,12 @@
 
 -----------------------------
 ### Структура проекта
-|                                 Каталог                                |                        Предназначение                         |
-|------------------------------------------------------------------------|---------------------------------------------------------------|
-|          [img](https://github.com/IngNG/City/tree/master/img)          |                 Файлы картинок в формате bmp                  |
-|          [lib](https://github.com/IngNG/City/tree/master/lib)          |                      Стороние библиотеки                      |
-| [WindowObject](https://github.com/IngNG/City/tree/master/WindowObject) | Структуры и функции для работы с объектами окна (Кнопки и тп) |
-| [ConfigRead](https://github.com/IngNG/City/tree/master/ConfigRead) | Код для чтения файлов |
+|                                     Каталог                                    |                        Предназначение                         |
+|--------------------------------------------------------------------------------|---------------------------------------------------------------|
+|              [img](https://github.com/IngNG/City/tree/master/img)              |                 Файлы картинок в формате bmp                  |
+|              [lib](https://github.com/IngNG/City/tree/master/lib)              |                      Заголовочные файлы                       |
+| [lib/WindowObject](https://github.com/IngNG/City/tree/master/lib/WindowObject) | Структуры и функции для работы с объектами окна (Кнопки и тп) |
+|       [lib/File](https://github.com/IngNG/City/tree/master/lib/File)           |                     Код для чтения файлов                     |
 
 ### Зависимости
  - [TXLib](http://storage.ded32.net.ru/Lib/TX/TXUpdate/Doc/HTML.ru/)

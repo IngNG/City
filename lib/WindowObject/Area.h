@@ -50,12 +50,12 @@ void updateStatusArea(AreaCoord& area, int CAM_X) {
 	bool mouseClickRight = mouseOver && (txMouseButtons() & 2);
 
 	//События
-	area.mouseButtonUpLeft    = false; ///< Нажата ЛКМ
-	area.mouseButtonUpRight   = false; ///< Нажата ПКМ
-	area.mouseButtonDownLeft  = false; ///< Отпущена ЛКМ
-	area.mouseButtonDownRight = false; ///< Отпущена ПКМ
-	area.mouseHover           = false; ///< Мыжка попала в область
-	area.mouseUnHover         = false; ///< Мыжка вышла за пределы области
+	area.mouseButtonUpLeft    = false;
+	area.mouseButtonUpRight   = false;
+	area.mouseButtonDownLeft  = false;
+	area.mouseButtonDownRight = false;
+	area.mouseHover           = false;
+	area.mouseUnHover         = false;
 
 	//Мыжка находится в областе
 	bool oldMouseOver       = area.mouseOver;
