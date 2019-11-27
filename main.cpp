@@ -92,9 +92,6 @@ int main()
 		Win32::TransparentBlt(txDC(), CAM_X + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
 		Win32::TransparentBlt(txDC(), CAM_X - 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
 
-		drawImage(strelkiRight, 0);
-		drawImage(strelkiLeft, 0);
-
 		moveDragNDropImg(dndObject);
 
 		//Limits
@@ -119,25 +116,11 @@ int main()
 			}
 		}
 
-        //Buttons
-        for (int i = 0; i < COUNT_BUTTON; i++)
-        {
-            drawButton(buttons[i]);
-        }
 
         //Drawing pictures
         for (int i = 0; i < objCity.size(); i++)
 		{
             drawImage(objCity[i], CAM_X);
-        }
-
-        //Drawing variants
-        for(int i = 0; i < COUNT_IMG; i++)
-        {
-            if (img[i].category == category)
-            {
-                drawImage(img[i], 0);
-            }
         }
 
 		//CAM move
@@ -249,6 +232,28 @@ int main()
 				SetWindowTextA(txWindow(), titleWindow.c_str());
 			}
 		}
+
+        txRectangle ( 0 ,0 ,150 ,800);
+        //Buttons
+        for (int i = 0; i < COUNT_BUTTON; i++)
+        {
+            drawButton(buttons[i]);
+        }
+
+		drawImage(strelkiRight, 0);
+		drawImage(strelkiLeft, 0);
+
+
+
+
+        //Drawing variants
+        for(int i = 0; i < COUNT_IMG; i++)
+        {
+            if (img[i].category == category)
+            {
+                drawImage(img[i], 0);
+            }
+        }
 
 		txEnd();
 		txSleep(10);
