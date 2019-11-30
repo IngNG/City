@@ -3,6 +3,7 @@ config.txt
 *.exe
 html/
 latex/
+.scity
 
 # Code::Blocks
 *.bmarks

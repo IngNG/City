@@ -33,8 +33,9 @@ int main()
 	);
 	txDisableAutoPause();
 
-	HDC fon   = txLoadImage("img\\fon.bmp");
+	//HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
+	Image fon          = loadImage({150, 0, 2500, 600}, "img\\fon.bmp");
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
 	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
@@ -61,7 +62,7 @@ int main()
 
     string category;
 	int speed = 3; ///< скорость  передвижения картинки
-	int CAM_X = 0;
+	//int CAM_X = 0;
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
 	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp");
@@ -89,8 +90,9 @@ int main()
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-		Win32::TransparentBlt(txDC(), CAM_X + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
-		Win32::TransparentBlt(txDC(), CAM_X - 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+		//Win32::TransparentBlt(txDC(), 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+		//Win32::TransparentBlt(txDC(), 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+		drawImage(fon);
 
 		moveDragNDropImg(dndObject);
 
@@ -120,17 +122,23 @@ int main()
         //Drawing pictures
         for (int i = 0; i < objCity.size(); i++)
 		{
-            drawImage(objCity[i], CAM_X);
+            drawImage(objCity[i]);
         }
 
 		//CAM move
-		if (strelkiRight.clicked() && CAM_X < 2500 )
+		if (strelkiRight.clicked())
 		{
-            CAM_X -= 10;
+			for (int i = 0; i < objCity.size(); i++) {
+				objCity[i].area.x -= 10;
+			}
+			fon.area.x -= 10;
         }
 		else if (strelkiLeft.clicked())
         {
-            CAM_X += 10;
+			for (int i = 0; i < objCity.size(); i++) {
+				objCity[i].area.x += 10;
+			}
+			fon.area.x += 10;
         }
 
         //Choosing variants
@@ -208,20 +216,26 @@ int main()
 		// Сохранение
 		if (buttons[3].click()) {
 			if (openNameFile == "") {
-				openNameFile = selectFile(txWindow());
+				string newNameFile = selectFile(txWindow(), true);
+				if (newNameFile != "") {
+					// Изменение заголовка
+					openNameFile = newNameFile;
+					string titleWindow = "Конструктор города (" + openNameFile + ")";
+					SetWindowTextA(txWindow(), titleWindow.c_str());
 
-				// Изменение заголовка
-				string titleWindow = "Конструктор города (" + openNameFile + ")";
-				SetWindowTextA(txWindow(), titleWindow.c_str());
+					SaveGameInFile(openNameFile, objCity);
+					txMessageBox("Сохранение завершено", "Завершено", MB_OK);
+				}
 			}
-
-			SaveGameInFile(openNameFile, objCity);
-			txMessageBox("Сохранение завершено", "Завершено", MB_OK);
+			else {
+				SaveGameInFile(openNameFile, objCity);
+				txMessageBox("Сохранение завершено", "Завершено", MB_OK);
+			}			
 		}
 
 		// Открытие
 		if (buttons[4].click()) {
-			string newNameFile = selectFile(txWindow());
+			string newNameFile = selectFile(txWindow(), false);
 			if (newNameFile != "") {
 				openNameFile = newNameFile;
 				objCity = readSaveFile(openNameFile, img, COUNT_IMG);
@@ -233,22 +247,22 @@ int main()
 			}
 		}
 
-        txRectangle ( 0 ,0 ,150 ,800);
+        txRectangle(0, 0, 150, 800);
         //Buttons
         for (int i = 0; i < COUNT_BUTTON; i++)
         {
             drawButton(buttons[i]);
         }
 
-		drawImage(strelkiRight, 0);
-		drawImage(strelkiLeft, 0);
+		drawImage(strelkiRight);
+		drawImage(strelkiLeft);
 
         //Drawing variants
         for(int i = 0; i < COUNT_IMG; i++)
         {
             if (img[i].category == category)
             {
-                drawImage(img[i], 0);
+                drawImage(img[i]);
             }
         }
 
@@ -258,7 +272,7 @@ int main()
 
 	txDeleteDC(strelkiRight.img);
 	txDeleteDC(strelkiLeft.img);
-	txDeleteDC(fon);
+	txDeleteDC(fon.img);
 	txDeleteDC(skver);
 
 	for (int i = 0; i < COUNT_IMG; i++)
