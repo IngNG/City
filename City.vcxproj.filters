@@ -56,5 +56,8 @@
     <ClInclude Include="lib\WindowObject\Image.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
+    <ClInclude Include="lib\utils\ScreenShot.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

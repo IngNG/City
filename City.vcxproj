@@ -130,6 +130,7 @@
     <ClInclude Include="lib\File\File.h" />
     <ClInclude Include="lib\TXLib.h" />
     <ClInclude Include="lib\utils\FunString.h" />
+    <ClInclude Include="lib\utils\ScreenShot.h" />
     <ClInclude Include="lib\utils\SelectFile.h" />
     <ClInclude Include="lib\WindowObject\Area.h" />
     <ClInclude Include="lib\WindowObject\ButtonText.h" />

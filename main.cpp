@@ -15,6 +15,7 @@
 #include "lib/WindowObject/DragNDrop.h"
 #include "lib/File/File.h"
 #include "lib/utils/SelectFile.h"
+#include "lib/utils/ScreenShot.h"
 using namespace std;
 
 /*!
@@ -83,7 +84,6 @@ int main()
 	string openNameFile = "";
 
 	SetWindowTextA(txWindow(), "Конструктор города");
-
 	while (true) {
 		txBegin();
 		txSetFillColor(RGB(255, 255, 255));
@@ -243,9 +243,6 @@ int main()
 		drawImage(strelkiRight, 0);
 		drawImage(strelkiLeft, 0);
 
-
-
-
         //Drawing variants
         for(int i = 0; i < COUNT_IMG; i++)
         {
@@ -258,6 +255,7 @@ int main()
 		txEnd();
 		txSleep(10);
 	}
+
 	txDeleteDC(strelkiRight.img);
 	txDeleteDC(strelkiLeft.img);
 	txDeleteDC(fon);
