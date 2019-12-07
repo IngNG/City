@@ -32,7 +32,6 @@ int main()
 	);
 	txDisableAutoPause();
 
-	//HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
 	Image fon          = loadImage({150, 0, 2500, 600}, "img\\fon.bmp");
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
@@ -89,34 +88,9 @@ int main()
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-		//Win32::TransparentBlt(txDC(), 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
-		//Win32::TransparentBlt(txDC(), 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
 		drawImage(fon);
 
 		moveDragNDropImg(dndObject, 150, 800, 0, 600);
-
-		//Limits
-		/*for (int i = 0; i < objCity.size(); i++)
-		{
-			if (objCity[i].area.x < 150)
-			{
-				objCity[i].area.x = 150;
-			}
-			else if (objCity[i].area.x + objCity[i].area.height > 800)
-			{
-				objCity[i].area.x = 800 - objCity[i].area.height;
-			}
-
-			if (objCity[i].area.y < 0)
-			{
-				objCity[i].area.y = 0;
-			}
-			else if (objCity[i].area.y + objCity[i].area.height > 600)
-			{
-				objCity[i].area.y = 600 - objCity[i].area.height;
-			}
-		}*/
-
 
         //Drawing pictures
         for (int i = 0; i < objCity.size(); i++)
