@@ -5,6 +5,8 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <Windows.h>
+
 using namespace std;
 
 string readAllFile(string path) {
