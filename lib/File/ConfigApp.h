@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "../utils/FunString.h"
+#include "../utils/utils.h"
 /*!
 \file
 \brief Чтение файла настроек

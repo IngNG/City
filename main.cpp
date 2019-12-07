@@ -14,8 +14,7 @@
 #include "lib/WindowObject/Image.h"
 #include "lib/WindowObject/DragNDrop.h"
 #include "lib/File/File.h"
-#include "lib/utils/SelectFile.h"
-#include "lib/utils/ScreenShot.h"
+#include "lib/utils/utils.h"
 using namespace std;
 
 /*!
@@ -62,7 +61,7 @@ int main()
 
     string category;
 	int speed = 3; ///< скорость  передвижения картинки
-	//int CAM_X = 0;
+	int cam_x = 0;
 	const int COUNT_IMG = 12;
     Image img[COUNT_IMG];
 	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp");
