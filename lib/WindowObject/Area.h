@@ -32,20 +32,20 @@ struct AreaCoord {
 \param area Проверяемая область
 \return true - если да, иначе false
 */
-bool isMouseOver(AreaCoord area, int CAM_X = 0) {
+bool isMouseOver(AreaCoord area) {
 	return
-	In(txMouseX(),	area.x + CAM_X,	area.x + CAM_X + area.widht) &&
-	In(txMouseY(), 	area.y, 		area.y + area.height);
+	In(txMouseX(),	area.x,	area.x + area.widht) &&
+	In(txMouseY(), 	area.y, area.y + area.height);
 }
 
 /*!
 Обновляет параметры `events` и `status` структуры `AreaCoord`
 \param area Обновляемая область
 */
-void updateStatusArea(AreaCoord& area, int CAM_X) {
+void updateStatusArea(AreaCoord& area) {
 
 	//Текущее состояние области
-	bool mouseOver = isMouseOver(area, CAM_X);
+	bool mouseOver = isMouseOver(area);
 	bool mouseClickLeft = mouseOver && (txMouseButtons() & 1);
 	bool mouseClickRight = mouseOver && (txMouseButtons() & 2);
 

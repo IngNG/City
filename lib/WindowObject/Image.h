@@ -44,12 +44,12 @@ struct Image {
 	}
 };
 
-void drawImage(Image &i, int CAM_X) {
-	updateStatusArea(i.area, CAM_X);
+void drawImage(Image &i) {
+	updateStatusArea(i.area);
 	if (i.visible) {
 		Win32::TransparentBlt(
 			txDC(),
-			i.area.x + CAM_X, i.area.y,
+			i.area.x, i.area.y,
 			i.area.widht, i.area.height,
 			i.img,
 			0, 0,

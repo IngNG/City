@@ -1,10 +1,11 @@
 #pragma once
-#include "../utils/FunString.h"
+#include "../utils/utils.h"
 #include "../WindowObject/Image.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
+#include <Windows.h>
 using namespace std;
 
 string readAllFile(string path) {

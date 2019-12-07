@@ -14,7 +14,8 @@
 #include "lib/WindowObject/Image.h"
 #include "lib/WindowObject/DragNDrop.h"
 #include "lib/File/File.h"
-#include "lib/utils/SelectFile.h"
+#include "lib/utils/utils.h"
+#include "lib/utils/ScreenShot.h"
 using namespace std;
 
 /*!
@@ -32,8 +33,8 @@ int main()
 	);
 	txDisableAutoPause();
 
-	HDC fon   = txLoadImage("img\\fon.bmp");
 	HDC skver = txLoadImage("img\\skver.bmp");
+	Image fon          = loadImage({150, 0, 2500, 600}, "img\\fon.bmp");
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
 	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
@@ -57,10 +58,10 @@ int main()
 	buttons[5].text = "Выход";
 
 	vector<Image> objCity;
-
     string category;
 	int speed = 3; ///< скорость  передвижения картинки
 	int CAM_X = 0;
+	
 	const int COUNT_IMG = 14;
     Image img[COUNT_IMG];
 	img[0] = loadImage({710, 130, 80, 80}, "img\\Houses\\Hospital.bmp");
@@ -80,60 +81,40 @@ int main()
     img[11] = loadImage({735, 200, 30, 20}, "img\\Car\\car2.bmp");
     img[12] = loadImage({735, 300, 30, 20}, "img\\Car\\car3.bmp");
 
-
 	DragNDrop dndObject = {NULL, 0, 0};
     int nomer_kart = -1;
 	string openNameFile = "";
 
 	SetWindowTextA(txWindow(), "Конструктор города");
-
 	while (true) {
 		txBegin();
 		txSetFillColor(RGB(255, 255, 255));
 		txClear();
 
-		Win32::TransparentBlt(txDC(), CAM_X + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
-		Win32::TransparentBlt(txDC(), CAM_X - 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
+		drawImage(fon);
 
-		moveDragNDropImg(dndObject);
-
-		//Limits
-		for (int i = 0; i < objCity.size(); i++)
-		{
-			if (objCity[i].area.x < 150)
-			{
-				objCity[i].area.x = 150;
-			}
-			else if (objCity[i].area.x + objCity[i].area.height > 800)
-			{
-				objCity[i].area.x = 800 - objCity[i].area.height;
-			}
-
-			if (objCity[i].area.y < 0)
-			{
-				objCity[i].area.y = 0;
-			}
-			else if (objCity[i].area.y + objCity[i].area.height > 600)
-			{
-				objCity[i].area.y = 600 - objCity[i].area.height;
-			}
-		}
-
+		moveDragNDropImg(dndObject, 150, 800, 0, 600);
 
         //Drawing pictures
         for (int i = 0; i < objCity.size(); i++)
 		{
-            drawImage(objCity[i], CAM_X);
+            drawImage(objCity[i]);
         }
 
 		//CAM move
-		if (strelkiRight.clicked() && CAM_X < 2500 )
+		if (strelkiRight.clicked())
 		{
-            CAM_X -= 10;
+			for (int i = 0; i < objCity.size(); i++) {
+				objCity[i].area.x -= 10;
+			}
+			fon.area.x -= 10;
         }
 		else if (strelkiLeft.clicked())
         {
-            CAM_X += 10;
+			for (int i = 0; i < objCity.size(); i++) {
+				objCity[i].area.x += 10;
+			}
+			fon.area.x += 10;
         }
 
         //Choosing variants
@@ -208,8 +189,7 @@ int main()
 			}
 		}
 
-		// Сохранение         ]
-
+		// Сохранение
 		if (GetAsyncKeyState(VK_SNAPSHOT))
             {
                 ScreenCapture(150,0,550,txGetExtentY(), "MyCity.bmp", txWindow());
@@ -218,21 +198,27 @@ int main()
 
 		if (buttons[3].click()) {
 			if (openNameFile == "") {
-				openNameFile = selectFile(txWindow());
+				string newNameFile = selectFile(txWindow(), true);
+				if (newNameFile != "") {
+					// Изменение заголовка
+					openNameFile = newNameFile;
+					string titleWindow = "Конструктор города (" + openNameFile + ")";
+					SetWindowTextA(txWindow(), titleWindow.c_str());
 
-				// Изменение заголовка
-				string titleWindow = "Конструктор города (" + openNameFile + ")";
-				SetWindowTextA(txWindow(), titleWindow.c_str());
+					SaveGameInFile(openNameFile, objCity);
+					txMessageBox("Сохранение завершено", "Завершено", MB_OK);
+				}
 			}
-
-			SaveGameInFile(openNameFile, objCity);
-			txMessageBox("Сохранение завершено", "Завершено", MB_OK);
+			else {
+				SaveGameInFile(openNameFile, objCity);
+				txMessageBox("Сохранение завершено", "Завершено", MB_OK);
+			}			
 		}
 
 
 		// Открытие
 		if (buttons[4].click()) {
-			string newNameFile = selectFile(txWindow());
+			string newNameFile = selectFile(txWindow(), false);
 			if (newNameFile != "") {
 				openNameFile = newNameFile;
 				objCity = readSaveFile(openNameFile, img, COUNT_IMG);
@@ -246,17 +232,15 @@ int main()
 
         txRectangle ( 0 ,0 ,150 ,800);
         txRectangle ( 700,0 ,800 ,1000);
+
         //Buttons
         for (int i = 0; i < COUNT_BUTTON; i++)
         {
             drawButton(buttons[i]);
         }
 
-		drawImage(strelkiRight, 0);
-		drawImage(strelkiLeft, 0);
-
-
-
+		drawImage(strelkiRight);
+		drawImage(strelkiLeft);
 
 			txDrawText(700, 30, 800 ,130,
 				"Выберите\n"
@@ -267,16 +251,17 @@ int main()
         {
             if (img[i].category == category)
             {
-                drawImage(img[i], 0);
+                drawImage(img[i]);
             }
         }
 
 		txEnd();
 		txSleep(10);
 	}
+
 	txDeleteDC(strelkiRight.img);
 	txDeleteDC(strelkiLeft.img);
-	txDeleteDC(fon);
+	txDeleteDC(fon.img);
 	txDeleteDC(skver);
 
 	for (int i = 0; i < COUNT_IMG; i++)

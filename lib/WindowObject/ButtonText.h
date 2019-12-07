@@ -45,7 +45,7 @@ struct ButtonText {
 \param b  нопка которую нужно нарисовать
 */
 void drawButton(ButtonText &b) {
-	updateStatusArea(b.area, 0);
+	updateStatusArea(b.area);
 	if (b.visible) {
 		txSetFillColor(b.fillColor);
 		txSetColor(b.borderColor);

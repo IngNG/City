@@ -38,12 +38,6 @@
     <ClInclude Include="lib\File\File.h">
       <Filter>Файлы заголовков\File</Filter>
     </ClInclude>
-    <ClInclude Include="lib\utils\FunString.h">
-      <Filter>Файлы заголовков\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\utils\SelectFile.h">
-      <Filter>Файлы заголовков\utils</Filter>
-    </ClInclude>
     <ClInclude Include="lib\WindowObject\Area.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
     </ClInclude>
@@ -55,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="lib\WindowObject\Image.h">
       <Filter>Файлы заголовков\WindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\utils\ScreenShot.h">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\utils\utils.h">
+      <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
