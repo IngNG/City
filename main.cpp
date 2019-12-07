@@ -60,26 +60,26 @@ int main()
 	vector<Image> objCity;
     string category;
 	int speed = 3; ///< скорость  передвижения картинки
-
-	int cam_x = 0;
-	const int COUNT_IMG = 13;
-
+	int CAM_X = 0;
+	
+	const int COUNT_IMG = 14;
     Image img[COUNT_IMG];
-	img[0] = loadImage({720,  30, 80, 80}, "img\\Houses\\Hospital.bmp");
-    img[1] = loadImage({720, 140, 80, 80}, "img\\Houses\\LowBlueHome.bmp");
-    img[2] = loadImage({720, 250, 80, 80}, "img\\Houses\\LowGreenHome.bmp");
-    img[3] = loadImage({720, 350, 80, 100},"img\\Houses\\TallYellowHome.bmp");
+	img[0] = loadImage({710, 130, 80, 80}, "img\\Houses\\Hospital.bmp");
+    img[1] = loadImage({710, 240, 80, 80}, "img\\Houses\\LowBlueHome.bmp");
+    img[2] = loadImage({710, 350, 80, 80}, "img\\Houses\\LowGreenHome.bmp");
+    img[3] = loadImage({710, 450, 80, 100},"img\\Houses\\TallYellowHome.bmp");
 
-    img[4]  = loadImage({720,  30, 40, 40},"img\\Dekor\\fontan.bmp");
+    img[4]  = loadImage({730,  80, 40, 40},"img\\Dekor\\fontan.bmp");
     img[5]  = loadImage({740, 140, 30, 30},"img\\Dekor\\snowmen.bmp");
-    img[6]  = loadImage({710, 250, 80, 50}, "img\\Dekor\\prud.bmp");
-    img[7]  = loadImage({710, 360, 30, 50}, "img\\Dekor\\tree.bmp");
-    img[8] = loadImage({710,470, 105, 25}, "img\\Dekor\\doroga1.bmp");
-    img[9] = loadImage({710,570, 210, 50}, "img\\Dekor\\doroga2.bmp");
+    img[6]  = loadImage({710, 200, 80, 50}, "img\\Dekor\\prud.bmp");
+    img[7]  = loadImage({740, 300, 30, 50}, "img\\Dekor\\tree.bmp");
+    img[8] =  loadImage({730, 370, 50, 50}, "img\\Dekor\\doroga1.bmp");
+    img[9] =  loadImage({700, 430, 100, 50}, "img\\Dekor\\doroga2.bmp");
+    img[13] = loadImage({730 ,520, 50, 50}, "img\\Dekor\\doroga3.bmp");
 
-    img[10] = loadImage({770, 68, 30, 20}, "img\\Car\\car.bmp");
-    img[11] = loadImage({770, 108, 30, 20}, "img\\Car\\car2.bmp");
-    img[12] = loadImage({770, 148, 30, 20}, "img\\Car\\car3.bmp");
+    img[10] = loadImage({735, 100, 30, 20}, "img\\Car\\car.bmp");
+    img[11] = loadImage({735, 200, 30, 20}, "img\\Car\\car2.bmp");
+    img[12] = loadImage({735, 300, 30, 20}, "img\\Car\\car3.bmp");
 
 	DragNDrop dndObject = {NULL, 0, 0};
     int nomer_kart = -1;
@@ -215,6 +215,7 @@ int main()
 			}			
 		}
 
+
 		// Открытие
 		if (buttons[4].click()) {
 			string newNameFile = selectFile(txWindow(), false);
@@ -241,6 +242,10 @@ int main()
 		drawImage(strelkiRight);
 		drawImage(strelkiLeft);
 
+			txDrawText(700, 30, 800 ,130,
+				"Выберите\n"
+				"картинку"
+			);
         //Drawing variants
         for(int i = 0; i < COUNT_IMG; i++)
         {
