@@ -93,10 +93,10 @@ int main()
 		//Win32::TransparentBlt(txDC(), 2500 + 150,   0, 2500, 600, fon, 0, 0, 2500,600, TX_WHITE);
 		drawImage(fon);
 
-		moveDragNDropImg(dndObject);
+		moveDragNDropImg(dndObject, 150, 800, 0, 600);
 
 		//Limits
-		for (int i = 0; i < objCity.size(); i++)
+		/*for (int i = 0; i < objCity.size(); i++)
 		{
 			if (objCity[i].area.x < 150)
 			{
@@ -115,7 +115,7 @@ int main()
 			{
 				objCity[i].area.y = 600 - objCity[i].area.height;
 			}
-		}
+		}*/
 
 
         //Drawing pictures
