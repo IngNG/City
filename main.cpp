@@ -58,7 +58,6 @@ int main()
 	buttons[5].text = "Выход";
 
 	vector<Image> objCity;
-
     string category;
 	int speed = 3; ///< скорость  передвижения картинки
 
@@ -190,8 +189,7 @@ int main()
 			}
 		}
 
-		// Сохранение         ]
-
+		// Сохранение
 		if (GetAsyncKeyState(VK_SNAPSHOT))
             {
                 ScreenCapture(150,0,550,txGetExtentY(), "MyCity.bmp", txWindow());
@@ -216,7 +214,6 @@ int main()
 				txMessageBox("Сохранение завершено", "Завершено", MB_OK);
 			}			
 		}
-
 
 		// Открытие
 		if (buttons[4].click()) {
