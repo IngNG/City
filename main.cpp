@@ -132,6 +132,10 @@ int main()
 			{
 				nomer_kart = i;
 			}
+
+			if (objCity[i].downClick() && dndObject.img == NULL) {
+				dndObject = setDragNDrop(&objCity[i]);
+			}
 		}
 
 		if (nomer_kart >= 0 && GetAsyncKeyState (VK_LEFT))
@@ -191,10 +195,10 @@ int main()
 
 		// Сохранение
 		if (GetAsyncKeyState(VK_SNAPSHOT))
-            {
-                ScreenCapture(150,0,550,txGetExtentY(), "MyCity.bmp", txWindow());
-                txMessageBox("Сохранено в MyCity.bmp");
-            }
+        {
+            ScreenCapture(150,0,550,txGetExtentY(), "MyCity.bmp", txWindow());
+            txMessageBox("Сохранено в MyCity.bmp");
+        }
 
 		if (buttons[3].click()) {
 			if (openNameFile == "") {
@@ -242,10 +246,10 @@ int main()
 		drawImage(strelkiRight);
 		drawImage(strelkiLeft);
 
-			txDrawText(700, 30, 800 ,130,
-				"Выберите\n"
-				"картинку"
-			);
+		txDrawText(700, 30, 800 ,130,
+			"Выберите\n"
+			"картинку"
+		);
         //Drawing variants
         for(int i = 0; i < COUNT_IMG; i++)
         {
