@@ -8,6 +8,11 @@
 #include <Windows.h>
 using namespace std;
 
+/*!
+Читает весь файл
+\param path Путь до файла
+\return Содержание файла
+*/
 string readAllFile(string path) {
 	ifstream file;
 	file.open(path);
@@ -21,6 +26,11 @@ string readAllFile(string path) {
 	return result;
 }
 
+/*!
+Парсит коордиты записаные строкой
+\param str Строка для парсинга
+\return Вектор содержащий координаты
+*/
 vector<int> ParseAreaCoord(string str) {
 	vector<string> coordStr = stringSplit(str, "|");
 	vector<int> coord;
@@ -32,6 +42,11 @@ vector<int> ParseAreaCoord(string str) {
 	return coord;
 }
 
+/*!
+Парсит объект записаный текстом
+\param str Текст для парсинга
+\return Полученный объект
+*/
 Image parseObject(string str) {
 	Image img;
 	vector<string> lines = stringSplit(str, "\n");
@@ -65,13 +80,20 @@ Image parseObject(string str) {
 	return img;
 }
 
+/*!
+Парсит файл сохранений и присваевает нужные HDC
+\param path Путь до файла
+\param menu Меню. Нужно для получения HDC
+\param sizeMenu Количесво элементов в меню
+\return Массив объектов
+*/
 vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
 	vector<string> arrObjStr = stringSplit(readAllFile(path), "--OBJ--\n");
 	vector<Image> arrObj;
 
-	// Это нужно для Code::Blocks без этого не работает
+	// Это нужно для Code::Blocks, без этого не работает
 	// Почему?
-	// А * знает
+	// Я не знаю
 	for (int qwe = 0; false; qwe++) {}
 
 	for (int i = 0; i < arrObjStr.size(); i++) {
@@ -93,6 +115,11 @@ vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
 	return arrObj;
 }
 
+/*!
+Сохраняет игру в файл
+\param nameFile Путь до файла
+\param objs Массив объектов для сохранения
+*/
 void SaveGameInFile(string nameFile, vector<Image> &objs) {
 
 	ofstream file;
