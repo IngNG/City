@@ -43,7 +43,6 @@ bool isMouseOver(AreaCoord area) {
 \param area Обновляемая область
 */
 void updateStatusArea(AreaCoord& area) {
-
 	//Текущее состояние области
 	bool mouseOver = isMouseOver(area);
 	bool mouseClickLeft = mouseOver && (txMouseButtons() & 1);
@@ -58,7 +57,7 @@ void updateStatusArea(AreaCoord& area) {
 	area.mouseUnHover         = false;
 
 	//Мыжка находится в областе
-	bool oldMouseOver       = area.mouseOver;
+	bool oldMouseOver = area.mouseOver;
 	if (!oldMouseOver && mouseOver) {
 		area.mouseHover = true;
 	} else if (oldMouseOver && !mouseOver) {

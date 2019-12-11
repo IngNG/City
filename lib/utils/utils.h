@@ -1,9 +1,19 @@
+/*!
+\file
+\brief Различные функции
+*/
 #pragma once
 #include <Windows.h>
 #include <string>
 #include <vector>
 using namespace std;
 
+/*!
+Добовляет расширение если оно не существует
+\param name Имя файла
+\param ext Расширение
+\return Новое имя
+*/
 string appendExt(string name, string ext) {
 	if (name == "") {
 		return "";
@@ -16,6 +26,12 @@ string appendExt(string name, string ext) {
 	return name;
 }
 
+/*!
+Вызывает системное меню выбора файла
+\param hWnd Дискриптьор окна
+\param save Если true, то открывется меню сохранения, иначе меню открытия
+\return Выбраный пользователем файл
+*/
 string selectFile(HWND hWnd, bool save) {
 	const int SIZE = 100;
 	char nameFile[SIZE];
@@ -44,11 +60,10 @@ string selectFile(HWND hWnd, bool save) {
 
 /*!
 Делит строку по разделителю
-\param[out] str Строка для разделения
-\param[out] delim Делитель
-\param[in] output Массив для результата деления
-\param[in] maxCountOutput Размер массива `output`
-\return Кол-во разделенных элементов
+\param str Строка для разделения
+\param delim Делитель
+\param max Максимальное кол-во подстрок
+\return Вектор из строк
 */
 vector<string> stringSplit(string str, string delim, int max = 0) {
 	int pos = 0;
