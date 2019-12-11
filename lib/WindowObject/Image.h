@@ -59,6 +59,11 @@ void drawImage(Image &i) {
 	}
 }
 
+/*!
+Получает ширину изображения
+\param adress Путь до картинки
+\return Ширина
+*/
 int getWidhtImage(string adress) {
 	unsigned char info[54];
 
@@ -70,6 +75,11 @@ int getWidhtImage(string adress) {
 	return width;
 }
 
+/*!
+Получает высота изображения
+\param adress Путь до картинки
+\return Высота
+*/
 int getHeightImage(string adress) {
 	unsigned char info[54];
 
