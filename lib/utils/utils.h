@@ -1,3 +1,7 @@
+/*!
+\file
+\brief Различные функции
+*/
 #pragma once
 #include <Windows.h>
 #include <string>

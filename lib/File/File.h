@@ -1,3 +1,7 @@
+/*!
+\file
+\brief Работа с файлами
+*/
 #pragma once
 #include "../utils/utils.h"
 #include "../WindowObject/Image.h"
