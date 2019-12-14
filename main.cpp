@@ -34,7 +34,7 @@ int main()
 	txDisableAutoPause();
 
 	HDC skver = txLoadImage("img\\skver.bmp");
-	Image fon          = loadImage({150, 0, 2500, 600}, "img\\fon.bmp");
+	Image fon          = loadImage({-1000, 0, 2500, 600}, "img\\fon.bmp");
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
 	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
@@ -138,19 +138,22 @@ int main()
 			}
 		}
 
-		if (nomer_kart >= 0 && GetAsyncKeyState (VK_LEFT))
+		// Перемещение картинки стрелками
+		if (nomer_kart >= 0 && GetAsyncKeyState(VK_LEFT))
 		{
 			objCity[nomer_kart].area.x -= speed;
 		}
-
-		if (nomer_kart >= 0 && GetAsyncKeyState (VK_RIGHT))
+		if (nomer_kart >= 0 && GetAsyncKeyState(VK_RIGHT))
 		{
 			objCity[nomer_kart].area.x += speed;
 		}
-
-		if (nomer_kart >= 0 && GetAsyncKeyState (VK_UP))
+		if (nomer_kart >= 0 && GetAsyncKeyState(VK_UP))
 		{
 			objCity[nomer_kart].area.y -= speed;
+		}
+		if (nomer_kart >= 0 && GetAsyncKeyState(VK_DOWN))
+		{
+			objCity[nomer_kart].area.y += speed;
 		}
 
 
@@ -161,12 +164,6 @@ int main()
 		else if (GetAsyncKeyState(VK_OEM_MINUS) && speed > 3)
 		{
 			speed = (speed * 67) / 100;
-		}
-
-
-		if (nomer_kart >= 0 && GetAsyncKeyState (VK_DOWN))
-		{
-			objCity[nomer_kart].area.y += speed;
 		}
 
 		if (nomer_kart >=0 && GetAsyncKeyState(VK_DELETE))
