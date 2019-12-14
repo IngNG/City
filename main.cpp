@@ -26,7 +26,6 @@ using namespace std;
 int main()
 {
 	ConfigApp config = readConfigFile("config.txt");
-
 	txCreateWindow(
 		atoi(getValueSetting(config, "wight").c_str()),
         atoi(getValueSetting(config, "height").c_str())
@@ -195,7 +194,7 @@ int main()
 		// Сохранение
 		if (GetAsyncKeyState(VK_SNAPSHOT))
         {
-            ScreenCapture(150,0,550,txGetExtentY(), "MyCity.bmp", txWindow());
+            ScreenCapture(150, 0, 550, txGetExtentY(), "MyCity.bmp", txWindow());
             txMessageBox("Сохранено в MyCity.bmp");
         }
 
@@ -208,12 +207,12 @@ int main()
 					string titleWindow = "Конструктор города (" + openNameFile + ")";
 					SetWindowTextA(txWindow(), titleWindow.c_str());
 
-					SaveGameInFile(openNameFile, objCity);
+					SaveGameInFile(openNameFile, objCity, cam_x);
 					txMessageBox("Сохранение завершено", "Завершено", MB_OK);
 				}
 			}
 			else {
-				SaveGameInFile(openNameFile, objCity);
+				SaveGameInFile(openNameFile, objCity, cam_x);
 				txMessageBox("Сохранение завершено", "Завершено", MB_OK);
 			}			
 		}
@@ -233,8 +232,8 @@ int main()
 			}
 		}
 
-        txRectangle ( 0 ,0 ,150 ,800);
-        txRectangle ( 700,0 ,800 ,1000);
+        txRectangle (0, 0, 150, 800);
+        txRectangle (700, 0, 800, 1000);
 
         //Buttons
         for (int i = 0; i < COUNT_BUTTON; i++)
