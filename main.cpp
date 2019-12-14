@@ -34,7 +34,7 @@ int main()
 	txDisableAutoPause();
 
 	HDC skver = txLoadImage("img\\skver.bmp");
-	Image fon          = loadImage({-1000, 0, 2500, 600}, "img\\fon.bmp");
+	Image fon          = loadImage({-1250, 0, 2500, 600}, "img\\fon.bmp");
 	Image strelkiLeft  = loadImage({10,  400, 60, 40}, "img\\StrelkiLeft.bmp" );
 	Image strelkiRight = loadImage({80,  400, 60, 40}, "img\\StrelkiRight.bmp");
 
@@ -60,7 +60,7 @@ int main()
 	vector<Image> objCity;
     string category;
 	int speed = 3; ///< скорость  передвижения картинки
-	int CAM_X = 0;
+	int cam_x = 0;
 	
 	const int COUNT_IMG = 14;
     Image img[COUNT_IMG];
@@ -102,19 +102,21 @@ int main()
         }
 
 		//CAM move
-		if (strelkiRight.clicked())
+		if (strelkiRight.clicked() && cam_x >= -1250)
 		{
 			for (int i = 0; i < objCity.size(); i++) {
 				objCity[i].area.x -= 10;
 			}
 			fon.area.x -= 10;
+			cam_x -= 10;
         }
-		else if (strelkiLeft.clicked())
+		else if (strelkiLeft.clicked() && cam_x <= 1250)
         {
 			for (int i = 0; i < objCity.size(); i++) {
 				objCity[i].area.x += 10;
 			}
 			fon.area.x += 10;
+			cam_x += 10;
         }
 
         //Choosing variants

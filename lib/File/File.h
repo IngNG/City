@@ -124,7 +124,7 @@ vector<Image> readSaveFile(string path, Image* menu, int sizeMenu) {
 \param nameFile Путь до файла
 \param objs Массив объектов для сохранения
 */
-void SaveGameInFile(string nameFile, vector<Image> &objs) {
+void SaveGameInFile(string nameFile, vector<Image> &objs, int offset_x = 0) {
 
 	ofstream file;
 	file.open(nameFile);
@@ -135,7 +135,7 @@ void SaveGameInFile(string nameFile, vector<Image> &objs) {
 		file << "path=" << obj.adress + "\n";
 		file << "widht=" << obj.widht << "\n";
 		file << "height=" << obj.height << "\n";
-		file << "coord=" << obj.area.x << "|" << obj.area.y << "|" << obj.area.widht << "|" << obj.area.height << "\n";
+		file << "coord=" << obj.area.x + offset_x << "|" << obj.area.y << "|" << obj.area.widht << "|" << obj.area.height << "\n";
 	}
 
 	file.close();
