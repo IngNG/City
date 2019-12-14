@@ -18,4 +18,4 @@
  - [Документация](http://city.liutsko.site/files.html)
  - [Рейтинг](https://docs.google.com/spreadsheets/d/1Wjq24aBWYW1Jv3pDB2whHBC6jtAhyz6xWS3OlcuegVI/edit#gid=296788835)
  - [Список задач](https://docs.google.com/spreadsheets/d/1Wjq24aBWYW1Jv3pDB2whHBC6jtAhyz6xWS3OlcuegVI/edit#gid=1392176167)
- - [Скачать](https://github.com/IngNG/City/releases/download/v0.3/City.zip)
+ - [Скачать](https://github.com/IngNG/City/releases/download/v0.3.1/City.zip)
